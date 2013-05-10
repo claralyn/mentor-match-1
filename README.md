@@ -14,7 +14,6 @@ The Mentor User can:
 * Review anonymous student surveys (hiding student names)
 
 The Admin User can:
-* 
 * Review the full mentor profile
 * Review the full student survey
 * Pair the students and mentors
