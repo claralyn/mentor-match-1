@@ -1,0 +1,473 @@
+<%= form_for(@student) do |f| %>
+	<table>
+		<tr>
+			<td>First Name</td>
+			<td><%= f.text_field :personal_first_name, {id: "personal_first_name"} %></td>
+		</tr>
+		<tr>
+			<td>Last Name</td>
+			<td><%= f.text_field :personal_last_name, {id: "personal_last_name" } %></td>
+		</tr>
+		<tr>
+			<td>Where are you from?</td>
+			<td><%= f.text_field :personal_where_you_from, {id: "personal_where_you_from"} %></td>
+		</tr>
+		<tr>
+			<td>Did you attend a university?</td>
+			<td>Yes
+						<%= radio_button_tag :experience_university, "y" %>
+					No
+					<%= radio_button_tag :experience_university, "n" %></td>
+		</tr>
+		<tr>
+			<td>What degree did you receive?</td>
+			<td><%= f.text_field :experience_degree, {id: "experience_degree"} %></td>
+		</tr>
+		<tr>
+			<td>Any other degree or college experience?</td>
+			<td><%= f.text_field :experience_other_degree, {id: "experience_other_degree"} %></td>
+		</tr>
+		<tr>
+			<td>What is your current job/role?</td>
+			<td><%= f.text_field :experience_job, {id: "experience_job"} %></td>
+		</tr>
+		<tr>
+			<td>Why are you attending Code Fellows?</td>
+			<td><%= f.text_field :experience_why_codefellows, {id: "experience_why_codefellows"} %></td>
+		</tr>
+		<tr>
+			<td>A project you are proud of:<br>
+					What was the project<br>
+					How was it challenging<br>
+					What made you proud of it<br>
+					What did you learn from it<br></td>
+			<td><%= f.text_area :experience_project, {id: "experience_project"} %></td>
+		</tr>
+		<tr>
+			<td>How would you classify your developer skills?</td>
+			<td><%= select_tag :skills_developer,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>How familiar are you with Object Oriented Programming?</td>
+			<td><%= select_tag :skills_object,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td> What is your experience with the following languages/Frameworks?</td>
+		</tr>
+		<tr>
+			<td>html/CSS/xml</td>
+			<td><%= select_tag :skills_html_css,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>javascript</td>
+			<td><%= select_tag :skills_javascript,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>java</td>
+			<td><%= select_tag :skills_java,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>C++</td>
+			<td><%= select_tag :skills_cplusplus,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>C</td>
+			<td><%= select_tag :skills_c,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>Ruby</td>
+			<td><%= select_tag :skills_ruby,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>python</td>
+			<td><%= select_tag :skills_python,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>php</td>
+			<td><%= select_tag :skills_php,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>.net</td>
+			<td><%= select_tag :skills_net,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>coffeescript</td>
+			<td><%= select_tag :skills_coffeescript,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td>Other Coding Skills</td>
+			<td><%= select_tag :skills_other_coding,
+											options_for_select([['Beginner', 'b'],
+																					['Competent', 'c'],
+																					['Expert', 'e']]) %></td>
+		</tr>
+		<tr>
+			<td> Are you comfortable with "selling yourself" or your idea?</td>
+			<td>Yes
+						<%= radio_button_tag :skills_selling_yourself, "y" %>
+					No
+					<%= radio_button_tag :skills_selling_yourself, "n" %></td>
+		</tr>
+		<tr>
+			<td>How familiar are you with the development process (design, dev, test, deploy)?</td>
+			<td><%= select_tag :skills_development_familiarity,
+											options_for_select([['Unfamiliar', 'u'],
+																					['Somewhat Familiar', 's'],
+																					['Very Familiar', 'v']]) %></td>
+		</tr>
+		<tr>
+			<td>Have you used agile development or a different development process?</td>
+			<td>Yes
+						<%= radio_button_tag :skills_agile_development_experience, "y" %>
+					No
+						<%= radio_button_tag :skills_agile_development_experience, "n" %></td>
+		</tr>
+		<tr>
+			<td>Are you self-taught(books, tutorials, short classes)?</td>
+			<td>Yes
+						<%= radio_button_tag :learning_self_taught, "y" %>
+					No
+						<%= radio_button_tag :learning_self_taught, "n" %></td>
+		</tr>
+		<tr>
+			<td>Do you learn better by reading a book or being in a class</td>
+			<td>Books
+						<%= radio_button_tag :learning, "books" %>
+					Classes
+						<%= radio_button_tag :learning, "classes" %></td>
+		</tr>
+		<tr>
+			<td>Do you like working in groups or on your own?</td>
+			<td>Groups
+						<%= radio_button_tag :learning_preference, "groups" %>
+					Alone
+						<%= radio_button_tag :learning_preference, "alone" %></td>
+		</tr>
+		<tr>
+			<td>Please add anything else that you feel would help match you with a mentor</td>
+			<td><%= f.text_area :learning_extra_information, {id: "learning_extra_information" } %></td>
+		</tr>
+		<tr>
+			<td colspan="2">Seeking in a Mentor</td>
+		</tr>
+		<tr>
+			<td>Career Advice</td>
+			<td>1
+						<%= radio_button_tag :mentor_career_advice, "1" %>
+					2
+						<%= radio_button_tag :mentor_career_advice, "2" %>
+					3
+						<%= radio_button_tag :mentor_career_advice, "3" %>
+					4
+						<%= radio_button_tag :mentor_career_advice, "4" %>
+					5
+						<%= radio_button_tag :mentor_career_advice, "5" %>
+					6
+						<%= radio_button_tag :mentor_career_advice, "6" %>
+					7
+						<%= radio_button_tag :mentor_career_advice, "7" %>
+					8
+						<%= radio_button_tag :mentor_career_advice, "8" %>
+					9
+						<%= radio_button_tag :mentor_career_advice, "9" %>
+					10
+						<%= radio_button_tag :mentor_career_advice, "10" %>
+					</td>
+		</tr>
+			<td>Developer Skill Development</td>
+			<td>1
+						<%= radio_button_tag :mentor_skill_development, "1" %>
+					2
+						<%= radio_button_tag :mentor_skill_development, "2" %>
+					3
+						<%= radio_button_tag :mentor_skill_development, "3" %>
+					4
+						<%= radio_button_tag :mentor_skill_development, "4" %>
+					5
+						<%= radio_button_tag :mentor_skill_development, "5" %>
+					6
+						<%= radio_button_tag :mentor_skill_development, "6" %>
+					7
+						<%= radio_button_tag :mentor_skill_development, "7" %>
+					8
+						<%= radio_button_tag :mentor_skill_development, "8" %>
+					9
+						<%= radio_button_tag :mentor_skill_development, "9" %>
+					10
+						<%= radio_button_tag :mentor_skill_development, "10" %>
+					</td>
+		</tr>
+		<tr>
+			<td>Assistance with Coding Question/tactics</td>
+			<td>1
+						<%= radio_button_tag :mentor_coding_question_tactics, "1" %>
+					2
+						<%= radio_button_tag :mentor_coding_question_tactics, "2" %>
+					3
+						<%= radio_button_tag :mentor_coding_question_tactics, "3" %>
+					4
+						<%= radio_button_tag :mentor_coding_question_tactics, "4" %>
+					5
+						<%= radio_button_tag :mentor_coding_question_tactics, "5" %>
+					6
+						<%= radio_button_tag :mentor_coding_question_tactics, "6" %>
+					7
+						<%= radio_button_tag :mentor_coding_question_tactics, "7" %>
+					8
+						<%= radio_button_tag :mentor_coding_question_tactics, "8" %>
+					9
+						<%= radio_button_tag :mentor_coding_question_tactics, "9" %>
+					10
+						<%= radio_button_tag :mentor_coding_question_tactics, "10" %>
+					</td>
+		</tr>
+		<tr>
+			<td>Soft Skills(presentation, leading teams, etc.)</td>
+			<td>1
+						<%= radio_button_tag :mentor_soft_skills, "1" %>
+					2
+						<%= radio_button_tag :mentor_soft_skills, "2" %>
+					3
+						<%= radio_button_tag :mentor_soft_skills, "3" %>
+					4
+						<%= radio_button_tag :mentor_soft_skills, "4" %>
+					5
+						<%= radio_button_tag :mentor_soft_skills, "5" %>
+					6
+						<%= radio_button_tag :mentor_soft_skills, "6" %>
+					7
+						<%= radio_button_tag :mentor_soft_skills, "7" %>
+					8
+						<%= radio_button_tag :mentor_soft_skills, "8" %>
+					9
+						<%= radio_button_tag :mentor_soft_skills, "9" %>
+					10
+						<%= radio_button_tag :mentor_soft_skills, "10" %>
+					</td>
+		</tr>
+		<tr>
+			<td>Interviewing coaching</td>
+			<td>1
+						<%= radio_button_tag :mentor_interview_coaching, "1" %>
+					2
+						<%= radio_button_tag :mentor_interview_coaching, "2" %>
+					3
+						<%= radio_button_tag :mentor_interview_coaching, "3" %>
+					4
+						<%= radio_button_tag :mentor_interview_coaching, "4" %>
+					5
+						<%= radio_button_tag :mentor_interview_coaching, "5" %>
+					6
+						<%= radio_button_tag :mentor_interview_coaching, "6" %>
+					7
+						<%= radio_button_tag :mentor_interview_coaching, "7" %>
+					8
+						<%= radio_button_tag :mentor_interview_coaching, "8" %>
+					9
+						<%= radio_button_tag :mentor_interview_coaching, "9" %>
+					10
+						<%= radio_button_tag :mentor_interview_coaching, "10" %>
+					</td>
+		</tr>
+		<tr>
+			<td>Job Search</td>
+			<td>1
+						<%= radio_button_tag :mentor_job_search, "1" %>
+					2
+						<%= radio_button_tag :mentor_job_search, "2" %>
+					3
+						<%= radio_button_tag :mentor_job_search, "3" %>
+					4
+						<%= radio_button_tag :mentor_job_search, "4" %>
+					5
+						<%= radio_button_tag :mentor_job_search, "5" %>
+					6
+						<%= radio_button_tag :mentor_job_search, "6" %>
+					7
+						<%= radio_button_tag :mentor_job_search, "7" %>
+					8
+						<%= radio_button_tag :mentor_job_search, "8" %>
+					9
+						<%= radio_button_tag :mentor_job_search, "9" %>
+					10
+						<%= radio_button_tag :mentor_job_search, "10" %>
+					</td>
+		</tr>
+		<tr>
+			<td>Resume Development</td>
+			<td>1
+						<%= radio_button_tag :mentor_resume_development, "1" %>
+					2
+						<%= radio_button_tag :mentor_resume_development, "2" %>
+					3
+						<%= radio_button_tag :mentor_resume_development, "3" %>
+					4
+						<%= radio_button_tag :mentor_resume_development, "4" %>
+					5
+						<%= radio_button_tag :mentor_resume_development, "5" %>
+					6
+						<%= radio_button_tag :mentor_resume_development, "6" %>
+					7
+						<%= radio_button_tag :mentor_resume_development, "7" %>
+					8
+						<%= radio_button_tag :mentor_resume_development, "8" %>
+					9
+						<%= radio_button_tag :mentor_resume_development, "9" %>
+					10
+						<%= radio_button_tag :mentor_resume_development, "10" %>
+					</td>
+		</tr>
+		<tr>
+			<td>Github Account Development</td>
+			<td>1
+						<%= radio_button_tag :mentor_github_account_development, "1" %>
+					2
+						<%= radio_button_tag :mentor_github_account_development, "2" %>
+					3
+						<%= radio_button_tag :mentor_github_account_development, "3" %>
+					4
+						<%= radio_button_tag :mentor_github_account_development, "4" %>
+					5
+						<%= radio_button_tag :mentor_github_account_development, "5" %>
+					6
+						<%= radio_button_tag :mentor_github_account_development, "6" %>
+					7
+						<%= radio_button_tag :mentor_github_account_development, "7" %>
+					8
+						<%= radio_button_tag :mentor_github_account_development, "8" %>
+					9
+						<%= radio_button_tag :mentor_github_account_development, "9" %>
+					10
+						<%= radio_button_tag :mentor_github_account_development, "10" %>
+					</td>
+		</tr>
+		<tr>
+			<td>Assistance with Selling yourself or an idea</td>
+			<td>1
+						<%= radio_button_tag :mentor_selling_idea, "1" %>
+					2
+						<%= radio_button_tag :mentor_selling_idea, "2" %>
+					3
+						<%= radio_button_tag :mentor_selling_idea, "3" %>
+					4
+						<%= radio_button_tag :mentor_selling_idea, "4" %>
+					5
+						<%= radio_button_tag :mentor_selling_idea, "5" %>
+					6
+						<%= radio_button_tag :mentor_selling_idea, "6" %>
+					7
+						<%= radio_button_tag :mentor_selling_idea, "7" %>
+					8
+						<%= radio_button_tag :mentor_selling_idea, "8" %>
+					9
+						<%= radio_button_tag :mentor_selling_idea, "9" %>
+					10
+						<%= radio_button_tag :mentor_selling_idea, "10" %>
+					</td>
+		</tr>
+		<tr>
+			<td>Are you seeking a mentor that is working at a:</td>
+			<td><%= select_tag :mentor_company_type,
+											options_for_select([['Startup', 'startup'],
+																					['Larger Company', 'largeco'],
+																					['Self Employed', 'self'],
+																					['No Preference', 'none']]) %></td>
+		</tr>
+		<tr>
+			<td>Do you prefer a:</td>
+			<td>Male
+						<%= radio_button_tag :mentor_gender, "m" %>
+					Female
+						<%= radio_button_tag :mentor_gender, "f" %>
+					No Preference
+						<%= radio_button_tag :mentor_gender, "n" %>
+					</td>
+		</tr>
+		<tr>
+			<td>Feel free to add anything else here:</td>
+			<td><%= f.text_area :mentor_extra_info, {id: "mentor_extra_info" } %></td>
+		</tr>
+		<tr>
+			<td>Do you want to work at a:</td>
+			<td><%= select_tag :goals_company_type,
+											options_for_select([['Startup', 'startup'],
+																					['Larger Company', 'largeco'],
+																					['Self Employed', 'self'],
+																					['No Preference', 'none']]) %></td>
+		</tr>
+		<tr>
+			<td>After you leave Code Fellows, you'd like to:</td>
+			<td><%= f.text_field :goals_after_codefellows, {id: "goals_after_codefellows" } %></td>
+		</tr>
+		<tr>
+			<td>What is your dream job title immediately following CodeFellows?</td>
+			<td><%= f.text_field :goals_dream_job_title, {id: "goals_dream_job_title"} %></td>
+		</tr>
+		<tr>
+			<td>What companies are you most interested in working for?</td>
+			<td><%= f.text_field :goals_companies, {id: "goals_companies" } %></td>
+		</tr>
+		<tr>
+			<td>What do you want to do in the next year?</td>
+			<td><%= f.text_field :goals_next_year, {id: "goals_next_year" } %></td>
+		</tr>
+		<tr>
+			<td>Where do you want to be in the next four years?</td>
+			<td><%= f.text_field :goal_next_4_years, {id: "goal_next_4_years" } %></td>
+		</tr>
+		<tr>
+			<td>Do you intend to stay in Seattle after the class completes?</td>
+			<td>Yes
+						<%= radio_button_tag :goals_stay_seattle, "y" %>
+					No
+						<%= radio_button_tag :goals_stay_seattle, "n" %></td>
+		</tr>
+		<tr>
+			<td>Please add your LinkedIn account or Resume</td>
+			<td><%= f.text_field :linked_in, {id: "linked_in" } %></td>
+		</tr>
+		<tr>
+			<td>Please add any other details or information about yourself you feel would be useful to a mentor</td>
+			<td><%= f.text_area :goals_extra_info, {id: "goals_extra_info" } %></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="right"><%= f.submit "Submit Survey" %></td>
+		</tr>
+	</table>
+<% end %>
