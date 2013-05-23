@@ -1,15 +1,15 @@
-=begin
 require 'spec_helper'
 
 
 feature "an admin edit a student survey" do
-	let!(:admin){Factory(:admin_user)}
+	let(:admin){Factory(:admin_user)}
 	let!(:student){Factory(:student)}
 	# Code should go up here to login as admin
 
 	scenario "admin edits a student survey" do
 		visit '/'
 		click_link 'Admin'
+		sign_in_as!(admin)
 		page.should have_content("Students that still need mentors")
 		click_link "Matt Tee"
 
@@ -76,4 +76,3 @@ feature "an admin edit a student survey" do
 		page.should_not have_content('Matt Tee')
 	end
 end
-=end

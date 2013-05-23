@@ -12,10 +12,12 @@ class StudentsController < ApplicationController
 
 	def edit
 		@student = Student.find(params[:id])
+		@submittext = "Edit Survey"
 	end
 
 	def new
 		@student = Student.new
+		@submittext = "Submit Survey"
 	end
 
 	def create
@@ -34,6 +36,13 @@ class StudentsController < ApplicationController
 	end
 
 	def update
+		@student = Student.find(params[:id])
+		if @student.update_attributes(params[:student])
+			flash[:notice] = @student.personal_first_name + ' ' + @student.personal_last_name + ' has been edited.'
+			redirect_to students_path
+		else
+
+		end
 	end
 
 	def destroy
