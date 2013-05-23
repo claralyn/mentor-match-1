@@ -3,6 +3,11 @@ MentorMatch::Application.routes.draw do
 
   resources :students
 
+  namespace :admin do
+    root :to => "base#index"
+    resources :users
+  end
+
   match '/thanks' => "students#thanks"
 
   # The priority is based upon order of creation:

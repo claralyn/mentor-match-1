@@ -4,6 +4,7 @@ feature "a student fills out survey" do
 	scenario "student fills out survey" do
 		visit '/'
 		click_link 'Student'
+		select 'Ruby on Rails May/June', from: 'cf_class'
 		fill_in 'personal_first_name', with: "Fud"
 		fill_in 'personal_last_name', with: "Helser"
 		fill_in 'personal_where_you_from', with: "Alaska"

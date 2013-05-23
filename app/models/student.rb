@@ -19,6 +19,6 @@ class Student < ActiveRecord::Base
   								:skills_other_coding, :skills_php, :skills_python, :skills_ruby,
   								:skills_selling_yourself,
   								#linked in
-  								:linked_in
+  								:linked_in, :cf_class
 
 end

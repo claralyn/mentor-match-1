@@ -1,13 +1,17 @@
 class StudentsController < ApplicationController
 
 	def index
-		@students = Student.all
+		#need to change this
+		@studentnomentors = Student.all
+		@studentwithmentors  = Student.all
 	end
 
 	def show
+		@student = Student.find(params[:id])
 	end
 
 	def edit
+		@student = Student.find(params[:id])
 	end
 
 	def new
@@ -20,7 +24,7 @@ class StudentsController < ApplicationController
 			flash[:notice] = 'Thank You!'
 			redirect_to '/thanks'
 		else
-			flash[:alert] = 'Sorry, there was problem. ' +
+			flash[:alert] = 'Sorry, there was a problem. ' +
 											'Please make sure all field were completed.'
 			render :action => "new"
 		end

@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130521194119) do
 
   create_table "students", :force => true do |t|
+    t.string   "cf_class"
     t.string   "personal_first_name"
     t.string   "personal_last_name"
     t.string   "personal_where_you_from"

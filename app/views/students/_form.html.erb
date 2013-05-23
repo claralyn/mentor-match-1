@@ -1,4 +1,8 @@
 <%= form_for(@student) do |f| %>
+	<div>
+		Class <%= select_tag :cf_class,
+											options_for_select([['Ruby on Rails March', 'rails1'], ['Ruby on Rails May/June', 'rails2']]) %>
+	</div>
 	<table>
 		<tr>
 			<td>First Name</td>
