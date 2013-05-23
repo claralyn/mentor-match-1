@@ -1,6 +1,6 @@
 
 Students that still need mentors
 <% @studentnomentors.each do |student| %>
-	<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", edit_student_path(student) %>
+	<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %>
 <% end %>
 <%= link_to "Register", new_user_registration_path %>

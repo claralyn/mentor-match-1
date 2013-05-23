@@ -46,5 +46,10 @@ class StudentsController < ApplicationController
 	end
 
 	def destroy
+		@student = Student.find(params[:id])
+		firstname = @student.personal_first_name
+		lastname = @student.personal_last_name
+		@student.destroy
+		redirect_to students_path, :notice => "#{firstname} #{lastname} has been removed from the database."
 	end
 end

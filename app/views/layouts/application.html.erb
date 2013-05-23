@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav>
+	<%= link_to "Sign Out", destroy_user_session_path, :method => :delete if user_signed_in? %>
+</nav>
 <% flash.each do |key, value| %>
 	<div class="flash" id="<%= key %>">
 		<%= value %>

@@ -12,6 +12,7 @@ feature "an admin edit a student survey" do
 		sign_in_as!(admin)
 		page.should have_content("Students that still need mentors")
 		click_link "Matt Tee"
+		click_link "Edit"
 
 		# Form to Update
 		select 'Ruby on Rails May/June', from: 'cf_class'

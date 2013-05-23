@@ -1,0 +1,3 @@
+<%= @student.personal_first_name %>
+<%= link_to "Edit", edit_student_path(@student) %>
+<%= link_to "Delete", @student, :confirm => "Are you sure you want to delete #{@student.personal_first_name} #{@student.personal_last_name}", :method => :delete %>
