@@ -2,6 +2,10 @@ MentorMatch::Application.routes.draw do
   devise_for :users
 
   resources :students
+  resources :mentors
+  resources :home
+
+  root :to => 'home#index'
 
   namespace :admin do
     root :to => "base#index"
