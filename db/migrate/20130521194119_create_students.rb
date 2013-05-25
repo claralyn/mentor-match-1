@@ -52,6 +52,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string :goals_stay_seattle
       t.string :linked_in
       t.string :goals_extra_info
+      t.integer :mentor_id
 
       t.timestamps
     end

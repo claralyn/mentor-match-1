@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20130523160434) do
     t.string   "goals_stay_seattle"
     t.string   "linked_in"
     t.string   "goals_extra_info"
+    t.integer  "mentor_id"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
   end

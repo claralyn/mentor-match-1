@@ -1,6 +1,15 @@
-
+<%= link_to "Pair!", "/pair" %>
 Students that still need mentors
 <% @studentnomentors.each do |student| %>
 	<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %>
 <% end %>
+
+Mentors that still need mentees
+<% @mentornostudents.each do |mentor| %>
+	<%= link_to "#{mentor.personal_first_name} #{mentor.personal_last_name}", mentor_path(mentor) %>
+<% end %>
+
+<div class="paired">
+	<%= %>
+</div>
 <%= link_to "Register", new_user_registration_path %>

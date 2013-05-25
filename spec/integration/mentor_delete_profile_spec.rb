@@ -1,4 +1,3 @@
-=begin
 require 'spec_helper'
 
 feature "An Admin Deletes A Mentor" do
@@ -8,7 +7,6 @@ feature "An Admin Deletes A Mentor" do
 
 	scenario "Admin deletes Mentor from Database" do
 		sign_in_as!(admin)
-		visit '/'
 		page.should have_content("Mentors that still need mentees")
 		click_link "Butler Price"
 		click_link "Delete"
@@ -17,10 +15,8 @@ feature "An Admin Deletes A Mentor" do
 
 	scenario "If not an Admin, Mentors not Shown" do
 		sign_in_as!(admin)
-		visit '/'
 		click_link 'Sign Out'
 		visit '/'
-		page.should have_content("Mentors that still need mentees")
+		page.should_not have_content("Mentors that still need mentees")
 	end
 end
-=end

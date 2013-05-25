@@ -25,4 +25,6 @@ class Mentor < ActiveRecord::Base
   								:skills_interview_coaching, :skills_job_search,
   								:skills_resume_development, :skills_selling_idea,
   								:skills_selling_yourself, :skills_soft_skills
+
+  has_many :students
 end

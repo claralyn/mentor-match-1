@@ -1,5 +1,7 @@
 class Student < ActiveRecord::Base
-  attr_accessible :experience_degree, :experience_job, :experience_other_degree,
+  attr_accessible :mentor_id,
+
+                  :experience_degree, :experience_job, :experience_other_degree,
   								:experience_project, :experience_university, :experience_why_codefellows,
   								#goal
   								:goal_next_4_years, :goals_after_codefellows, :goals_companies,
@@ -20,5 +22,7 @@ class Student < ActiveRecord::Base
   								:skills_selling_yourself,
   								#linked in
   								:linked_in, :cf_class
+
+  belongs_to :mentor
 
 end

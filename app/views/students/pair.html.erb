@@ -1,0 +1,23 @@
+<table>
+	<tr>
+		<td>Students</td>
+		<td>Mentors</td>
+		<td>Class</td>
+		<td>Notify?</td>
+	</tr>
+		<% @students.each do |student| %>
+		<%= form_for student do |f| %>
+				<tr>
+					<td>
+						<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
+					<td>
+						<%= f.collection_select :mentor_id, Mentor.all, :id, :personal_last_name, {}, {:id => "mentee_#{student.id}"} %>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><%= f.submit "Submit" %>
+				</tr>
+		<% end %>
+	<% end %>
+</table>
