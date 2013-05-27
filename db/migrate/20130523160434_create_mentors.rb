@@ -24,7 +24,8 @@ class CreateMentors < ActiveRecord::Migration
       t.integer :mentee_skills_python
       t.integer :mentee_skills_php
       t.integer :mentee_skills_net
-      t.integer :mentee_skills_coffescript
+      t.integer :mentee_skills_coffeescript
+      t.integer :mentee_skills_object
       t.string :mentee_skills_other_coding
       t.string :mentee_gender
       t.integer :skills_career_advice

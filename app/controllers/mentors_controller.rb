@@ -16,7 +16,6 @@ class MentorsController < ApplicationController
 	def create
 		@mentor = Mentor.new(params[:mentor])
 		if @mentor.save
-			flash[:notice] = 'Thank You!'
 			redirect_to '/thanks'
 		else
 			flash[:alert] = 'Sorry, there was a problem. ' +
@@ -29,7 +28,7 @@ class MentorsController < ApplicationController
 		@mentor = Mentor.find(params[:id])
 		if @mentor.update_attributes(params[:mentor])
 			flash[:notice] = @mentor.personal_first_name + ' ' + @mentor.personal_last_name + "'s profile has been updated"
-			redirect_to students_path
+			redirect_to mentor_path(@mentor)
 		else
 			flash[:notice] = 'There was a problem!'
 			render :action => "edit"

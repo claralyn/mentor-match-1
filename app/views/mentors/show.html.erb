@@ -1,3 +1,356 @@
-<%= @mentor.personal_first_name %>
 <%= link_to "Edit", edit_mentor_path(@mentor) %>
 <%= link_to "Delete", @mentor, :confirm => "Are you sure you want to delete #{@mentor.personal_first_name} #{@mentor.personal_last_name}", :method => :delete %>
+<h2><%= @mentor.personal_first_name %> <%= @mentor.personal_last_name %></h2>
+	<p><em>For
+					<%= case @mentor.cf_class
+						 	when "rails2"
+						 		"June 2013"
+						 	when "rails3"
+						 		"July/August 2013"
+							end %></em></p>
+<table>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.personal_first_name %> <%= @mentor.personal_last_name %></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.career_job_title %> at
+			<%= @mentor.career_company_private  %>
+			<%= (@mentor.career_company_type) %></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h3>Why do you want to be a Codefellows Mentor?</h3>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.personal_why_mentor || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h3>What kind of knowledge do you feel you could impart on your mentee?</h3>
+		</td>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.personal_knowledge_impart || "-" %>
+		</td>
+	</tr>
+	<tr>
+			<td colspan="2">
+				<h3>What is your careeer history like?</h3>
+			</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.career_information || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h3>Did you attend a university?</h3>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.experience_university || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h3>Did you receive a degree? If so, for what?</h3>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.experience_degree || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h3>Any other degree or college experience?</h3>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.experience_other_degree || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h2>
+				Which skills below do you think that you
+				would be capable of helping a mentee improve upon?
+			</h2>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h2>
+				Which skills below do you think that you
+				would be capable of helping a mentee improve upon?
+			</h2>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Developer Skills
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_developer  || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Object Oriented Programming
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_object  || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h2>
+				Which of the following languages/Frameworks do you feel you
+				are capable of teaching?
+			</h2>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				html/CSS/xml
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_html_css || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				javascript
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_javascript || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				java
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_java || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				C++
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_cplusplus || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				C
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_c  || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Ruby
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_ruby || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				python
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_python || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				php
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_php || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				.net
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_net || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Coffeescript
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_coffeescript || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Other Coding Skills
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.mentee_skills_other_coding || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h2>
+				How much do you feel like you would be able to help your mentee in the areas
+			</h2>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Career Advice
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.skills_career_advice || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Developer Skill Development
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.skills_development || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Assistance with Coding Question/Tactics
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.skills_coding_question_tactics || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Soft Skills(presentation, leading teams, etc.)
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.skills_soft_skills || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Interviewing coaching
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.skills_interview_coaching || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Job Search
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.skills_job_search || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Resume Development
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.skills_resume_development || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Github Account Development
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.skills_github_account_development || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h3>
+				Assistance with Selling yourself or an idea
+			</h3>
+		</td>
+		<td>
+			<%= @mentor.skills_selling_idea || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h3>
+				Do you prefer a:
+			</h3>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.mentee_gender || "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h3>
+				Feel free to add anything else here:
+			</h3>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.mentee_extra_info || "-" %>
+		</td>
+	</tr>
+</table>

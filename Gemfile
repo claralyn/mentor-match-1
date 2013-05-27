@@ -22,6 +22,8 @@ end
 
 gem 'jquery-rails'
 gem 'devise', '2.1.0'
+gem 'compass'
+gem 'zurb-foundation', '~>4.0.0'
 
 group :test, :development do
 	gem 'rspec-rails', '~>2.11'

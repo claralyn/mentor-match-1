@@ -11,22 +11,22 @@ class CreateStudents < ActiveRecord::Migration
       t.string :experience_job
       t.string :experience_why_codefellows
       t.string :experience_project
-      t.string :skills_developer
-      t.string :skills_object
-      t.string :skills_html_css
-      t.string :skills_javascript
-      t.string :skills_java
-      t.string :skills_cplusplus
-      t.string :skills_c
-      t.string :skills_ruby
-      t.string :skills_python
-      t.string :skills_php
-      t.string :skills_net
-      t.string :skills_coffescript
-      t.string :skills_other_coding
-      t.string :skills_selling_yourself
-      t.string :skills_development_familiarity
-      t.string :skills_agile_development_experience
+      t.integer :skills_developer
+      t.integer :skills_object
+      t.integer :skills_html_css
+      t.integer :skills_javascript
+      t.integer :skills_java
+      t.integer :skills_cplusplus
+      t.integer :skills_c
+      t.integer :skills_ruby
+      t.integer :skills_python
+      t.integer :skills_php
+      t.integer :skills_net
+      t.integer :skills_coffeescript
+      t.integer :skills_other_coding
+      t.integer :skills_selling_yourself
+      t.integer :skills_development_familiarity
+      t.integer :skills_agile_development_experience
       t.string :learning_self_taught
       t.string :learning
       t.string :learning_preference
@@ -39,7 +39,7 @@ class CreateStudents < ActiveRecord::Migration
       t.integer :mentor_job_search
       t.integer :mentor_resume_development
       t.integer :mentor_github_account_development
-      t.integer :mentor_selling_idea
+      t.integer  :mentor_selling_idea
       t.string :mentor_company_type
       t.string :mentor_gender
       t.string :mentor_extra_info

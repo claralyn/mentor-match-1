@@ -8,10 +8,10 @@ class Mentor < ActiveRecord::Base
   								:experience_university,
 
   								:mentee_gender, :mentee_extra_info,
-  								:mentee_skills_c, :mentee_skills_coffescript,
+  								:mentee_skills_c, :mentee_skills_coffeescript,
   								:mentee_skills_cplusplus, :mentee_skills_developer,
   								:mentee_skills_html_css, :mentee_skills_java,
-  								:mentee_skills_javascript, :mentee_skills_net,
+  								:mentee_skills_javascript, :mentee_skills_net, :mentee_skills_object,
   								:mentee_skills_other_coding, :mentee_skills_php,
   								:mentee_skills_python, :mentee_skills_ruby,
 
@@ -24,7 +24,7 @@ class Mentor < ActiveRecord::Base
   								:skills_github_account_development,
   								:skills_interview_coaching, :skills_job_search,
   								:skills_resume_development, :skills_selling_idea,
-  								:skills_selling_yourself, :skills_soft_skills
+  								:skills_soft_skills
 
   has_many :students
 end

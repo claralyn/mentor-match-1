@@ -15,11 +15,11 @@ class Student < ActiveRecord::Base
   								:mentor_selling_idea, :mentor_skill_development, :mentor_soft_skills,
   								:personal_last_name, :personal_where_you_from, :personal_first_name,
   								# skills
-  								:skills_agile_development_experience, :skills_c, :skills_coffescript,
+  								:skills_agile_development_experience, :skills_c, :skills_coffeescript,
   								:skills_cplusplus, :skills_developer, :skills_development_familiarity,
   								:skills_html_css, :skills_java, :skills_javascript, :skills_net,
   								:skills_other_coding, :skills_php, :skills_python, :skills_ruby,
-  								:skills_selling_yourself,
+  								:skills_selling_yourself, :skills_object,
   								#linked in
   								:linked_in, :cf_class
 

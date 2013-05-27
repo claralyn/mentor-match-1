@@ -2,10 +2,13 @@ class StudentsController < ApplicationController
 
 	def index
 		#need to change this
-		@studentnomentors = Student.all
-		@studentwithmentors  = Student.all
-		@mentornostudents = Mentor.all
-		@mentorwithmentors = Mentor.all
+		@studentnomentors = Student.where("mentor_id is NULL")
+		@studentsall  = Student.all
+		@mentornostudents = Mentor.find(
+																	:all,
+																	:joins => "LEFT OUTER JOIN 'students' ON students.mentor_id = mentors.id
+																				WHERE students.mentor_id is NULL")
+		@mentorsall = Mentor.all
 	end
 
 	def show
@@ -25,7 +28,6 @@ class StudentsController < ApplicationController
 	def create
 		@student = Student.new(params[:student])
 		if @student.save
-			flash[:notice] = 'Thank You!'
 			redirect_to '/thanks'
 		else
 			flash[:alert] = 'Sorry, there was a problem. ' +
@@ -53,7 +55,7 @@ class StudentsController < ApplicationController
 			else
 				flash[:notice] = @student.personal_first_name + ' ' + @student.personal_last_name + ' has been edited.'
 			end
-			redirect_to students_path
+			redirect_to student_path(@student)
 		else
 			flash[:notice] = 'There was a problem!'
 			render :action => "edit"
