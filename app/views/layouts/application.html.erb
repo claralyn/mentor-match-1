@@ -19,14 +19,19 @@
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
+  <body>
   <header>
     <img src="/assets/codefellows2.png" height="auto" width="75" />
     <h1>
       Code Fellows Mentor Match
     </h1>
+    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete if user_signed_in? %>
   </header>
-  <body>
-
+  <% flash.each do |key, value| %>
+  <div class='flash' id='<%= key %>'>
+    <%= value %>
+  </div>
+  <% end %>
     <%= yield %>
 
 
