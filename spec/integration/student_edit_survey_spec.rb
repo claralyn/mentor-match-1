@@ -15,7 +15,7 @@ feature "an admin edit a student survey" do
 		click_link "Edit"
 
 		# Form to Update
-		select 'Ruby on Rails May/June', from: 'student_cf_class'
+		select 'Ruby on Rails June', from: 'student_cf_class'
 		fill_in 'personal_first_name', with: "Different"
 		fill_in 'personal_last_name', with: "dfd"
 		fill_in 'personal_where_you_from', with: "dfd"
@@ -38,7 +38,7 @@ feature "an admin edit a student survey" do
 		select 'Competent', from: 'student_skills_php'
 		select 'Expert', from: 'student_skills_net'
 		select 'Expert', from:'student_skills_coffeescript'
-		select 'Competent', from: 'student_skills_other_coding'
+		fill_in 'skills_other_coding', with: 'student_skills_other_coding'
 
 		choose 'student_skills_selling_yourself_y'
 		select 'Somewhat Familiar', from: 'student_skills_development_familiarity'

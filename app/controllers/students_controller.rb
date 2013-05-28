@@ -50,8 +50,7 @@ class StudentsController < ApplicationController
 		if @student.update_attributes(params[:student])
 			if @student.mentor_id
 				unless past_mentor_id == @student.mentor_id
-					flash[:notice] = @student.personal_first_name + ' ' + @student.personal_last_name + ' had been paired with ' + @student.mentor.personal_first_name + ' ' + @student.mentor.personal_last_name
-				end
+					flash[:notice] = @student.personal_first_name + ' ' + @student.personal_last_name + ' had been paired with ' + @student.mentor.personal_first_name + ' ' + @student.mentor.personal_last_name				end
 			else
 				flash[:notice] = @student.personal_first_name + ' ' + @student.personal_last_name + ' has been edited.'
 			end

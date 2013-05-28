@@ -4,6 +4,7 @@ MentorMatch::Application.routes.draw do
   resources :students
   resources :mentors
   resources :home
+  resources :notifications
 
   root :to => 'home#index'
 

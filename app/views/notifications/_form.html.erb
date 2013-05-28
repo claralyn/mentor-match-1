@@ -1,0 +1,43 @@
+<%= form_for @notification do |f| %>
+	<% mentors = Mentor.all %>
+	<% students = Student.all %>
+	<table>
+		<tr>
+			<td colspan="2">Notify who?</td>
+		</tr>
+		<tr>
+			<td>
+				<% unless mentors.empty? %>
+						<h3>Mentors</h3>
+						<%	mentors.each do |mentor| %>
+							<%= mentor.personal_first_name %>
+						<% 	end
+						end %>
+				<% unless students.empty? %>
+						<h3>Students</h3>
+						<% students.each do |student| %>
+							<%= student.personal_first_name %>
+						<% end
+						end %>
+			</td>
+		</tr>
+		<tr>
+			<td>Subject</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.text_field :subject, {id: "subject"} %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.text_area :message, {id: "message"} %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.submit "Notify" %>
+			</td>
+		</tr>
+	</table>
+<% end %>

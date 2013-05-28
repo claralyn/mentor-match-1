@@ -4,7 +4,7 @@ feature "a student fills out survey" do
 	scenario "student fills out survey" do
 		visit '/'
 		click_link 'Student'
-		select 'Ruby on Rails May/June', from: 'student_cf_class'
+		select 'Ruby on Rails June', from: 'student_cf_class'
 		fill_in 'personal_first_name', with: "Fud"
 		fill_in 'personal_last_name', with: "Helser"
 		fill_in 'personal_where_you_from', with: "Alaska"
@@ -27,7 +27,7 @@ feature "a student fills out survey" do
 		select 'Competent', from: 'student_skills_php'
 		select 'Expert', from: 'student_skills_net'
 		select 'Expert', from:'student_skills_coffeescript'
-		select 'Competent', from: 'student_skills_other_coding'
+		fill_in 'skills_other_coding', with: "Coolio awesome faced man"
 
 		choose 'student_skills_selling_yourself_y'
 		select 'Somewhat Familiar', from: 'student_skills_development_familiarity'
