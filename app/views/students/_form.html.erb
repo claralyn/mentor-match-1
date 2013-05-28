@@ -2,8 +2,8 @@
 	<div>
 		Class <%= f.select :cf_class,
 											options_for_select([
-												['Ruby on Rails March', 'rails1'],
-												['Ruby on Rails May/June', 'rails2']],
+												['Ruby on Rails June', 'rails2'],
+												['Ruby on Rails July/August', 'rails3']],
 												@student.cf_class	) %>
 	</div>
 	<table align="center">
@@ -181,11 +181,9 @@
 		</tr>
 		<tr>
 			<td>Other Coding Skills</td>
-			<td><%= f.select :skills_other_coding,
-											options_for_select([['Beginner', 1],
-																					['Competent', 2],
-																					['Expert', 3]],
-																					@student.skills_other_coding) %></td>
+			<td>
+				<%= f.text_field :skills_other_coding,
+							{id: @student.skills_other_coding} %></td>
 		</tr>
 		<tr>
 			<td> Are you comfortable with "selling yourself" or your idea?</td>

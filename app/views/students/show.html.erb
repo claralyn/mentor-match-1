@@ -1,27 +1,36 @@
-<%= link_to "Edit", edit_student_path(@student) %>
-<%= link_to "Delete", @student, :confirm => "Are you sure you want to delete #{@student.personal_first_name} #{@student.personal_last_name}", :method => :delete %>
-	<div>
-		Class <%= @student.cf_class %>
-	</div>
+<div>
+	<%= link_to "Edit", edit_student_path(@student) %>
+	<%= link_to "Delete", @student,
+			:confirm => "Are you sure you want to delete #{@student.personal_first_name} #{@student.personal_last_name}",
+			:method => :delete %>
+</div>
+<h3>
+	<%= @student.personal_first_name %>
+	<%= @student.personal_last_name %>
+</h3>
+<p><em>
+	<%= case @student.cf_class
+			when "rails2"
+				"Ruby on Rails - June 2013"
+			when "rails3"
+				"Ruby on Rails - July/August 2013"
+			end %>
+</em></p>
+<p><em>
+	<%= "From #{@student.personal_where_you_from}" if @student.personal_where_you_from %>
+</em></p>
 	<table>
 		<tr>
 			<td colspan="2">
-				<%= @student.personal_first_name || '-' %>
-				<%= @student.personal_last_name  || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<%= @student.personal_where_you_from  || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<h3>
 					Did you attend a university?
 				</h3>
 			</td>
-			<td><%= @student.experience_university == "y" ? "Yes" : "No" %></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<%= yes_format(@student.experience_university) %>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -31,7 +40,11 @@
 			</td>
 		</tr>
 			<td colspan="2">
-				<%= @student.experience_degree || '-'  %>
+				<%= unless @student.experience_degree == ""
+							@student.experience_degree
+						else
+							'-'
+						end  %>
 			</td>
 		</tr>
 		<tr>
@@ -66,7 +79,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<%= @student.experience_why_codefellows || '-'  %>
 			</td>
 		</tr>
@@ -75,301 +88,346 @@
 				<h3>
 					A project you are proud of:
 				</h3>
+				<em>
 					What was the project<br>
 					How was it challenging<br>
 					What made you proud of it<br>
-					What did you learn from it<br></td>
-		</tr>
-		<tr>
-			<td>
-				<%= @student.experience_project  || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					How would you classify your developer skills?
-				</h3>
-			</td>
-			<td>
-				<%= @student.skills_developer  || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					How familiar are you with Object Oriented Programming?
-				</h3>
-			</td>
-			<td>
-				<%= @student.skills_object  || '-' %>
+					What did you learn from it<br>
+				</em>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<h2>
+				<%= @student.experience_project  || '-' %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<h3>
+					How would you classify your developer skills?
+				</h3>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<%= skill_format(@student.skills_developer) %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<h3>
+					How familiar are you with Object Oriented Programming?
+				</h3>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<%= skill_format(@student.skills_object) %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<h3>
 					What is your experience with the following languages/Frameworks?
-				</h2>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					html/CSS/xml
 				</h3>
 			</td>
-			<td>
-				<%= @student.skills_html_css  || '-' %>
-			</td>
 		</tr>
 		<tr>
 			<td>
-				<h3>
-					javascript
-				</h3>
-			</td>
-			<td>
-				<%= @student.skills_javascript  || '-' %>
+				<table>
+					<tr>
+						<td>
+							<h3>
+								html/CSS/xml
+							</h3>
+						</td>
+						<td>
+							<%= skill_format(@student.skills_html_css) %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								javascript
+							</h3>
+						</td>
+						<td>
+							<%= skill_format(@student.skills_javascript) %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								java
+							</h3>
+						</td>
+						<td>
+							<%= skill_format(@student.skills_java)  %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								C++
+							</h3>
+						</td>
+						<td>
+							<%= skill_format(@student.skills_cplusplus)  %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								C
+							</h3>
+						</td>
+						<td>
+							<%= skill_format(@student.skills_c) %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								Ruby
+							</h3>
+						</td>
+						<td><%= skill_format(@student.skills_ruby) %></td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								python
+							</h3>
+						</td>
+						<td><%= skill_format(@student.skills_python) %></td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								php
+							</h3>
+						</td>
+						<td><%= skill_format(@student.skills_php) %></td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								.net
+							</h3>
+						</td>
+						<td><%= skill_format(@student.skills_net) %></td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								coffeescript
+							</h3>
+						</td>
+						<td><%= skill_format(@student.skills_coffeescript) %></td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 		<tr>
-			<td>
-				<h3>
-					java
-				</h3>
-			</td>
-			<td>
-				<%= @student.skills_java || '-'  %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					C++
-				</h3>
-			</td>
-			<td>
-				<%= @student.skills_cplusplus || '-'  %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					C
-				</h3>
-			</td>
-			<td>
-				<%= @student.skills_c || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					Ruby
-				</h3>
-			</td>
-			<td><%= @student.skills_ruby || '-' %></td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					python
-				</h3>
-			</td>
-			<td><%= @student.skills_python || '-' %></td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					php
-				</h3>
-			</td>
-			<td><%= @student.skills_php || '-' %></td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					.net
-				</h3>
-			</td>
-			<td><%= @student.skills_net || '-' %></td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					coffeescript
-				</h3>
-			</td>
-			<td><%= @student.skills_coffeescript || '-' %></td>
-		</tr>
-		<tr>
-			<td>
+			<td colspan="2">
 				<h3>
 					Other Coding Skills
 				</h3>
 			</td>
-			<td><%= @student.skills_other_coding || '-' %></td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
+				<%= @student.skills_other_coding || '-' %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
 				<h3>
 					Are you comfortable with "selling yourself" or your idea?
 				</h3>
 			</td>
-			<td>
-				<%= @student.skills_selling_yourself == "y" ? "Yes" : "No" %>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<%= yes_format(@student.skills_selling_yourself) %>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<h3>How familiar are you with the development process (design, dev, test, deploy)?</h3>
 			</td>
-			<td><%= @student.skills_development_familiarity || '-' %></td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
+				<%= case @student.skills_development_familiarity
+						when 3
+							"Very Familiar"
+						when 2
+							"Somewhat Familiar"
+						when 1
+							"Not Familiar"
+						end %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
 				<h3>
 					Have you used agile development or a different development process?
 				</h3>
 			</td>
-			<td>
-				<%= @student.skills_agile_development_experience == "y" ? "Yes" : "No" %>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<%= yes_format(@student.skills_agile_development_experience) %>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<h3>
 					Are you self-taught(books, tutorials, short classes)?
 				</h3>
 			</td>
-			<td>
-				<%= @student.learning_self_taught == "y" ? "Yes" : "No" %>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<%= yes_format(@student.learning_self_taught) %>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<h3>
 					Do you learn better by reading a book or being in a class
 				</h3>
 			</td>
-			<td>
+		</tr>
+		<tr>
+			<td colspan="2">
 				<%= @student.learning == "books" ? "Books" : "Classes" %>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<h3>
 					Do you like working in groups or on your own?
 				</h3>
 			</td>
-			<td>
+		</tr>
+		<tr>
+			<td colspan="2">
 				<%= @student.learning_preference == "groups" ? "Groups" : "On My Own" %>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<h2>
+				<h3>
 					Please add anything else that you feel would help match you with a mentor
-				</h2>
+				</h3>
 			</td>
-		</tr>
-		<tr>
-			<td colspan="2"><%= @student.learning_extra_information || '-' %></td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<h2>
+				<%= @student.learning_extra_information || '-' %></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<h3>
 					Seeking in a Mentor
-				</h2>
+				</h3>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<h3>
-					Career Advice
-				</h3>
-			</td>
-			<td>
-				<%= @student.mentor_career_advice || '-' %>
-			</td>
-		</tr>
-			<td>
-				<h3>
-					Developer Skill Development
-				</h3>
-			</td>
-			<td>
-				<%= @student.mentor_skill_development || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					Assistance with Coding Question/tactics
-				</h3>
-			</td>
-			<td>
-				<%= @student.mentor_coding_question_tactics || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					Soft Skills(presentation, leading teams, etc.)
-				</h3>
-			</td>
-			<td>
-				<%= @student.mentor_soft_skills || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					Interviewing coaching
-				</h3>
-			</td>
-			<td>
-				<%= @student.mentor_interview_coaching || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					Job Search
-				</h3>
-			</td>
-			<td>
-				<%= @student.mentor_job_search || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					Resume Development
-				</h3>
-			</td>
-			<td>
-				<%= @student.mentor_resume_development || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					Github Account Development
-				</h3>
-			</td>
-			<td>
-				<%= @student.mentor_github_account_development || '-' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h3>
-					Assistance with Selling yourself or an idea
-				</h3>
-			</td>
-			<td>
-				<%= @student.mentor_selling_idea || '-' %>
+				<table>
+					<tr>
+						<td>
+							<h3>
+								Career Advice
+							</h3>
+						</td>
+						<td>
+							<%= @student.mentor_career_advice || '-' %>
+						</td>
+					</tr>
+						<td>
+							<h3>
+								Developer Skill Development
+							</h3>
+						</td>
+						<td>
+							<%= @student.mentor_skill_development || '-' %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								Assistance with Coding Question/tactics
+							</h3>
+						</td>
+						<td>
+							<%= @student.mentor_coding_question_tactics || '-' %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								Soft Skills(presentation, leading teams, etc.)
+							</h3>
+						</td>
+						<td>
+							<%= @student.mentor_soft_skills || '-' %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								Interviewing coaching
+							</h3>
+						</td>
+						<td>
+							<%= @student.mentor_interview_coaching || '-' %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								Job Search
+							</h3>
+						</td>
+						<td>
+							<%= @student.mentor_job_search || '-' %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								Resume Development
+							</h3>
+						</td>
+						<td>
+							<%= @student.mentor_resume_development || '-' %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								Github Account Development
+							</h3>
+						</td>
+						<td>
+							<%= @student.mentor_github_account_development || '-' %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h3>
+								Assistance with Selling yourself or an idea
+							</h3>
+						</td>
+						<td>
+							<%= @student.mentor_selling_idea || '-' %>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 		<tr>
@@ -378,6 +436,8 @@
 					Are you seeking a mentor that is working at a:
 				</h3>
 			</td>
+		</tr>
+		<tr>
 			<td><%= case @student.mentor_company_type
 							 when "startup"
 							 	"Startup"
@@ -391,11 +451,13 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<h3>
 					Do you prefer a:
 				</h3>
 			</td>
+		</tr>
+		<tr>
 			<td>
 				<%= case @student.mentor_gender
 							when "m"
@@ -420,12 +482,15 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<h3>
 					Do you want to work at a:
 				</h3>
 			</td>
-			<td><%= case @student.goals_company_type
+		</tr>
+		<tr>
+			<td colspan="2">
+				<%= case @student.goals_company_type
 							 when "startup"
 							 	"Startup"
 							 when "largeco"
@@ -497,22 +562,26 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<h3>
 					Do you intend to stay in Seattle after the class completes?
 				</h3>
 			</td>
-			<td>
+		</tr>
+		<tr>
+			<td colspan="2">
 				<%= @student.goals_stay_seattle == "y" ? "Yes" : "No" %>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<h3>
 					Please add your LinkedIn account or Resume
 				</h3>
 			</td>
-			<td>
+		</tr>
+		<tr>
+			<td colspan="2">
 				<%= @student.linked_in || '-' %>
 			</td>
 		</tr>

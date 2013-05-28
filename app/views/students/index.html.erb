@@ -16,7 +16,12 @@
 						<td>
 							<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
 						<td>
-							<%= student.cf_class %>
+							<%= case student.cf_class
+										when "rails2"
+											"Ruby on Rails June 2013"
+										when "rails3"
+											"Ruby on Rails July/August 2013"
+									end %>
 							</td>
 					</tr>
 				<% end %>

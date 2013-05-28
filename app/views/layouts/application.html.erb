@@ -21,19 +21,33 @@
   </head>
   <body>
   <header>
-    <img src="/assets/codefellows2.png" height="auto" width="75" />
+    <% unless content_for?(:home) %>
+      <a href="/">
+    <% end %>
+      <img src="/assets/codefellows2.png" height="auto" width="75" />
+    <% unless content_for?(:home) %>
+      </a>
+    <% end %>
     <h1>
       Code Fellows Mentor Match
     </h1>
-    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete if user_signed_in? %>
+    <nav>
+      <% if user_signed_in? %>
+        <%= link_to "Admin Home", students_path %>
+        <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+      <% else %>
+        <%= link_to "Admin Login", new_user_session_path %>
+      <% end %>
+    </nav>
   </header>
-  <% flash.each do |key, value| %>
-  <div class='flash' id='<%= key %>'>
-    <%= value %>
-  </div>
-  <% end %>
+  <div id="wrapper">
+    <% flash.each do |key, value| %>
+      <div class='flash' id='<%= key %>'>
+        <%= value %>
+      </div>
+    <% end %>
     <%= yield %>
-
+  </div>
 
     <%= javascript_include_tag "application" %>
   </body>

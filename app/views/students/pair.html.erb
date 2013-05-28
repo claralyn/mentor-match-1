@@ -13,7 +13,17 @@
 					<td>
 						<%= f.collection_select :mentor_id, Mentor.all, :id, :personal_last_name, {}, {:id => "mentee_#{student.id}"} %>
 					</td>
-					<td></td>
+					<td>
+						<%= case student.cf_class
+									when "rails2"
+										"Ruby on Rails June 2013"
+									when "rails3"
+										"Ruby on Rails July/August 2013"
+								end %>
+					</td>
+					<td>
+						<%= f.check_box :mentor_id %>
+					</td>
 				</tr>
 				<tr>
 					<td><%= f.submit "Submit" %>

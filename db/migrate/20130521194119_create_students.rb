@@ -23,7 +23,7 @@ class CreateStudents < ActiveRecord::Migration
       t.integer :skills_php
       t.integer :skills_net
       t.integer :skills_coffeescript
-      t.integer :skills_other_coding
+      t.string :skills_other_coding
       t.integer :skills_selling_yourself
       t.integer :skills_development_familiarity
       t.integer :skills_agile_development_experience
