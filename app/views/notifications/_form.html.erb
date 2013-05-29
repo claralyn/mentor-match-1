@@ -8,15 +8,23 @@
 		<tr>
 			<td>
 				<% unless mentors.empty? %>
-						<h3>Mentors</h3>
+						<b>Mentors</b>
 						<%	mentors.each do |mentor| %>
+							<%= check_box_tag "mentor_ids[]",
+								mentor.id,
+								checked = false %>
 							<%= mentor.personal_first_name %>
+							<%= mentor.personal_last_name %>
 						<% 	end
 						end %>
 				<% unless students.empty? %>
-						<h3>Students</h3>
+						<b>Students</b>
 						<% students.each do |student| %>
+							<%= check_box_tag "student_ids[]",
+								student.id,
+								checked = false %>
 							<%= student.personal_first_name %>
+							<%= student.personal_last_name %>
 						<% end
 						end %>
 			</td>

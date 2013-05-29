@@ -17,6 +17,7 @@ class Mentor < ActiveRecord::Base
 
   								:personal_first_name, :personal_knowledge_impart,
   								:personal_last_name, :personal_why_mentor,
+                  :personal_email,
 
   								:skills_career_advice,
   								:skills_coding_question_tactics, :skills_development,

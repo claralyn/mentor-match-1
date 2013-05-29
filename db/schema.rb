@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130528174557) do
     t.integer  "skills_resume_development"
     t.integer  "skills_github_account_development"
     t.integer  "skills_selling_idea"
+    t.string   "personal_email"
     t.string   "mentee_extra_info"
     t.string   "cf_class"
     t.datetime "created_at",                        :null => false
@@ -88,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20130528174557) do
     t.integer  "skills_php"
     t.integer  "skills_net"
     t.integer  "skills_coffeescript"
-    t.integer  "skills_other_coding"
+    t.string   "skills_other_coding"
     t.integer  "skills_selling_yourself"
     t.integer  "skills_development_familiarity"
     t.integer  "skills_agile_development_experience"
@@ -117,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20130528174557) do
     t.string   "goals_stay_seattle"
     t.string   "linked_in"
     t.string   "goals_extra_info"
+    t.string   "personal_email"
     t.integer  "mentor_id"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false

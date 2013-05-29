@@ -13,7 +13,9 @@ class Student < ActiveRecord::Base
   								:mentor_extra_info, :mentor_gender, :mentor_github_account_development,
   								:mentor_interview_coaching, :mentor_job_search, :mentor_resume_development,
   								:mentor_selling_idea, :mentor_skill_development, :mentor_soft_skills,
-  								:personal_last_name, :personal_where_you_from, :personal_first_name,
+  								# personal
+                  :personal_last_name, :personal_where_you_from,
+                  :personal_first_name, :personal_email,
   								# skills
   								:skills_agile_development_experience, :skills_c, :skills_coffeescript,
   								:skills_cplusplus, :skills_developer, :skills_development_familiarity,

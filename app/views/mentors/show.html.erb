@@ -16,14 +16,19 @@
 						"(Self Employed)"
 					when "none"
 						"(No Preference)"
-					end %></em></p>
+					end %>
+	</em></p>
+	<p><em>
+		<%= @mentor.personal_email %>
+	</em></p>
 	<p><em>For
 					<%= case @mentor.cf_class
 						 	when "rails2"
 						 		"Ruby on Rails June 2013"
 						 	when "rails3"
 						 		"Ruby on Rails July/August 2013"
-							end %></em></p>
+							end %>
+	</em></p>
 <table>
 	<tr>
 		<td colspan="2">

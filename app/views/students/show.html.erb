@@ -9,6 +9,9 @@
 	<%= @student.personal_last_name %>
 </h3>
 <p><em>
+	<%= @student.personal_email %>
+</em></p>
+<p><em>
 	<%= case @student.cf_class
 			when "rails2"
 				"Ruby on Rails - June 2013"
@@ -40,11 +43,7 @@
 			</td>
 		</tr>
 			<td colspan="2">
-				<%= unless @student.experience_degree == ""
-							@student.experience_degree
-						else
-							'-'
-						end  %>
+				<%=	@student.experience_degree ||	'-' %>
 			</td>
 		</tr>
 		<tr>
@@ -56,7 +55,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.experience_other_degree  || '-' %>
+				<%= @student.experience_other_degree.presence  || '-' %>
 			</td>
 		</tr>
 		<tr>
