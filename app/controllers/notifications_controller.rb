@@ -12,18 +12,19 @@ class NotificationsController < ApplicationController
 
 		@subject = params[:notification][:subject]
 		@message = params[:notification][:message]
+
 		if params[:student_ids].present?
 			student_ids = params[:student_ids].collect{|id|
 				id.to_i}
 
 			student_ids.each do |id|
-				student = Student.find(id)
-				Notifier.send(student,
-											params[:notification][:subject],
-											params[:notification][:message])
+				@student = Student.find(id)
+				Notifier.notification(@student,
+											@subject,
+											@message).deliver
 				@notification = Notification.create(
-						subject: params[:notification][:subject],
-						message: params[:notification][:message],
+						subject: @subject,
+						message: @message,
 						receiver_id: id,
 						receiver_type: "student")
 			end

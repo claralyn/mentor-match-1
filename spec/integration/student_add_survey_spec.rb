@@ -7,6 +7,7 @@ feature "a student fills out survey" do
 		select 'Ruby on Rails June', from: 'student_cf_class'
 		fill_in 'personal_first_name', with: "Fud"
 		fill_in 'personal_last_name', with: "Helser"
+		fill_in 'personal_email', with: "example@example.com"
 		fill_in 'personal_where_you_from', with: "Alaska"
 		choose 'student_experience_university_y'
 		fill_in 'experience_degree', with: "Master Ninja"
@@ -63,5 +64,10 @@ feature "a student fills out survey" do
 
 		click_button 'Submit Survey'
 		page.should have_content('Thank You!')
+
+		open_email "example@example.com", with_subject: 'Mentor Match Confirmation'
+		current_email.should have_content('Thanks for filling out your survey.' +
+			' You will be paired soon. Watch out for that email soon.')
+
 	end
 end
