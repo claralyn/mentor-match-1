@@ -59,7 +59,6 @@ module MentorMatch
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.active_record.observers = :mentor_observer
-    config.active_record.observers = :student_observer
+    config.active_record.observers = :mentor_observer, :student_observer
   end
 end
