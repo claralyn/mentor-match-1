@@ -27,5 +27,12 @@ class Mentor < ActiveRecord::Base
   								:skills_resume_development, :skills_selling_idea,
   								:skills_soft_skills
 
+  validates :personal_first_name, presence: true
+  validates :personal_last_name, presence: true
+  validates :personal_email, presence: true, uniqueness: true
+  validates :career_company_type, presence: true
+  validates :career_company_private, presence: true
+  validates :career_job_title, presence: true
+
   has_many :students
 end

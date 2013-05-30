@@ -27,4 +27,7 @@ class Student < ActiveRecord::Base
 
   belongs_to :mentor
 
+  validates :personal_first_name, presence: true
+  validates :personal_last_name, presence: true
+  validates :personal_email, presence: true
 end

@@ -18,12 +18,10 @@ class StudentsController < ApplicationController
 
 	def edit
 		@student = Student.find(params[:id])
-		@submittext = "Edit Survey"
 	end
 
 	def new
 		@student = Student.new
-		@submittext = "Submit Survey"
 	end
 
 	def create
@@ -31,8 +29,9 @@ class StudentsController < ApplicationController
 		if @student.save
 			redirect_to '/thanks'
 		else
+			#change flash message if email is not unique
 			flash[:alert] = 'Sorry, there was a problem. ' +
-											'Please make sure all field were completed.'
+											'Please make sure your first name, last name, & email are all filled in.'
 			render :action => "new"
 		end
 	end
@@ -58,7 +57,8 @@ class StudentsController < ApplicationController
 			end
 			redirect_to student_path(@student)
 		else
-			flash[:notice] = 'There was a problem!'
+			flash[:notice] = 	'There was a problem!' +
+												'Please make sure your first name, last name, & email are all filled in.'
 			render :action => "edit"
 		end
 	end

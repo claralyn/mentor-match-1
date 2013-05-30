@@ -3,7 +3,6 @@ class MentorsController < ApplicationController
 
 	def new
 		@mentor = Mentor.new
-		@submittext = 'Submit Profile'
 	end
 
 	def show
@@ -12,7 +11,6 @@ class MentorsController < ApplicationController
 
 	def edit
 		@mentor = Mentor.find(params[:id])
-		@submittext = 'Update Profile'
 	end
 
 	def create
@@ -21,7 +19,8 @@ class MentorsController < ApplicationController
 			redirect_to '/thanks'
 		else
 			flash[:alert] = 'Sorry, there was a problem. ' +
-											'Please make sure all field were completed.'
+											'Please make sure your first name, last name, job title, company, company type ' +
+											'& email are all filled in.'
 			render :action => "new"
 		end
 	end
@@ -32,7 +31,9 @@ class MentorsController < ApplicationController
 			flash[:notice] = @mentor.personal_first_name + ' ' + @mentor.personal_last_name + "'s profile has been updated"
 			redirect_to mentor_path(@mentor)
 		else
-			flash[:notice] = 'There was a problem!'
+			flash[:notice] = 	'There was a problem! ' +
+											'Please make sure your first name, last name, job title, company, company type ' +
+											'& email are all filled in.'
 			render :action => "edit"
 		end
 	end
