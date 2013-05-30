@@ -17,7 +17,7 @@ feature "Admin pairs the student and mentors" do
 		page.should have_content("Matt Tee")
 
 		# Could only get one item to show in collection item select on students/pair
-		select "Price", :from => "mentee_#{student.id}"
+		select "Butler Price", :from => "student_mentor_id"
 		click_button "Submit"
 		page.should have_content("Matt Tee had been paired with Butler Price")
 

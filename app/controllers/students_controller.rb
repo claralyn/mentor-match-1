@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+	before_filter :authorize_admin!, except: [:new, :create, :thanks]
 
 	def index
 		#need to change this
@@ -68,5 +69,15 @@ class StudentsController < ApplicationController
 		lastname = @student.personal_last_name
 		@student.destroy
 		redirect_to students_path, :notice => "#{firstname} #{lastname} has been removed from the database."
+	end
+
+	private
+
+	def authorize_admin!
+		authenticate_user!
+		unless current_user.admin?
+			flash[:alert] = "You must be an admin to do that!"
+			redirect_to root_path
+		end
 	end
 end

@@ -11,7 +11,13 @@
 					<td>
 						<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
 					<td>
-						<%= f.collection_select :mentor_id, Mentor.all, :id, :personal_last_name, {}, {:id => "mentee_#{student.id}"} %>
+						<% mentors_array = Mentor.all.map{|mentor|
+								["#{mentor.personal_first_name} #{mentor.personal_last_name}", mentor.id]}
+
+							mentors_array.unshift(["Please, select a mentor"], 0) %>
+						<%= f.select :mentor_id,
+									options_for_select(mentors_array),
+									{id: "mentor_#{student.id}"} %>
 					</td>
 					<td>
 						<%= case student.cf_class
@@ -22,7 +28,7 @@
 								end %>
 					</td>
 					<td>
-						<%  # f.check_box :mentor_id %>
+						<%= f.check_box :id %>
 					</td>
 				</tr>
 				<tr>

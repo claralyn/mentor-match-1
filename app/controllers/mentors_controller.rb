@@ -1,4 +1,6 @@
 class MentorsController < ApplicationController
+	before_filter :authenticate_user!, except: [:new, :create]
+
 	def new
 		@mentor = Mentor.new
 		@submittext = 'Submit Profile'
