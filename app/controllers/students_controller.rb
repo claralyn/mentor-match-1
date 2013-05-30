@@ -47,6 +47,7 @@ class StudentsController < ApplicationController
 	def update
 		@student = Student.find(params[:id])
 		past_mentor_id = @student.mentor.try(:id)
+
 		if @student.update_attributes(params[:student])
 			if @student.mentor_id
 				unless past_mentor_id == @student.mentor_id

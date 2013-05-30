@@ -20,7 +20,7 @@
 			end %>
 </em></p>
 <p><em>
-	<%= "From #{@student.personal_where_you_from}" if @student.personal_where_you_from %>
+	<%= "From #{@student.personal_where_you_from}" if @student.personal_where_you_from.presence %>
 </em></p>
 	<table>
 		<tr>
@@ -43,7 +43,7 @@
 			</td>
 		</tr>
 			<td colspan="2">
-				<%=	@student.experience_degree ||	'-' %>
+				<%=	empty_answer(@student.experience_degree)%>
 			</td>
 		</tr>
 		<tr>
@@ -55,7 +55,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.experience_other_degree.presence  || '-' %>
+				<%= empty_answer(@student.experience_other_degree.presence  ) %>
 			</td>
 		</tr>
 		<tr>
@@ -67,7 +67,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.experience_job || '-'  %>
+				<%= empty_answer(@student.experience_job )  %>
 			</td>
 		</tr>
 		<tr>
@@ -79,7 +79,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.experience_why_codefellows || '-'  %>
+				<%= empty_answer(@student.experience_why_codefellows )  %>
 			</td>
 		</tr>
 		<tr>
@@ -97,7 +97,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.experience_project  || '-' %>
+				<%= empty_answer(@student.experience_project  ) %>
 			</td>
 		</tr>
 		<tr>
@@ -236,7 +236,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.skills_other_coding || '-' %>
+				<%= empty_answer(@student.skills_other_coding ) %>
 			</td>
 		</tr>
 		<tr>
@@ -325,7 +325,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.learning_extra_information || '-' %></td>
+				<%= empty_answer(@student.learning_extra_information ) %></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -344,7 +344,7 @@
 							</h3>
 						</td>
 						<td>
-							<%= @student.mentor_career_advice || '-' %>
+							<%= empty_answer(@student.mentor_career_advice ) %>
 						</td>
 					</tr>
 						<td>
@@ -353,7 +353,7 @@
 							</h3>
 						</td>
 						<td>
-							<%= @student.mentor_skill_development || '-' %>
+							<%= empty_answer(@student.mentor_skill_development ) %>
 						</td>
 					</tr>
 					<tr>
@@ -363,7 +363,7 @@
 							</h3>
 						</td>
 						<td>
-							<%= @student.mentor_coding_question_tactics || '-' %>
+							<%= empty_answer(@student.mentor_coding_question_tactics ) %>
 						</td>
 					</tr>
 					<tr>
@@ -373,7 +373,7 @@
 							</h3>
 						</td>
 						<td>
-							<%= @student.mentor_soft_skills || '-' %>
+							<%= empty_answer(@student.mentor_soft_skills ) %>
 						</td>
 					</tr>
 					<tr>
@@ -383,7 +383,7 @@
 							</h3>
 						</td>
 						<td>
-							<%= @student.mentor_interview_coaching || '-' %>
+							<%= empty_answer(@student.mentor_interview_coaching ) %>
 						</td>
 					</tr>
 					<tr>
@@ -393,7 +393,7 @@
 							</h3>
 						</td>
 						<td>
-							<%= @student.mentor_job_search || '-' %>
+							<%= empty_answer(@student.mentor_job_search ) %>
 						</td>
 					</tr>
 					<tr>
@@ -403,7 +403,7 @@
 							</h3>
 						</td>
 						<td>
-							<%= @student.mentor_resume_development || '-' %>
+							<%= empty_answer(@student.mentor_resume_development ) %>
 						</td>
 					</tr>
 					<tr>
@@ -413,7 +413,7 @@
 							</h3>
 						</td>
 						<td>
-							<%= @student.mentor_github_account_development || '-' %>
+							<%= empty_answer(@student.mentor_github_account_development ) %>
 						</td>
 					</tr>
 					<tr>
@@ -423,7 +423,7 @@
 							</h3>
 						</td>
 						<td>
-							<%= @student.mentor_selling_idea || '-' %>
+							<%= empty_answer(@student.mentor_selling_idea ) %>
 						</td>
 					</tr>
 				</table>
@@ -477,7 +477,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.mentor_extra_info || '-' %>
+				<%= empty_answer(@student.mentor_extra_info ) %>
 			</td>
 		</tr>
 		<tr>
@@ -509,7 +509,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.goals_after_codefellows || '-' %>
+				<%= empty_answer(@student.goals_after_codefellows ) %>
 			</td>
 		</tr>
 		<tr>
@@ -521,7 +521,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.goals_dream_job_title || '-' %>
+				<%= empty_answer(@student.goals_dream_job_title ) %>
 			</td>
 		</tr>
 		<tr>
@@ -533,7 +533,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.goals_companies || '-' %>
+				<%= empty_answer(@student.goals_companies ) %>
 			</td>
 		</tr>
 		<tr>
@@ -545,7 +545,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.goals_next_year || '-' %>
+				<%= empty_answer(@student.goals_next_year ) %>
 			</td>
 		</tr>
 		<tr>
@@ -557,7 +557,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.goal_next_4_years || '-' %>
+				<%= empty_answer(@student.goal_next_4_years ) %>
 			</td>
 		</tr>
 		<tr>
@@ -581,7 +581,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.linked_in || '-' %>
+				<%= empty_answer(@student.linked_in ) %>
 			</td>
 		</tr>
 		<tr>
@@ -593,7 +593,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<%= @student.goals_extra_info || '-' %>
+				<%= empty_answer(@student.goals_extra_info ) %>
 			</td>
 		</tr>
 	</table>

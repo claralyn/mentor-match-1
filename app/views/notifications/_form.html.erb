@@ -7,26 +7,30 @@
 		</tr>
 		<tr>
 			<td>
-				<% unless mentors.empty? %>
-						<b>Mentors</b>
+				<% if mentors.presence %>
+					<div>
+						<b>Mentors</b> <br>
 						<%	mentors.each do |mentor| %>
 							<%= check_box_tag "mentor_ids[]",
 								mentor.id,
 								checked = false %>
 							<%= mentor.personal_first_name %>
-							<%= mentor.personal_last_name %>
+							<%= mentor.personal_last_name %><br>
 						<% 	end
 						end %>
-				<% unless students.empty? %>
-						<b>Students</b>
+					</div>
+				<% if students.presence %>
+					<div>
+						<b>Students</b> <br>
 						<% students.each do |student| %>
 							<%= check_box_tag "student_ids[]",
 								student.id,
 								checked = false %>
 							<%= student.personal_first_name %>
-							<%= student.personal_last_name %>
+							<%= student.personal_last_name %><br>
 						<% end
 						end %>
+					</div>
 			</td>
 		</tr>
 		<tr>

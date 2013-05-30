@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "An admin logs into the system" do
+
 	before do
 		Factory(:user, :email => "example@example.com")
 	end

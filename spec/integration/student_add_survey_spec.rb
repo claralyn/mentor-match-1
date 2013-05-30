@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 feature "a student fills out survey" do
+	before do
+		ActionMailer::Base.deliveries.clear
+	end
+
 	scenario "student fills out survey" do
 		visit '/'
 		click_link 'Student'

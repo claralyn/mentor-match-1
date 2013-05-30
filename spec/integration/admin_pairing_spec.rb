@@ -5,6 +5,10 @@ feature "Admin pairs the student and mentors" do
 	let!(:mentor){Factory(:mentor)}
 	let!(:student){Factory(:student)}
 
+	before do
+		ActionMailer::Base.deliveries.clear
+	end
+
 	scenario "Admin pairs students together" do
 		visit '/'
 		click_link 'Admin'
@@ -16,5 +20,11 @@ feature "Admin pairs the student and mentors" do
 		select "Price", :from => "mentee_#{student.id}"
 		click_button "Submit"
 		page.should have_content("Matt Tee had been paired with Butler Price")
+
+		student2 = Student.find(student.id)
+		message = "You have been paired with #{student2.mentor.personal_first_name}" +
+			" #{student2.mentor.personal_last_name}. You can contact them at #{student2.mentor.personal_email}."
+		open_email "student@example.com", with_subject: "Mentor Match Paired"
+		current_email.should have_content(message)
 	end
 end

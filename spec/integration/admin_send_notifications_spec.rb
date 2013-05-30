@@ -5,6 +5,10 @@ feature "an Admin sends a notification email" do
 	let!(:mentor){Factory(:mentor)}
 	let!(:student){Factory(:student)}
 
+	before do
+		ActionMailer::Base.deliveries.clear
+	end
+
 	scenario "an Admin sends a notification email to an admin" do
 		visit '/'
 		click_link 'Admin'

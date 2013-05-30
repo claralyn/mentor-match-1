@@ -37,7 +37,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<%= @mentor.personal_why_mentor || "-" %>
+			<%= @mentor.personal_why_mentor.presence ? @mentor.personal_why_mentor : "-" %>
 		</td>
 	</tr>
 	<tr>
@@ -48,7 +48,7 @@
 		</td>
 	<tr>
 		<td colspan="2">
-			<%= @mentor.personal_knowledge_impart || "-" %>
+			<%= empty_answer(@mentor.personal_knowledge_impart) %>
 		</td>
 	</tr>
 	<tr>
@@ -60,7 +60,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<%= @mentor.career_information || "-" %>
+			<%= empty_answer(@mentor.career_information) %>
 		</td>
 	</tr>
 	<tr>
@@ -82,7 +82,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<%= @mentor.experience_degree || "-" %>
+			<%= empty_answer(@mentor.experience_degree) %>
 		</td>
 	</tr>
 	<tr>
@@ -92,7 +92,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<%= @mentor.experience_other_degree || "-" %>
+			<%= empty_answer(@mentor.experience_other_degree) %>
 		</td>
 	</tr>
 	<tr>
@@ -251,7 +251,7 @@
 			</h3>
 		</td>
 		<td>
-			<%= @mentor.mentee_skills_other_coding || "-" %>
+			<%= empty_answer(@mentor.mentee_skills_other_coding) %>
 		</td>
 	</tr>
 	<tr>
@@ -271,7 +271,7 @@
 						</h3>
 					</td>
 					<td>
-						<%= @mentor.skills_career_advice || "-" %>
+						<%= empty_answer(@mentor.skills_career_advice) %>
 					</td>
 				</tr>
 				<tr>
@@ -281,7 +281,7 @@
 						</h3>
 					</td>
 					<td>
-						<%= @mentor.skills_development || "-" %>
+						<%= empty_answer(@mentor.skills_development) %>
 					</td>
 				</tr>
 				<tr>
@@ -291,7 +291,7 @@
 						</h3>
 					</td>
 					<td>
-						<%= @mentor.skills_coding_question_tactics || "-" %>
+						<%= empty_answer(@mentor.skills_coding_question_tactics) %>
 					</td>
 				</tr>
 				<tr>
@@ -301,7 +301,7 @@
 						</h3>
 					</td>
 					<td>
-						<%= @mentor.skills_soft_skills || "-" %>
+						<%= empty_answer(@mentor.skills_soft_skills) %>
 					</td>
 				</tr>
 				<tr>
@@ -311,7 +311,7 @@
 						</h3>
 					</td>
 					<td>
-						<%= @mentor.skills_interview_coaching || "-" %>
+						<%= empty_answer(@mentor.skills_interview_coaching) %>
 					</td>
 				</tr>
 				<tr>
@@ -321,7 +321,7 @@
 						</h3>
 					</td>
 					<td>
-						<%= @mentor.skills_job_search || "-" %>
+						<%= empty_answer(@mentor.skills_job_search) %>
 					</td>
 				</tr>
 				<tr>
@@ -331,7 +331,7 @@
 						</h3>
 					</td>
 					<td>
-						<%= @mentor.skills_resume_development || "-" %>
+						<%= empty_answer(@mentor.skills_resume_development) %>
 					</td>
 				</tr>
 				<tr>
@@ -341,7 +341,7 @@
 						</h3>
 					</td>
 					<td>
-						<%= @mentor.skills_github_account_development || "-" %>
+						<%= empty_answer(@mentor.skills_github_account_development) %>
 					</td>
 				</tr>
 				<tr>
@@ -351,7 +351,7 @@
 						</h3>
 					</td>
 					<td>
-						<%= @mentor.skills_selling_idea || "-" %>
+						<%= empty_answer(@mentor.skills_selling_idea) %>
 					</td>
 				</tr>
 			</table>
@@ -385,7 +385,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<%= @mentor.mentee_extra_info || "-" %>
+			<%= empty_answer(@mentor.mentee_extra_info) %>
 		</td>
 	</tr>
 </table>

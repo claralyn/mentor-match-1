@@ -4,7 +4,6 @@ feature "An Admin Deletes A Mentor" do
 	let!(:admin){Factory(:admin_user)}
 	let!(:mentor){Factory(:mentor)}
 
-
 	scenario "Admin deletes Mentor from Database" do
 		sign_in_as!(admin)
 		page.should have_content("Mentors that still need mentees")

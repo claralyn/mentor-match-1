@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 feature "A mentor adds his profile information" do
+
+	before do
+		ActionMailer::Base.deliveries.clear
+	end
+
 	scenario "Mentor adds his profile information" do
 		visit '/'
 		click_link "Mentor"
@@ -47,8 +52,8 @@ feature "A mentor adds his profile information" do
 		select "Ruby on Rails July/August", from: "mentor_cf_class"
 		click_button "Submit Profile"
 		page.should have_content('Thank You!')
+
 		open_email "example@example.com", with_subject: 'Mentor Match Confirmation'
-		current_email.should have_content('Thanks for filling out your survey.' +
-			' You will be paired soon. Watch out for that email soon.')
+		current_email.should have_content('Thanks for filling out your survey.' + ' You will be paired soon. Watch out for that email soon.')
 	end
 end

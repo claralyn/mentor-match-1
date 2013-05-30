@@ -8,6 +8,10 @@ class NotificationsController < ApplicationController
 		@notification = Notification.new
 	end
 
+	def show
+		@notification = Notification.find(params[:id])
+	end
+
 	def create
 
 		@subject = params[:notification][:subject]
