@@ -19,7 +19,7 @@ feature "an admin edit a student survey" do
 		fill_in 'personal_first_name', with: "Different"
 		fill_in 'personal_last_name', with: "dfd"
 		fill_in 'personal_where_you_from', with: "dfd"
-		choose 'student_experience_university_y'
+		fill_in 'experience_university', with: "Bom"
 		fill_in 'experience_degree', with: "Master Ninja"
 		fill_in 'experience_other_degree', with: "Seahorse Riding"
 		fill_in 'experience_job', with: "Superhero"
@@ -49,14 +49,14 @@ feature "an admin edit a student survey" do
 		choose 'student_learning_preference_groups'
 		fill_in 'learning_extra_information', with: 'Other info'
 
-		choose 'student_mentor_career_advice_9'
-		choose 'student_mentor_skill_development_10'
-		choose 'student_mentor_coding_question_tactics_9'
-		choose 'student_mentor_soft_skills_8'
-		choose 'student_mentor_interview_coaching_7'
+		choose 'student_mentor_career_advice_4'
+		choose 'student_mentor_skill_development_1'
+		choose 'student_mentor_coding_question_tactics_3'
+		choose 'student_mentor_soft_skills_1'
+		choose 'student_mentor_interview_coaching_4'
 		choose 'student_mentor_job_search_5'
-		choose 'student_mentor_resume_development_8'
-		choose 'student_mentor_github_account_development_6'
+		choose 'student_mentor_resume_development_5'
+		choose 'student_mentor_github_account_development_3'
 		choose 'student_mentor_selling_idea_4'
 		select 'Startup', from: 'student_mentor_company_type'
 		choose 'student_mentor_gender_n'

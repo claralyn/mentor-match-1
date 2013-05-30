@@ -31,11 +31,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td>Did you attend a university?</td>
-			<td>Yes
-						<%= f.radio_button :experience_university, "y" %>
-					No
-					<%= f.radio_button :experience_university, "n" %></td>
+			<td>If you attended university, which one?</td>
+			<td>
+					<%= f.text_field :experience_university, {id: "experience_university"} %></td>
 		</tr>
 		<tr>
 			<td>What degree did you receive?</td>
@@ -252,16 +250,6 @@
 						<%= f.radio_button :mentor_career_advice, 4 %>
 					5
 						<%= f.radio_button :mentor_career_advice, 5 %>
-					6
-						<%= f.radio_button :mentor_career_advice, 6 %>
-					7
-						<%= f.radio_button :mentor_career_advice, 7 %>
-					8
-						<%= f.radio_button :mentor_career_advice, 8 %>
-					9
-						<%= f.radio_button :mentor_career_advice, 9 %>
-					10
-						<%= f.radio_button :mentor_career_advice, 10 %>
 					</td>
 		</tr>
 			<td>Developer Skill Development</td>
@@ -275,16 +263,6 @@
 						<%= f.radio_button :mentor_skill_development, 4 %>
 					5
 						<%= f.radio_button :mentor_skill_development, 5 %>
-					6
-						<%= f.radio_button :mentor_skill_development, 6 %>
-					7
-						<%= f.radio_button :mentor_skill_development, 7 %>
-					8
-						<%= f.radio_button :mentor_skill_development, 8 %>
-					9
-						<%= f.radio_button :mentor_skill_development, 9 %>
-					10
-						<%= f.radio_button :mentor_skill_development, 10 %>
 					</td>
 		</tr>
 		<tr>
@@ -299,16 +277,6 @@
 						<%= f.radio_button :mentor_coding_question_tactics, 4 %>
 					5
 						<%= f.radio_button :mentor_coding_question_tactics, 5 %>
-					6
-						<%= f.radio_button :mentor_coding_question_tactics, 6 %>
-					7
-						<%= f.radio_button :mentor_coding_question_tactics, 7 %>
-					8
-						<%= f.radio_button :mentor_coding_question_tactics, 8 %>
-					9
-						<%= f.radio_button :mentor_coding_question_tactics, 9 %>
-					10
-						<%= f.radio_button :mentor_coding_question_tactics, 10 %>
 					</td>
 		</tr>
 		<tr>
@@ -323,16 +291,6 @@
 						<%= f.radio_button :mentor_soft_skills, 4 %>
 					5
 						<%= f.radio_button :mentor_soft_skills, 5 %>
-					6
-						<%= f.radio_button :mentor_soft_skills, 6 %>
-					7
-						<%= f.radio_button :mentor_soft_skills, 7 %>
-					8
-						<%= f.radio_button :mentor_soft_skills, 8 %>
-					9
-						<%= f.radio_button :mentor_soft_skills, 9 %>
-					10
-						<%= f.radio_button :mentor_soft_skills, 10 %>
 					</td>
 		</tr>
 		<tr>
@@ -347,16 +305,6 @@
 						<%= f.radio_button :mentor_interview_coaching, 4 %>
 					5
 						<%= f.radio_button :mentor_interview_coaching, 5 %>
-					6
-						<%= f.radio_button :mentor_interview_coaching, 6 %>
-					7
-						<%= f.radio_button :mentor_interview_coaching, 7 %>
-					8
-						<%= f.radio_button :mentor_interview_coaching, 8 %>
-					9
-						<%= f.radio_button :mentor_interview_coaching, 9 %>
-					10
-						<%= f.radio_button :mentor_interview_coaching, 10 %>
 					</td>
 		</tr>
 		<tr>
@@ -371,16 +319,6 @@
 						<%= f.radio_button :mentor_job_search, 4 %>
 					5
 						<%= f.radio_button :mentor_job_search, 5 %>
-					6
-						<%= f.radio_button :mentor_job_search, 6 %>
-					7
-						<%= f.radio_button :mentor_job_search, 7 %>
-					8
-						<%= f.radio_button :mentor_job_search, 8 %>
-					9
-						<%= f.radio_button :mentor_job_search, 9 %>
-					10
-						<%= f.radio_button :mentor_job_search, 10 %>
 					</td>
 		</tr>
 		<tr>
@@ -395,16 +333,6 @@
 						<%= f.radio_button :mentor_resume_development, 4 %>
 					5
 						<%= f.radio_button :mentor_resume_development, 5 %>
-					6
-						<%= f.radio_button :mentor_resume_development, 6 %>
-					7
-						<%= f.radio_button :mentor_resume_development, 7 %>
-					8
-						<%= f.radio_button :mentor_resume_development, 8 %>
-					9
-						<%= f.radio_button :mentor_resume_development, 9 %>
-					10
-						<%= f.radio_button :mentor_resume_development, 10 %>
 					</td>
 		</tr>
 		<tr>
@@ -419,16 +347,6 @@
 						<%= f.radio_button :mentor_github_account_development, 4 %>
 					5
 						<%= f.radio_button :mentor_github_account_development, 5 %>
-					6
-						<%= f.radio_button :mentor_github_account_development, 6 %>
-					7
-						<%= f.radio_button :mentor_github_account_development, 7 %>
-					8
-						<%= f.radio_button :mentor_github_account_development, 8 %>
-					9
-						<%= f.radio_button :mentor_github_account_development, 9 %>
-					10
-						<%= f.radio_button :mentor_github_account_development, 10 %>
 					</td>
 		</tr>
 		<tr>
@@ -443,16 +361,6 @@
 						<%= f.radio_button :mentor_selling_idea, 4 %>
 					5
 						<%= f.radio_button :mentor_selling_idea, 5 %>
-					6
-						<%= f.radio_button :mentor_selling_idea, 6 %>
-					7
-						<%= f.radio_button :mentor_selling_idea, 7 %>
-					8
-						<%= f.radio_button :mentor_selling_idea, 8 %>
-					9
-						<%= f.radio_button :mentor_selling_idea, 9 %>
-					10
-						<%= f.radio_button :mentor_selling_idea, 10 %>
 					</td>
 		</tr>
 		<tr>

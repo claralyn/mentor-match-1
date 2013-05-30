@@ -42,6 +42,10 @@ class StudentsController < ApplicationController
 	def pair
 		@mentors = Mentor.all
 		@students = Student.all
+    @mentornostudents = Mentor.find(
+                                  :all,
+                                  :joins => "LEFT OUTER JOIN 'students' ON students.mentor_id = mentors.id
+                                        WHERE students.mentor_id is NULL")
 	end
 
 	def update

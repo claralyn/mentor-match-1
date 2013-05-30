@@ -16,7 +16,7 @@
 
 							mentors_array.unshift(["Please, select a mentor"], 0) %>
 						<%= f.select :mentor_id,
-									options_for_select(mentors_array),
+									options_for_select(mentors_array, student.mentor.try(:id)),
 									{id: "mentor_#{student.id}"} %>
 					</td>
 					<td>
@@ -35,5 +35,21 @@
 					<td><%= f.submit "Submit" %>
 				</tr>
 		<% end %>
+	<% end %>
+</table>
+<h2>Mentors that still need Mentees</h2>
+<table>
+	<tr>
+		<td>Mentor Name</td>
+		<td>Company</td>
+	</tr>
+	<% @mentornostudents.each do |mentor| %>
+		<tr>
+			<td>
+				<%= mentor.personal_first_name %>
+				<%= mentor.personal_last_name %>
+			</td>
+			<td><%= mentor.career_company_private %></td>
+		</tr>
 	<% end %>
 </table>

@@ -23,7 +23,7 @@ feature "An Admin Edits a Mentor Profile" do
 		fill_in "career_company_private", :with => "Octomania"
 		select "Startup", :from => "mentor_career_company_type"
 
-		choose 'mentor_experience_university_y'
+		fill_in 'experience_university', with: "Bom"
 		fill_in 'experience_degree', :with => "Master Ninja"
 		fill_in 'experience_other_degree', :with => "Seahorse Riding"
 
@@ -40,14 +40,14 @@ feature "An Admin Edits a Mentor Profile" do
 		select 'Not Able', :from =>'mentor_mentee_skills_coffeescript'
 		fill_in 'mentee_skills_other_coding', :with => "asdfdas"
 
-		choose 'mentor_skills_career_advice_9'
-		choose 'mentor_skills_development_10'
-		choose 'mentor_skills_coding_question_tactics_9'
-		choose 'mentor_skills_soft_skills_8'
-		choose 'mentor_skills_interview_coaching_7'
+		choose 'mentor_skills_career_advice_3'
+		choose 'mentor_skills_development_4'
+		choose 'mentor_skills_coding_question_tactics_5'
+		choose 'mentor_skills_soft_skills_4'
+		choose 'mentor_skills_interview_coaching_3'
 		choose 'mentor_skills_job_search_5'
-		choose 'mentor_skills_resume_development_8'
-		choose 'mentor_skills_github_account_development_6'
+		choose 'mentor_skills_resume_development_3'
+		choose 'mentor_skills_github_account_development_3'
 		choose 'mentor_skills_selling_idea_4'
 		choose 'mentor_mentee_gender_n'
 		fill_in 'mentee_extra_info', :with => 'Other info'
