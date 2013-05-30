@@ -10,7 +10,7 @@ feature "An admin logs into the system" do
 		User.find_by_email("example@example.com").confirm!
 		User.find_by_email("example@example.com").admin = true
 		visit '/'
-		click_link 'Admin'
+		find("#Admin").click
 		fill_in 'Email', :with => "example@example.com"
 		fill_in 'Password', :with => "password"
 		click_button "Sign in"

@@ -8,7 +8,7 @@ feature "An Admin Deletes A Student" do
 	scenario "Admin deletes Student from Database" do
 		sign_in_as!(admin)
 		visit '/'
-		click_link 'Admin'
+		click_link "Home"
 		page.should have_content("Students that still need mentors")
 		click_link "Matt Tee"
 		click_link "Delete"

@@ -11,7 +11,7 @@ feature "an Admin sends a notification email" do
 
 	scenario "an Admin sends a notification email to an admin" do
 		visit '/'
-		click_link 'Admin'
+		find("#Admin").click
 		sign_in_as!(admin)
 		click_link 'Notifications'
 		click_link 'Notify'
@@ -25,7 +25,7 @@ feature "an Admin sends a notification email" do
 
 	scenario "an Admin sends a notification email to a student" do
 		visit '/'
-		click_link 'Admin'
+		find("#Admin").click
 		sign_in_as!(admin)
 		click_link 'Notifications'
 		click_link 'Notify'

@@ -6,7 +6,7 @@ feature "An Admin Edits a Mentor Profile" do
 
 	scenario "Admin deletes Mentor from Database" do
 		visit '/'
-		click_link 'Admin'
+		find("#Admin").click
 		sign_in_as!(admin)
 		page.should have_content("Mentors that still need mentees")
 		click_link "Butler Price"

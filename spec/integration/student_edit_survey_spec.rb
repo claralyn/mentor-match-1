@@ -8,14 +8,14 @@ feature "an admin edit a student survey" do
 
 	scenario "admin edits a student survey" do
 		visit '/'
-		click_link 'Admin'
+		find("#Admin").click
 		sign_in_as!(admin)
 		page.should have_content("Students that still need mentors")
 		click_link "Matt Tee"
 		click_link "Edit"
 
 		# Form to Update
-		select 'Ruby on Rails June', from: 'student_cf_class'
+		select 'Ruby on Rails May/June', from: 'student_cf_class'
 		fill_in 'personal_first_name', with: "Different"
 		fill_in 'personal_last_name', with: "dfd"
 		fill_in 'personal_where_you_from', with: "dfd"

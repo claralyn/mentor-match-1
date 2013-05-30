@@ -11,7 +11,7 @@ feature "Admin pairs the student and mentors" do
 
 	scenario "Admin pairs students together" do
 		visit '/'
-		click_link 'Admin'
+		find("#Admin").click
 		sign_in_as!(admin)
 		click_link 'Pair!'
 		page.should have_content("Matt Tee")
