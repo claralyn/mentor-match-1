@@ -22,7 +22,7 @@
 					<td>
 						<%= case student.cf_class
 									when "rails2"
-										"Ruby on Rails June 2013"
+										"Ruby on Rails May/June 2013"
 									when "rails3"
 										"Ruby on Rails July/August 2013"
 								end %>
@@ -32,11 +32,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td><%= f.submit "Submit" %>
+					<td><%= f.submit "Submit", class: "button alert round small" %>
 				</tr>
 		<% end %>
 	<% end %>
 </table>
+
 <h2>Mentors that still need Mentees</h2>
 <table>
 	<tr>
@@ -53,3 +54,4 @@
 		</tr>
 	<% end %>
 </table>
+

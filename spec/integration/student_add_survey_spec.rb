@@ -34,6 +34,7 @@ feature "a student fills out survey" do
 		select 'Expert', from:'student_skills_coffeescript'
 		fill_in 'skills_other_coding', with: "Coolio awesome faced man"
 
+
 		choose 'student_skills_selling_yourself_y'
 		select 'Somewhat Familiar', from: 'student_skills_development_familiarity'
 		choose 'student_skills_agile_development_experience_y'

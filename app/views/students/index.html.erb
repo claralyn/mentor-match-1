@@ -1,15 +1,18 @@
-<%= link_to "Pair!", "/pair" %>
-<%= link_to "Notifications", notifications_path %>
-<h2>Mentor Match Home</h2>
-<p>Welcome <%= current_user.email %></p>
-<div>
-	<h3>Students that still need mentors</h3>
+<%= link_to "Notifications", notifications_path, class: "button alert small" %>
+
+<%= link_to "Pair!", "/pair", class: "button alert small" %>
+
+<div class="section-container accordion" data-section="accordion">
+	<section class="active">
+	<p class="title" data-section-title><a href="#panel1">&#9660; Students that still need mentors</a></p>
+		<div class="content" data-section-content>
+
 		<% if @studentnomentors.blank? %>
 			<p>Hurray! All Students are Matched</p>
 		<% else %>
 			<table>
 				<tr>
-					<td>Students</td>
+					<td>Student Name</td>
 					<td>Class</td>
 				</tr>
 				<% @studentnomentors.each do |student| %>
@@ -28,16 +31,18 @@
 				<% end %>
 			</table>
 		<% end %>
-</div>
-<div>
-	<h3>Mentors that still need mentees</h3>
+		</div>
+</section>
+<section class="active">
+	<p class="title" data-section-title><a href="#panel2">&#9660; Mentors that still need mentees</a></p>
+	<div class="content" data-section-content>
 	<% if @mentornostudents.blank? %>
 		<p>Hurray!  All Mentors are Matched!</p>
 	<% else %>
 		<table>
 			<tr>
-				<td>Mentors</td>
-				<td>Companies</td>
+				<td>Mentor Name</td>
+				<td>Company</td>
 			</tr>
 			<% @mentornostudents.each do |mentor| %>
 				<tr>
@@ -50,8 +55,12 @@
 		</table>
 	<% end %>
 </div>
-<div>
-	<h3>All Students</h3>
+</section>
+</div>
+<div class="section-container accordion" data-section="accordion">
+<section>
+	<p class="title" data-section-title><a href="#panel1">&#9660; All Student Profiles</a></p>
+	<div class="content" data-section-content>
 	<% if @studentsall.blank? %>
 		<p>No Questionnaires Finished</p>
 	<% else %>
@@ -78,35 +87,40 @@
 			<% end %>
 		</table>
 	<% end %>
-</div>
-<div>
-	<h3>All Mentors</h3>
-	<% if @mentorsall.blank? %>
-		<p>No Mentor Profiles</p>
-		</table>
-	<% else %>
-		<table>
-			<tr>
-				<td>Mentors</td>
-				<td>Students</td>
-				<td>Profiles</td>
-			</tr>
-			<% @mentorsall.each do |mentor| %>
-				<tr>
-					<td>
-						<%= "#{mentor.personal_first_name} #{mentor.personal_last_name}" %></td>
-					<td>
-							<% mentor.students.each do |student| %>
-								<%= student.personal_first_name + ' ' + student.personal_last_name %>
-							<% end %>
-							<%= "-" if mentor.students.blank? %></td>
-					<td>
-						<%= link_to "View", mentor_path(mentor) %> /
-						<%= link_to "Edit", edit_mentor_path(mentor) %> /
-						<%= link_to "Delete", mentor,
-							:confirm => "Are you sure you want to delete #{mentor.personal_first_name} #{mentor.personal_last_name}",
-							:method => :delete %></td>
-				</tr>
+	</div>
+</section>
+<section>
+	<p class="title" data-section-title><a href="#panel2">&#9660; All Mentor Profiles</a></p>
+	<div class="content" data-section-content>
+			<% if @mentorsall.blank? %>
+				<p>No Mentor Profiles</p>
+				</table>
+			<% else %>
+				<table>
+					<tr>
+						<td>Name</td>
+						<td>Mentee</td>
+						<td>Profiles</td>
+					</tr>
+					<% @mentorsall.each do |mentor| %>
+						<tr>
+							<td>
+								<%= "#{mentor.personal_first_name} #{mentor.personal_last_name}" %></td>
+							<td>
+									<% mentor.students.each do |student| %>
+										<%= student.personal_first_name + ' ' + student.personal_last_name %>
+									<% end %>
+									<%= "-" if mentor.students.blank? %></td>
+							<td>
+								<%= link_to "View", mentor_path(mentor) %> /
+								<%= link_to "Edit", edit_mentor_path(mentor) %> /
+								<%= link_to "Delete", mentor,
+									:confirm => "Are you sure you want to delete #{mentor.personal_first_name} #{mentor.personal_last_name}",
+									:method => :delete %></td>
+						</tr>
+					<% end %>
 			<% end %>
-	<% end %>
+	</div>
+</section>
 </div>
+

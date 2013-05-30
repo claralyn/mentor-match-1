@@ -2,7 +2,7 @@
 	<div>
 		Class <%= f.select :cf_class,
 											options_for_select([
-												['Ruby on Rails June', 'rails2'],
+												['Ruby on Rails May/June', 'rails2'],
 												['Ruby on Rails July/August', 'rails3']],
 												@student.cf_class	) %>
 	</div>
@@ -431,7 +431,7 @@
 			<td><%= f.text_area :goals_extra_info, {id: "goals_extra_info" } %></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="right"><%= f.submit "#{@submittext}" %></td>
+			<td colspan="2" align="right"><%= f.submit "#{@submittext}", class: "button alert small"  %></td>
 		</tr>
 	</table>
 <% end %>

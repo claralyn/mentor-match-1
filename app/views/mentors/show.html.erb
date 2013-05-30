@@ -1,8 +1,8 @@
 <div>
-	<%= link_to "Edit", edit_mentor_path(@mentor) %>
+	<%= link_to "Edit", edit_mentor_path(@mentor), class: "button alert small" %>
 	<%= link_to "Delete", @mentor,
 				:confirm => "Are you sure you want to delete #{@mentor.personal_first_name} #{@mentor.personal_last_name}",
-				:method => :delete %>
+				:method => :delete, class: "button alert small" %>
 </div>
 <h2><%= @mentor.personal_first_name %> <%= @mentor.personal_last_name %></h2>
 	<p><em><%= @mentor.career_job_title %> at
