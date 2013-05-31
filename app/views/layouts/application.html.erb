@@ -11,8 +11,9 @@
   	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
   	<!-- Set the viewport width to device width for mobile -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= favicon_link_tag %>
   	<title><%= content_for?(:title) ? yield(:title) : "CodeFellows Mentor Match" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
@@ -23,7 +24,7 @@
   <body>
 <!-- Begin Page Header -->
     <header class="row">
-      <div class="large-10 small-10 columns">
+      <div class="large-9 small-9 columns">
         <% unless content_for?(:home) %>
           <a href="/">
         <% end %>
@@ -33,10 +34,10 @@
         <% end %>
           <h1> Mentor Match </h1>
       </div>
-      <div class="large-2S small-2 columns">
+      <div class="large-3 small-3 columns">
       <nav>
         <% if user_signed_in? %>
-          <%= link_to "Home", students_path %> |
+          <%= link_to "Dashboard", students_path %> |
           <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
         <% else %>
           <%= link_to image_tag("/assets/admin-large.png", :alt => "admin login", :title => "Admin", :id => "Admin"), new_user_session_path, "data-reveal-id" => "myModal" %>

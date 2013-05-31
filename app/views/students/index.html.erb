@@ -99,7 +99,7 @@
 				<table>
 					<tr>
 						<td>Name</td>
-						<td>Mentee</td>
+						<td>Mentee(s)</td>
 						<td>Profiles</td>
 					</tr>
 					<% @mentorsall.each do |mentor| %>
@@ -108,7 +108,7 @@
 								<%= "#{mentor.personal_first_name} #{mentor.personal_last_name}" %></td>
 							<td>
 									<% mentor.students.each do |student| %>
-										<%= student.personal_first_name + ' ' + student.personal_last_name %>
+										<%= student.personal_first_name + ' ' + student.personal_last_name %><br />
 									<% end %>
 									<%= "-" if mentor.students.blank? %></td>
 							<td>
