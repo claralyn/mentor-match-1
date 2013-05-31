@@ -52,10 +52,18 @@ class StudentsController < ApplicationController
 		@student = Student.find(params[:id])
 		past_mentor_id = @student.mentor.try(:id)
 
+		if params[:student][:mentor_id] == 'remove'
+			@student.update_attributes(mentor_id: nil)
+			flash[:notice] = "You've removed the mentor for " + @student.personal_first_name + ' ' + @student.personal_last_name
+			redirect_to '/pair'
+			return
+		end
+
 		if @student.update_attributes(params[:student])
-			if @student.mentor_id
+			if @student.mentor_id.present?
 				unless past_mentor_id == @student.mentor_id
-					flash[:notice] = @student.personal_first_name + ' ' + @student.personal_last_name + ' had been paired with ' + @student.mentor.personal_first_name + ' ' + @student.mentor.personal_last_name				end
+					flash[:notice] = @student.personal_first_name + ' ' + @student.personal_last_name + ' had been paired with ' + @student.mentor.personal_first_name + ' ' + @student.mentor.personal_last_name
+				end
 			else
 				flash[:notice] = @student.personal_first_name + ' ' + @student.personal_last_name + ' has been edited.'
 			end

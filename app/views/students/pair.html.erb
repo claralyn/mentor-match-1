@@ -14,7 +14,7 @@
 						<% mentors_array = Mentor.all.map{|mentor|
 								["#{mentor.personal_first_name} #{mentor.personal_last_name}", mentor.id]}
 
-							mentors_array.unshift(["Please, select a mentor"], 0) %>
+							mentors_array.unshift(["Please, select a mentor", "remove"]) %>
 						<%= f.select :mentor_id,
 									options_for_select(mentors_array, student.mentor.try(:id)),
 									{id: "mentor_#{student.id}"} %>
@@ -32,7 +32,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td><%= f.submit "Submit", class: "button alert round small" %>
+					<td><%= f.submit "Pair", class: "button alert round small" %>
 				</tr>
 		<% end %>
 	<% end %>
