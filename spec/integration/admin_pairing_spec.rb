@@ -18,7 +18,7 @@ feature "Admin pairs the student and mentors" do
 
 		# Could only get one item to show in collection item select on students/pair
 		select "Butler Price", :from => "student_mentor_id"
-		click_button "Submit"
+		click_button "Pair"
 		page.should have_content("Matt Tee had been paired with Butler Price")
 
 		student2 = Student.find(student.id)
