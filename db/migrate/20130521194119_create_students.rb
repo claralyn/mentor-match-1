@@ -1,6 +1,7 @@
 class CreateStudents < ActiveRecord::Migration
   def change
     create_table :students do |t|
+      t.boolean :notify, default: false
       t.string :cf_class
       t.string :personal_first_name
       t.string :personal_last_name

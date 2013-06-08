@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  attr_accessible :mentor_id,
+  attr_accessible :mentor_id, :notify,
 
                   :experience_degree, :experience_job, :experience_other_degree,
   								:experience_project, :experience_university, :experience_why_codefellows,

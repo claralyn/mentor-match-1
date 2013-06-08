@@ -13,7 +13,8 @@
 		<% end %>
 		<tr>
 			<td>
-				<%= @receiver.try(:personal_first_name) %> <%= @receiver.try(:personal_last_name) %>
+				<%= @receiver.try(:personal_first_name) %>
+				<%= @receiver.try(:personal_last_name) %>
 			</td>
 			<td>
 				<b><%= notification.subject %></b><br>

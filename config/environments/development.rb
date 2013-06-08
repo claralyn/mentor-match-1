@@ -17,9 +17,11 @@ MentorMatch::Application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   # Change mail delivery to either :smtp, :sendmail, :file, :test
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
 
   # Settings to send email
+=begin
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
@@ -29,7 +31,7 @@ MentorMatch::Application.configure do
     user_name: "mentormatchmaker@gmail.com",
     password: "overly123"
   }
-
+=end
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
