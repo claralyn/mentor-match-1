@@ -29,6 +29,7 @@ gem 'fancybox-rails'
 group :test, :development do
 	gem 'rspec-rails', '~>2.11'
 	gem 'launchy'
+  gem 'better_errors'
 end
 
 group :test do

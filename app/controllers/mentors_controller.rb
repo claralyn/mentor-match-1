@@ -2,7 +2,8 @@ class MentorsController < ApplicationController
   before_filter :authenticate_admin_or_mentor!, except: [:index, :new, :create]
 
   def index
-
+    @user = current_user.mentor
+    @students = Student.all
   end
 
   def new

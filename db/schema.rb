@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610161750) do
+ActiveRecord::Schema.define(:version => 20130610220856) do
 
   create_table "mentors", :force => true do |t|
     t.string   "personal_first_name"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130610161750) do
     t.string   "cf_class"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
+    t.integer  "user_id"
   end
 
   create_table "notifications", :force => true do |t|
@@ -123,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20130610161750) do
     t.integer  "mentor_id"
     t.datetime "created_at",                                             :null => false
     t.datetime "updated_at",                                             :null => false
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -143,8 +145,8 @@ ActiveRecord::Schema.define(:version => 20130610161750) do
     t.boolean  "admin",                  :default => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
-    t.boolean  "mentor",                 :default => false
-    t.boolean  "student",                :default => false
+    t.integer  "mentor"
+    t.integer  "student"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

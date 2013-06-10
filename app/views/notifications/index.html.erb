@@ -1,25 +1,29 @@
-<%= link_to "Notify", new_notification_path %>
-<table>
-	<tr>
-		<td>Receiver</td>
-		<td>Notification</td>
-	</tr>
-	<% @notifications.each do |notification| %>
-		<% case notification.receiver_type %>
-			<% when "student"
-					@receiver = Student.find(notification.receiver_id) %>
-				<% when "mentor"
-					@receiver = Mentor.find(notification.receiver_id) %>
-		<% end %>
+<%= link_to "Notify", new_notification_path,  class: "button alert small"  %>
+<% if @notifications.present? %>
+	<table>
 		<tr>
-			<td>
-				<%= @receiver.try(:personal_first_name) %>
-				<%= @receiver.try(:personal_last_name) %>
-			</td>
-			<td>
-				<b><%= notification.subject %></b><br>
-				<p><%= notification.message %></p>
-			</td>
+			<td>Receiver</td>
+			<td>Notification</td>
 		</tr>
-	<% end %>
-</table>
+		<% @notifications.each do |notification| %>
+			<% case notification.receiver_type %>
+				<% when "student"
+						@receiver = Student.find(notification.receiver_id) %>
+					<% when "mentor"
+						@receiver = Mentor.find(notification.receiver_id) %>
+			<% end %>
+			<tr>
+				<td>
+					<%= @receiver.try(:personal_first_name) %>
+					<%= @receiver.try(:personal_last_name) %>
+				</td>
+				<td>
+					<b><%= notification.subject %></b><br>
+					<p><%= notification.message %></p>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<p>No notifications sent</p>
+<% end %>

@@ -3,7 +3,9 @@ require 'spec_helper'
 feature "A user logs into the system" do
 	let!(:student){Factory(:student)}
 	let!(:admin){Factory(:admin_user)}
-	let!(:mentor){Factory(:mentor)}
+	let!(:mentor_user){Factory(:confirmed_user)}
+	let!(:student_user){Factory(:confirmed_user)}
+	let!(:mentor){Factory(:mentor, :user => mentor_user)}
 
 	before do
 		visit '/'
@@ -19,14 +21,14 @@ feature "A user logs into the system" do
 		content "Welcome " + student.personal_first_name
 		content "Mentor Profiles"
 	end
+=end
 	scenario "A mentor logs into their dashboard" do
-		fill "Email", mentor.personal_email
-		fill "Password", mentor.password
+		fill "Email", mentor.user.email
+		fill "Password", mentor.user.password
 		click_button "Sign in"
 		content "Welcome " + mentor.personal_first_name
 		content "Student Profiles"
 	end
-=end
 
 	scenario "Admin logs into dashboard" do
 		visit '/'

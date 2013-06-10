@@ -30,4 +30,5 @@ class Student < ActiveRecord::Base
   validates :personal_first_name, presence: true
   validates :personal_last_name, presence: true
   validates :personal_email, presence: true
+  belongs_to :user
 end

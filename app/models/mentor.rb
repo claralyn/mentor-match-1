@@ -35,4 +35,5 @@ class Mentor < ActiveRecord::Base
   validates :career_job_title, presence: true
 
   has_many :students
+  belongs_to :user
 end

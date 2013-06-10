@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
     sign_in_url = url_for(:action => 'new', :controller => 'sessions', :only_path => false, :protocol => '/')
     if request.referer == sign_in_url
       super
+    elsif current_user.mentor
+      mentors_path
     else
       students_path
     end

@@ -1,65 +1,72 @@
-<%= form_tag "/paired", method: "put" do %>
-	<table>
-		<tr>
-			<td>Students</td>
-			<td>Mentors</td>
-			<td>Class</td>
-			<td>Notify?</td>
-		</tr>
-			<% @students.each do |student| %>
-				<tr>
-					<td>
-						<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
-					<td>
-						<% mentors_array = Mentor.all.map{|mentor|
-								["#{mentor.personal_first_name} #{mentor.personal_last_name}", "#{mentor.id}-#{student.id}"]}
+<% if @students.present? %>
+	<%= form_tag "/paired", method: "put" do %>
+		<table>
+			<tr>
+				<td>Students</td>
+				<td>Mentors</td>
+				<td>Class</td>
+				<td>Notify?</td>
+			</tr>
+				<% @students.each do |student| %>
+					<tr>
+						<td>
+							<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
+						<td>
+							<% mentors_array = Mentor.all.map{|mentor|
+									["#{mentor.personal_first_name} #{mentor.personal_last_name}", "#{mentor.id}-#{student.id}"]}
 
-							mentors_array.unshift(["Please, select a mentor", "remove-#{student.id}"]) %>
-						<% if student.mentor.presence
-								mentorid = "#{student.mentor.id}-#{student.id}"
-							end %>
-						<%= select_tag :mentor_id,
-									options_for_select(mentors_array, (mentorid if !mentorid.nil?)),
-									{id: "mentor_#{student.id}", name: "mentor_ids[]"} %>
-					</td>
-					<td>
-						<%= case student.cf_class
-									when "rails2"
-										"Ruby on Rails June 2013"
-									when "rails3"
-										"Ruby on Rails July/August 2013"
+								mentors_array.unshift(["Please, select a mentor", "remove-#{student.id}"]) %>
+							<% if student.mentor.presence
+									mentorid = "#{student.mentor.id}-#{student.id}"
 								end %>
-					</td>
-					<td>
-						<%  @checked = if student.notify == true
-														true
-													else
-														false
-													end %>
-						<%= check_box_tag :notify, '',
-							@checked, :disabled => true %>
-					</td>
-				</tr>
-		<% end %>
-		<tr>
-			<td><%= submit_tag "Pair", class: "button alert round small" %>
-		</tr>
-	</table>
+							<%= select_tag :mentor_id,
+										options_for_select(mentors_array, (mentorid if !mentorid.nil?)),
+										{id: "mentor_#{student.id}", name: "mentor_ids[]"} %>
+						</td>
+						<td>
+							<%= case student.cf_class
+										when "rails2"
+											"Ruby on Rails June 2013"
+										when "rails3"
+											"Ruby on Rails July/August 2013"
+									end %>
+						</td>
+						<td>
+							<%  @checked = if student.notify == true
+															true
+														else
+															false
+														end %>
+							<%= check_box_tag :notify, '',
+								@checked, :disabled => true %>
+						</td>
+					</tr>
+			<% end %>
+			<tr>
+				<td><%= submit_tag "Pair", class: "button alert round small" %>
+			</tr>
+		</table>
+	<% end %>
+<% else %>
+	<p>There are currently no students from this class.</p>
 <% end %>
 <h2>Mentors that still need Mentees</h2>
-<table>
-	<tr>
-		<td>Mentor Name</td>
-		<td>Company</td>
-	</tr>
-	<% @mentornostudents.each do |mentor| %>
+<% if @mentornostudents.present? %>
+	<table>
 		<tr>
-			<td>
-				<%= mentor.personal_first_name %>
-				<%= mentor.personal_last_name %>
-			</td>
-			<td><%= mentor.career_company_private %></td>
+			<td>Mentor Name</td>
+			<td>Company</td>
 		</tr>
-	<% end %>
-</table>
-
+		<% @mentornostudents.each do |mentor| %>
+			<tr>
+				<td>
+					<%= mentor.personal_first_name %>
+					<%= mentor.personal_last_name %>
+				</td>
+				<td><%= mentor.career_company_private %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<p>There are no mentors available for this class</p>
+<% end %>
