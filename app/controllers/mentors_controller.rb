@@ -1,5 +1,9 @@
 class MentorsController < ApplicationController
-  before_filter :authenticate_user!, except: [:new, :create]
+  before_filter :authenticate_admin_or_mentor!, except: [:index, :new, :create]
+
+  def index
+
+  end
 
   def new
     @mentor = Mentor.new
@@ -44,5 +48,14 @@ class MentorsController < ApplicationController
     lastname = @mentor.personal_last_name
     @mentor.destroy
     redirect_to students_path, :notice => "#{firstname} #{lastname} has been removed from the database."
+  end
+
+  private
+
+  def authenticate_admin_or_mentor!
+    authenticate_user!
+    unless current_user.admin == true || current_user.mentor == true
+      redirect_to root_path
+    end
   end
 end
