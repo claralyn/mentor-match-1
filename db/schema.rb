@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528174557) do
+ActiveRecord::Schema.define(:version => 20130610161750) do
 
   create_table "mentors", :force => true do |t|
     t.string   "personal_first_name"
@@ -142,6 +142,8 @@ ActiveRecord::Schema.define(:version => 20130528174557) do
     t.boolean  "admin",                  :default => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.boolean  "mentor",                 :default => false
+    t.boolean  "student",                :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

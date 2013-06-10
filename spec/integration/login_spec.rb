@@ -19,8 +19,6 @@ feature "A user logs into the system" do
 		content "Welcome " + student.personal_first_name
 		content "Mentor Profiles"
 	end
-=end
-
 	scenario "A mentor logs into their dashboard" do
 		fill "Email", mentor.personal_email
 		fill "Password", mentor.password
@@ -28,6 +26,7 @@ feature "A user logs into the system" do
 		content "Welcome " + mentor.personal_first_name
 		content "Student Profiles"
 	end
+=end
 
 	scenario "Admin logs into dashboard" do
 		visit '/'
