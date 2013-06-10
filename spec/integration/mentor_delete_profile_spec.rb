@@ -6,16 +6,19 @@ feature "An Admin Deletes A Mentor" do
 
 	scenario "Admin deletes Mentor from Database" do
 		sign_in_as!(admin)
-		page.should have_content("Mentors that still need mentees")
+		content "Mentors that still need mentees"
 		click_link "Butler Price"
 		click_link "Delete"
-		page.should have_content("Butler Price has been removed from the database.")
 	end
 
-	scenario "If not an Admin, Mentors not Shown" do
-		sign_in_as!(admin)
-		click_link 'Sign Out'
-		visit '/'
-		page.should_not have_content("Mentors that still need mentees")
+=begin
+	scenario "A Mentor deletes their Profile" do
+		sign_in_as!(mentor)
+		content "Student Profiles"
+		click_link "Delete Your Profile"
+		content "You have been deleted from our database"
 	end
+=end
+
+	after { content "Butler Price has been removed from the database." }
 end

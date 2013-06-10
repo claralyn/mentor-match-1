@@ -7,31 +7,26 @@ feature "an Admin sends a notification email" do
 
 	before do
 		ActionMailer::Base.deliveries.clear
-	end
-
-	scenario "an Admin sends a notification email to an admin" do
 		visit '/'
-		find("#Admin").click
+		find "#login"
 		sign_in_as!(admin)
 		click_link 'Notifications'
 		click_link 'Notify'
-		find(:css, "#mentor_ids_").set(true)
-		fill_in 'subject', with: "Get er done"
-		fill_in 'message', with: "Really cool message"
+	end
+
+	scenario "an Admin sends a notification email to an admin" do
+		check_me "#mentor_ids_"
+		fill 'subject', "Get er done"
+		fill 'message', "Really cool message"
 		click_button 'Notify'
 		open_email "example@example.com", with_subject: "Get er done"
 		current_email.should have_content('Really cool message')
 	end
 
 	scenario "an Admin sends a notification email to a student" do
-		visit '/'
-		find("#Admin").click
-		sign_in_as!(admin)
-		click_link 'Notifications'
-		click_link 'Notify'
-		find(:css, "#student_ids_").set(true)
-		fill_in 'subject', with: "Get er done"
-		fill_in 'message', with: "Really cool message"
+		check_me "#student_ids_"
+		fill 'subject', "Get er done"
+		fill 'message', "Really cool message"
 		click_button 'Notify'
 		open_email "student@example.com", with_subject: "Get er done"
 		current_email.should have_content('Really cool message')

@@ -9,16 +9,16 @@ feature "a student fills out survey" do
 		visit '/'
 		click_link 'Student'
 		select 'Ruby on Rails May/June', from: 'student_cf_class'
-		fill_in 'personal_first_name', with: "Fud"
-		fill_in 'personal_last_name', with: "Helser"
-		fill_in 'personal_email', with: "example@example.com"
-		fill_in 'personal_where_you_from', with: "Alaska"
-		fill_in 'experience_university', with: "Bom"
-		fill_in 'experience_degree', with: "Master Ninja"
-		fill_in 'experience_other_degree', with: "Seahorse Riding"
-		fill_in 'experience_job', with: "Superhero"
-		fill_in 'experience_why_codefellows', with: "Because they're awesome"
-		fill_in 'experience_project', with: "I once saved Bill Clinton"
+		fill 'personal_first_name', "Fud"
+		fill 'personal_last_name', "Helser"
+		fill 'personal_email', "example@example.com"
+		fill 'personal_where_you_from', "Alaska"
+		fill 'experience_university', "Bom"
+		fill 'experience_degree', "Master Ninja"
+		fill 'experience_other_degree', "Seahorse Riding"
+		fill 'experience_job', "Superhero"
+		fill 'experience_why_codefellows', "Because they're awesome"
+		fill 'experience_project', "I once saved Bill Clinton"
 
 		select 'Expert', from: 'student_skills_developer'
 		select 'Very Familiar', from: 'student_skills_object'
@@ -32,7 +32,7 @@ feature "a student fills out survey" do
 		select 'Competent', from: 'student_skills_php'
 		select 'Expert', from: 'student_skills_net'
 		select 'Expert', from:'student_skills_coffeescript'
-		fill_in 'skills_other_coding', with: "Coolio awesome faced man"
+		fill 'skills_other_coding', "Coolio awesome faced man"
 
 
 		choose 'student_skills_selling_yourself_y'
@@ -42,7 +42,7 @@ feature "a student fills out survey" do
 
 		choose 'student_learning_books'
 		choose 'student_learning_preference_groups'
-		fill_in 'learning_extra_information', with: 'Other info'
+		fill 'learning_extra_information', 'Other info'
 
 		choose 'student_mentor_career_advice_3'
 		choose 'student_mentor_skill_development_2'
@@ -55,20 +55,20 @@ feature "a student fills out survey" do
 		choose 'student_mentor_selling_idea_4'
 		select 'Startup', from: 'student_mentor_company_type'
 		choose 'student_mentor_gender_n'
-		fill_in 'mentor_extra_info', with: 'Other info'
+		fill 'mentor_extra_info', 'Other info'
 
 		select 'Startup', from: 'student_goals_company_type'
-		fill_in 'goals_after_codefellows', with: 'Go to Disneyland'
-		fill_in 'goals_dream_job_title', with: 'Firefighter'
-		fill_in 'goals_companies', with: 'Waste Management'
-		fill_in 'goals_next_year', with: 'Fly a plane'
-		fill_in 'goal_next_4_years', with: 'Brazil'
+		fill 'goals_after_codefellows', 'Go to Disneyland'
+		fill 'goals_dream_job_title', 'Firefighter'
+		fill 'goals_companies', 'Waste Management'
+		fill 'goals_next_year', 'Fly a plane'
+		fill 'goal_next_4_years', 'Brazil'
 		choose 'student_goals_stay_seattle_y'
-		fill_in 'linked_in', with: 'Linked In'
-		fill_in 'goals_extra_info', with: 'extra'
+		fill 'linked_in', 'Linked In'
+		fill 'goals_extra_info', 'extra'
 
 		click_button 'Submit Survey'
-		page.should have_content('Thank You!')
+		content'Thank You!'
 
 		open_email "example@example.com", with_subject: 'Mentor Match Confirmation'
 		current_email.should have_content('Thanks for filling out your survey.' +

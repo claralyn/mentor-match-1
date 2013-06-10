@@ -4,27 +4,36 @@ require 'spec_helper'
 feature "an admin edit a student survey" do
 	let(:admin){Factory(:admin_user)}
 	let!(:student){Factory(:student)}
-	# Code should go up here to login as admin
+
 
 	scenario "admin edits a student survey" do
-		visit '/'
-		find("#Admin").click
 		sign_in_as!(admin)
-		page.should have_content("Students that still need mentors")
+		content "Students that still need mentors"
 		click_link "Matt Tee"
 		click_link "Edit"
+	end
 
+=begin
+	scenario "student edits their survey" do
+		sign_as!(student)
+		content "Welcome " + student.personal_first_name
+		content "Mentor Profiles"
+		click_link "Edit Your Profile"
+	end
+=end
+
+	after do
 		# Form to Update
 		select 'Ruby on Rails May/June', from: 'student_cf_class'
-		fill_in 'personal_first_name', with: "Different"
-		fill_in 'personal_last_name', with: "dfd"
-		fill_in 'personal_where_you_from', with: "dfd"
-		fill_in 'experience_university', with: "Bom"
-		fill_in 'experience_degree', with: "Master Ninja"
-		fill_in 'experience_other_degree', with: "Seahorse Riding"
-		fill_in 'experience_job', with: "Superhero"
-		fill_in 'experience_why_codefellows', with: "Because they're awesome"
-		fill_in 'experience_project', with: "I once saved Bill Clinton"
+		fill 'personal_first_name', "Different"
+		fill 'personal_last_name', "dfd"
+		fill 'personal_where_you_from', "dfd"
+		fill 'experience_university', "Bom"
+		fill 'experience_degree', "Master Ninja"
+		fill 'experience_other_degree', "Seahorse Riding"
+		fill 'experience_job', "Superhero"
+		fill 'experience_why_codefellows', "Because they're awesome"
+		fill 'experience_project', "I once saved Bill Clinton"
 
 		select 'Expert', from: 'student_skills_developer'
 		select 'Very Familiar', from: 'student_skills_object'
@@ -38,7 +47,7 @@ feature "an admin edit a student survey" do
 		select 'Competent', from: 'student_skills_php'
 		select 'Expert', from: 'student_skills_net'
 		select 'Expert', from:'student_skills_coffeescript'
-		fill_in 'skills_other_coding', with: 'student_skills_other_coding'
+		fill 'skills_other_coding', 'student_skills_other_coding'
 
 		choose 'student_skills_selling_yourself_y'
 		select 'Somewhat Familiar', from: 'student_skills_development_familiarity'
@@ -47,7 +56,7 @@ feature "an admin edit a student survey" do
 
 		choose 'student_learning_books'
 		choose 'student_learning_preference_groups'
-		fill_in 'learning_extra_information', with: 'Other info'
+		fill 'learning_extra_information', 'Other info'
 
 		choose 'student_mentor_career_advice_4'
 		choose 'student_mentor_skill_development_1'
@@ -60,20 +69,20 @@ feature "an admin edit a student survey" do
 		choose 'student_mentor_selling_idea_4'
 		select 'Startup', from: 'student_mentor_company_type'
 		choose 'student_mentor_gender_n'
-		fill_in 'mentor_extra_info', with: 'Other info'
+		fill 'mentor_extra_info', 'Other info'
 
 		select 'Startup', from: 'student_goals_company_type'
-		fill_in 'goals_after_codefellows', with: 'Go to Disneyland'
-		fill_in 'goals_dream_job_title', with: 'Firefighter'
-		fill_in 'goals_companies', with: 'Waste Management'
-		fill_in 'goals_next_year', with: 'Fly a plane'
-		fill_in 'goal_next_4_years', with: 'Brazil'
+		fill 'goals_after_codefellows', 'Go to Disneyland'
+		fill 'goals_dream_job_title', 'Firefighter'
+		fill 'goals_companies', 'Waste Management'
+		fill 'goals_next_year', 'Fly a plane'
+		fill 'goal_next_4_years', 'Brazil'
 		choose 'student_goals_stay_seattle_y'
-		fill_in 'linked_in', with: 'Linked In'
-		fill_in 'goals_extra_info', with: 'extra'
+		fill 'linked_in', 'Linked In'
+		fill 'goals_extra_info', 'extra'
 
 		click_button 'Edit Survey'
-		page.should have_content('Different dfd has been edited.')
-		page.should_not have_content('Matt Tee')
+		content 'Different dfd has been edited.'
+		no_content 'Matt Tee'
 	end
 end

@@ -11,18 +11,16 @@ feature "Admin pairs the student and mentors" do
 
 	scenario "Admin pairs students together" do
 		visit '/'
-		find("#Admin").click
+		click_id "#login"
 		sign_in_as!(admin)
 		click_link 'Pair!'
-		page.should have_content("Matt Tee")
-
-		# Could only get one item to show in collection item select on students/pair
+		content "Matt Tee"
 		select "Butler Price", :from => "mentor_ids[]"
 		click_button "Pair"
-		page.should have_content("Matt Tee had been paired with Butler Price")
+		content "Mentors and mentees have been paired and notifications sent"
 
 		student2 = Student.find(student.id)
-		message =  "Mentors and mentees have been paired and notifications sent"
+		message =  "You have been paired with Butler Price. You can contact them at example@example.com."
 		open_email "student@example.com", with_subject: "Mentor Match Paired"
 		current_email.should have_content(message)
 	end

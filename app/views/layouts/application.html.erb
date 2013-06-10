@@ -40,7 +40,7 @@
           <%= link_to "Dashboard", students_path %> |
           <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
         <% else %>
-          <%= link_to image_tag("/assets/admin-large.png", :alt => "admin login", :title => "Admin", :id => "Admin"), new_user_session_path, "data-reveal-id" => "myModal" %>
+          <%= link_to image_tag("/assets/admin-large.png", :alt => "admin login", :title => "Admin", :id => "login"), new_user_session_path, "data-reveal-id" => "myModal" %>
         <% end %>
       </nav>
     </div>

@@ -4,28 +4,41 @@ feature "An Admin Edits a Mentor Profile" do
 	let!(:admin){Factory(:admin_user)}
 	let!(:mentor){Factory(:mentor)}
 
-	scenario "Admin deletes Mentor from Database" do
+	before do
 		visit '/'
-		find("#Admin").click
+		click_id "#login"
+	end
+
+	scenario "Admin edits Mentor from Database" do
 		sign_in_as!(admin)
-		page.should have_content("Mentors that still need mentees")
+		content "Mentors that still need mentees"
 		click_link "Butler Price"
 		click_link "Edit"
+	end
 
+=begin
+	scenario "A Mentor edits their profile" do
+		sign_in_as!(mentor)
+		content "Student Profiles"
+		click_link "Edit Your Profile"
+	end
+=end
+
+	after do
 		# Form that needs to be changed
-		fill_in "personal_first_name", :with => "John"
-		fill_in "personal_last_name", :with => "Thomas"
-		fill_in "personal_why_mentor", :with => "Because I'm great"
-		fill_in "personal_knowledge_impart", :with => "Great knowledge"
+		fill "personal_first_name", "John"
+		fill "personal_last_name", "Thomas"
+		fill "personal_why_mentor", "Because I'm great"
+		fill "personal_knowledge_impart", "Great knowledge"
 
-		fill_in "career_information", :with => "Some Information"
-		fill_in "career_job_title", :with => "CEO"
-		fill_in "career_company_private", :with => "Octomania"
+		fill "career_information", "Some Information"
+		fill "career_job_title", "CEO"
+		fill "career_company_private", "Octomania"
 		select "Startup", :from => "mentor_career_company_type"
 
-		fill_in 'experience_university', with: "Bom"
-		fill_in 'experience_degree', :with => "Master Ninja"
-		fill_in 'experience_other_degree', :with => "Seahorse Riding"
+		fill 'experience_university', with: "Bom"
+		fill 'experience_degree', "Master Ninja"
+		fill 'experience_other_degree', "Seahorse Riding"
 
 		select 'Very Able', :from => 'mentor_mentee_skills_developer'
 		select 'Somewhat Able', :from => 'mentor_mentee_skills_html_css'
@@ -38,7 +51,7 @@ feature "An Admin Edits a Mentor Profile" do
 		select 'Not Able', :from => 'mentor_mentee_skills_php'
 		select 'Very Able', :from => 'mentor_mentee_skills_net'
 		select 'Not Able', :from =>'mentor_mentee_skills_coffeescript'
-		fill_in 'mentee_skills_other_coding', :with => "asdfdas"
+		fill 'mentee_skills_other_coding', "asdfdas"
 
 		choose 'mentor_skills_career_advice_3'
 		choose 'mentor_skills_development_4'
@@ -50,14 +63,14 @@ feature "An Admin Edits a Mentor Profile" do
 		choose 'mentor_skills_github_account_development_3'
 		choose 'mentor_skills_selling_idea_4'
 		choose 'mentor_mentee_gender_n'
-		fill_in 'mentee_extra_info', :with => 'Other info'
+		fill 'mentee_extra_info', 'Other info'
 
 		click_button "Update Profile"
-		page.should have_content("John Thomas's profile has been updated")
-		page.should have_content("John Thomas")
-		page.should have_content("Because I'm great")
-		page.should have_content("Some Information")
-		page.should have_content("Octomania")
-		page.should_not have_content("Butler Price")
+		content "John Thomas's profile has been updated"
+		content "John Thomas"
+		content "Because I'm great"
+		content "Some Information"
+		content "Octomania"
+		no_content("Butler Price")
 	end
 end

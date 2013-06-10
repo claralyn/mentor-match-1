@@ -9,9 +9,17 @@ feature "An Admin Deletes A Student" do
 		sign_in_as!(admin)
 		visit '/'
 		click_link "Dashboard"
-		page.should have_content("Students that still need mentors")
+		content "Students that still need mentors"
 		click_link "Matt Tee"
 		click_link "Delete"
-		page.should have_content("Matt Tee has been removed from the database.")
+		content "Matt Tee has been removed from the database."
 	end
+
+=begin
+	scenario "a Student delete their profile"
+		sign_in_as!(student)
+		visit '/'
+		click_link "Delete Your Profile"
+		content "You have been deleted from our database"
+=end
 end
