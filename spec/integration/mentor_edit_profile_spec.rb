@@ -11,6 +11,7 @@ feature "An Admin Edits a Mentor Profile" do
 	end
 
 	scenario "Admin edits Mentor from Database" do
+		@message = "John Thomas's profile has been updated"
 		sign_in_as!(admin)
 		content "Mentors that still need mentees"
 		click_link "Butler Price"
@@ -18,6 +19,7 @@ feature "An Admin Edits a Mentor Profile" do
 	end
 
 	scenario "A Mentor edits their profile" do
+		@message = "Your profile has been edited."
 		sign_in_as!(mentor.user)
 		content "Student Profiles"
 		click_link "Edit Your Profile"
@@ -65,7 +67,7 @@ feature "An Admin Edits a Mentor Profile" do
 		fill 'mentee_extra_info', 'Other info'
 
 		click_button "Update Profile"
-		content "John Thomas's profile has been updated"
+		content @message
 		content "John Thomas"
 		content "Because I'm great"
 		content "Some Information"

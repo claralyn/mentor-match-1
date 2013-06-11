@@ -33,7 +33,12 @@ class MentorsController < ApplicationController
   def update
     @mentor = Mentor.find(params[:id])
     if @mentor.update_attributes(params[:mentor])
-      flash[:notice] = @mentor.personal_first_name + ' ' + @mentor.personal_last_name + "'s profile has been updated"
+      if current_user.mentor == @mentor
+        message = "Your profile has been edited."
+      else
+        message = @mentor.personal_first_name + ' ' + @mentor.personal_last_name + "'s profile has been updated"
+      end
+      flash[:notice] = message
       redirect_to mentor_path(@mentor)
     else
       flash[:notice] =  'There was a problem! ' +
