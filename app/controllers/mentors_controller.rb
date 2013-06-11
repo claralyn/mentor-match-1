@@ -1,5 +1,5 @@
 class MentorsController < ApplicationController
-  before_filter :authenticate_admin_or_mentor!, except: [:index, :new, :create]
+  before_filter :authenticate_admin_or_mentor!, except: [:new, :create]
 
   def index
     @user = current_user.mentor
@@ -47,15 +47,22 @@ class MentorsController < ApplicationController
     @mentor = Mentor.find(params[:id])
     firstname = @mentor.personal_first_name
     lastname = @mentor.personal_last_name
-    @mentor.destroy
-    redirect_to students_path, :notice => "#{firstname} #{lastname} has been removed from the database."
+    if current_user.mentor == @mentor
+      current_user.destroy
+      redirect_to root_path,
+        :notice => "You have been deleted from our database"
+    else
+      @mentor.destroy
+      redirect_to students_path,
+        :notice => "#{firstname} #{lastname} has been removed from the database."
+    end
   end
 
   private
 
   def authenticate_admin_or_mentor!
     authenticate_user!
-    unless current_user.admin == true || current_user.mentor == true
+    unless current_user.admin == true || current_user.mentor.present?
       redirect_to root_path
     end
   end

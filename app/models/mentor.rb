@@ -1,5 +1,5 @@
 class Mentor < ActiveRecord::Base
-  attr_accessible :career_company_private, :career_information,
+  attr_accessible :user, :career_company_private, :career_information,
   								:career_job_title, :career_company_type,
 
   								:cf_class,
@@ -30,7 +30,6 @@ class Mentor < ActiveRecord::Base
   validates :personal_first_name, presence: true
   validates :personal_last_name, presence: true
   validates :personal_email, presence: true, uniqueness: true
-  validates :career_company_type, presence: true
   validates :career_company_private, presence: true
   validates :career_job_title, presence: true
 

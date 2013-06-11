@@ -13,7 +13,10 @@ MentorMatch::Application.routes.draw do
     resources :users
   end
 
+  #This is sent to both mentors and students when they are paired
   match '/thanks' => "students#thanks"
+
+  #This is used by the admin to pair students
   match '/paired' => "students#paired"
   match '/pair' => "students#pair"
 

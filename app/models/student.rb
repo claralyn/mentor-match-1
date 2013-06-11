@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  attr_accessible :mentor_id, :notify,
+  attr_accessible :user, :mentor_id, :notify,
 
                   :experience_degree, :experience_job, :experience_other_degree,
   								:experience_project, :experience_university, :experience_why_codefellows,
@@ -25,10 +25,11 @@ class Student < ActiveRecord::Base
   								#linked in
   								:linked_in, :cf_class
 
-  belongs_to :mentor
 
   validates :personal_first_name, presence: true
   validates :personal_last_name, presence: true
   validates :personal_email, presence: true
+
+  belongs_to :mentor
   belongs_to :user
 end

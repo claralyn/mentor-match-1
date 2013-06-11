@@ -1,7 +1,13 @@
 <% content_for :home do %>
 	<% link_to "Admin", students_path %>
 <% end %>
-<h3 align="center">Welcome!</h3>
-<p align="center">Please fill out the questionnaire that best suits your role at CodeFellows:</p>
-<center><%= link_to "Student", new_student_path, class: "button round alert large" %>
-<%= link_to "Mentor", new_mentor_path, class: "button round alert large" %></center>
+<h3 align="center">
+  Welcome!
+</h3>
+<p align="center">
+  Please fill out the questionnaire that best suits your role at CodeFellows:
+</p>
+<center>
+  <%= link_to "Student", new_student_path, class: "button round alert large" %>
+  <%= link_to "Mentor", new_mentor_path, class: "button round alert large" %>
+</center>

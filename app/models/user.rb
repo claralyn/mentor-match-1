@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
          :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+                  :student, :mentor
   # attr_accessible :title, :body
 
-  has_one :student
-  has_one :mentor
+  has_one :student, dependent: :destroy
+  has_one :mentor, dependent: :destroy
 end
