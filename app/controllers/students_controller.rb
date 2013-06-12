@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  before_filter :authorize_mentor!, only: [:show]
 	before_filter :authorize_admin!, except: [:new, :create, :thanks]
 
 	def index
@@ -150,4 +151,13 @@ class StudentsController < ApplicationController
 			redirect_to root_path
 		end
 	end
+
+  def authorize_mentor!
+    authenticate_user!
+    unless current_user.admin == true || current_user.mentor == true
+			flash[:alert] = "You must be a mentor or admin to do that!"
+      redirect_to root_path
+    end
+  end
+
 end

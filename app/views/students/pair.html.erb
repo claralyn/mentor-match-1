@@ -5,7 +5,6 @@
 				<td>Students</td>
 				<td>Mentors</td>
 				<td>Class</td>
-				<td>Notify?</td>
 			</tr>
 				<% @students.each do |student| %>
 					<tr>
@@ -30,15 +29,6 @@
 										when "rails3"
 											"Ruby on Rails July/August 2013"
 									end %>
-						</td>
-						<td>
-							<%  @checked = if student.notify == true
-															true
-														else
-															false
-														end %>
-							<%= check_box_tag :notify, '',
-								@checked, :disabled => true %>
 						</td>
 					</tr>
 			<% end %>

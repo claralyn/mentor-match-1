@@ -2,7 +2,8 @@ require 'spec_helper'
 
 feature "An Admin Edits a Mentor Profile" do
 	let!(:admin){Factory(:admin_user)}
-	let!(:mentor){Factory(:mentor)}
+	let!(:user){Factory(:confirmed_user)}
+	let!(:mentor){Factory(:mentor, user: user)}
 
 	before do
 		visit '/'
@@ -10,19 +11,19 @@ feature "An Admin Edits a Mentor Profile" do
 	end
 
 	scenario "Admin edits Mentor from Database" do
+		@message = "John Thomas's profile has been updated"
 		sign_in_as!(admin)
 		content "Mentors that still need mentees"
 		click_link "Butler Price"
 		click_link "Edit"
 	end
 
-=begin
 	scenario "A Mentor edits their profile" do
-		sign_in_as!(mentor)
+		@message = "Your profile has been edited."
+		sign_in_as!(mentor.user)
 		content "Student Profiles"
 		click_link "Edit Your Profile"
 	end
-=end
 
 	after do
 		# Form that needs to be changed
@@ -66,7 +67,7 @@ feature "An Admin Edits a Mentor Profile" do
 		fill 'mentee_extra_info', 'Other info'
 
 		click_button "Update Profile"
-		content "John Thomas's profile has been updated"
+		content @message
 		content "John Thomas"
 		content "Because I'm great"
 		content "Some Information"
