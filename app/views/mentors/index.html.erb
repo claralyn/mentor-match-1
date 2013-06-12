@@ -1,6 +1,25 @@
-<h2>
-  Welcome <%= @user.personal_first_name %> <%= @user.personal_last_name %>
-</h2>
-<h2>
-  Student Profiles
-</h2>
+<h3 align="right">
+  Welcome <%= @user.personal_first_name %> <%= @user.personal_last_name %>!
+</h3>
+
+<h3 class="subheader">
+  Student Mentee Profiles
+</h3>
+
+
+
+<div class="section-container auto" data-section>
+  <section>
+    <p class="title" data-section-title><a href="#panel1">
+<%= @user.career_company_private %></a></p>
+    <div class="content" data-section-content>
+      <p>Students interested in your company are listed here</p>
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#panel2">All Students</a></p>
+    <div class="content" data-section-content>
+      <p>All current codefellows students</p>
+    </div>
+  </section>
+</div>

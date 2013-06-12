@@ -7,3 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+admin_user = User.create(:email => "admin@ticketee.com",
+                         :password => "password")
+admin_user.admin = true
+admin_user.confirm!
