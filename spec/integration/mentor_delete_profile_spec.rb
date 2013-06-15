@@ -15,7 +15,7 @@ feature "An Admin Deletes A Mentor" do
 
 	scenario "A Mentor deletes their Profile" do
 		sign_in_as!(mentor.user)
-		content "Student Profiles"
+		content "Student Mentee Profiles"
 		click_link "Delete Your Profile"
 		content "You have been deleted from our database"
 	end

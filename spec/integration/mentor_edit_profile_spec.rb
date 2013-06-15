@@ -21,7 +21,7 @@ feature "An Admin Edits a Mentor Profile" do
 	scenario "A Mentor edits their profile" do
 		@message = "Your profile has been edited."
 		sign_in_as!(mentor.user)
-		content "Student Profiles"
+		content "Student Mentee Profiles"
 		click_link "Edit Your Profile"
 	end
 

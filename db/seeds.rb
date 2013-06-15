@@ -8,7 +8,6 @@
 
 admin_user = User.create( email: "admin@mentormatch.com",
                           password: "password")
-
 admin_user.admin = true
 admin_user.confirm!
 
@@ -37,3 +36,4 @@ mentor_user = Mentor.new(personal_first_name: "Risk",
 
 mentor_user.save!
 user_mentor.confirm!
+

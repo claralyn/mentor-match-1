@@ -28,7 +28,7 @@ feature "A user logs into the system" do
 		click_button "Sign in"
 		# !!!! Dashboard Link needs to be changed for different students and mentors
 		content "Welcome " + mentor.personal_first_name
-		content "Student Profiles"
+		content "Student Mentee Profiles"
 	end
 
 	scenario "Admin logs into dashboard" do

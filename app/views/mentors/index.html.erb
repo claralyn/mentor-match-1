@@ -1,31 +1,48 @@
-<p>
-  Welcome
-    <%= @user.personal_first_name %> <%= @user.personal_last_name %>
-</p>
-<%= link_to "Edit Your Profile", edit_mentor_path(@user) %>
-<%= link_to "Delete Your Profile", mentor_path(@user),
-      :confirm => "Are you sure you want to delete your profile?",
-      :method => :delete, class: "button alert small" %>
-<h2>
-  Student Profiles
-</h2>
-<table>
-  <tr>
-    <td>Student Name</td>
-    <td>Class</td>
-  </tr>
-  <% @students.each do |student| %>
-    <tr>
-      <td>
-        <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
-      <td>
-        <%= case student.cf_class
-              when "rails2"
-                "Ruby on Rails June 2013"
-              when "rails3"
-                "Ruby on Rails July/August 2013"
-            end %>
-        </td>
-    </tr>
-  <% end %>
-</table>
+<h3 align="right">
+  Welcome <%= @user.personal_first_name %> <%= @user.personal_last_name %>!
+</h3>
+<div align="right">
+  <%= link_to "Edit Your Profile", edit_mentor_path(@user) %>
+  <%= link_to "Delete Your Profile", mentor_path(@user),
+        :confirm => "Are you sure you want to delete your profile?",
+        :method => :delete, class: "button alert small" %>
+</div>
+
+<h3 class="subheader">
+  Student Mentee Profiles
+</h3>
+<div class="section-container auto" data-section>
+  <section>
+    <p class="title" data-section-title><a href="#panel1">
+<%= @user.career_company_private %></a></p>
+    <div class="content" data-section-content>
+      <p>Students who have expressed interest in <%= @user.career_company_private %></p>
+      <table>
+        <tr>
+          <td>Student Name</td>
+          <td>Class</td>
+        </tr>
+        <% @students.each do |student| %>
+          <tr>
+            <td>
+              <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
+            <td>
+              <%= case student.cf_class
+                    when "rails2"
+                      "Ruby on Rails June 2013"
+                    when "rails3"
+                      "Ruby on Rails July/August 2013"
+                  end %>
+              </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#panel2">All Students</a></p>
+    <div class="content" data-section-content>
+      <p>All current Code Fellows students</p>
+    </div>
+  </section>
+</div>
