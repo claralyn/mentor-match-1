@@ -132,6 +132,8 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.4)
+    ranked-model (0.2.1)
+      activerecord (>= 3.0.3)
     rdoc (3.12.2)
       json (~> 1.4)
     rspec (2.13.0)
@@ -160,6 +162,9 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    simple_form (2.1.0)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     slop (3.4.4)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -201,8 +206,10 @@ DEPENDENCIES
   pry-debugger
   pry-rails
   rails (= 3.2.13)
+  ranked-model
   rspec-rails (~> 2.11)
   sass-rails (~> 3.2.3)
+  simple_form
   sqlite3
   uglifier (>= 1.0.3)
   zurb-foundation (~> 4.0.0)

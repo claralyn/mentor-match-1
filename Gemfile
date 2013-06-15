@@ -6,6 +6,7 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'ranked-model'
 
 
 # Gems used only for assets and not required
@@ -25,11 +26,15 @@ gem 'devise', '2.1.0'
 gem 'compass'
 gem 'zurb-foundation', '~>4.0.0'
 gem 'fancybox-rails'
+gem 'simple_form'
+
+group :development do
+  gem 'better_errors'
+end
 
 group :test, :development do
 	gem 'rspec-rails', '~>2.11'
 	gem 'launchy'
-  gem 'better_errors'
 end
 
 group :test do

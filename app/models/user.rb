@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
                   :student, :mentor
   # attr_accessible :title, :body
 
-  has_one :student, dependent: :destroy
   has_one :mentor, dependent: :destroy
+  has_one :student, dependent: :destroy
 end

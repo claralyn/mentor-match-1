@@ -1,7 +1,9 @@
 MentorMatch::Application.routes.draw do
   devise_for :users
 
-  resources :students
+  resources :students do
+    resources :rankings
+  end
   resources :mentors
   resources :home
   resources :notifications
@@ -9,17 +11,18 @@ MentorMatch::Application.routes.draw do
   root :to => 'home#index'
 
   namespace :admin do
-    root :to => "base#index"
+    root :to => "users#index"
     resources :users
   end
 
   #This is sent to both mentors and students when they are paired
   match '/thanks' => "students#thanks"
 
-  #This is used by the admin to pair students
-  match '/paired' => "students#paired"
-  match '/pair' => "students#pair"
+  match '/rankings' => "mentors#rankings"
 
+  #This is used by the admin to pair students
+  match '/paired' => "admin::users#paired"
+  match '/pair' => "admin::users#pair"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,23 @@
+<p>
+  Give
+  <%= @student.personal_first_name %>
+  <%= @student.personal_last_name %>
+  a ranking
+</p>
+<p>
+  All following rankings will be bumped down the ranks.
+</p>
+<p>
+  You have a maximum of 5 rankings
+</p>
+<%= simple_form_for [@student, @rank] do|f| %>
+  <%= f.select :rank, collection: (1..5).map{|n| [n,n]} %>
+  <%= f.submit "+ Ranking", {class: "button alert small", id: "rankSubmit"} %>
+  <div class="rankingNumber">
+    <span id="rank1">1</span>
+    <span id="rank2">2</span>
+    <span id="rank3">3</span>
+    <span id="rank4">4</span>
+    <span id="rank5">5</span>
+  </div>
+<% end %>

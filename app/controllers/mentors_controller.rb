@@ -32,19 +32,25 @@ class MentorsController < ApplicationController
 
   def update
     @mentor = Mentor.find(params[:id])
-    if @mentor.update_attributes(params[:mentor])
-      if current_user.mentor == @mentor
-        message = "Your profile has been edited."
+
+    if current_user.mentor == @mentor || current_user.admin?
+      if @mentor.update_attributes(params[:mentor])
+        if current_user.mentor == @mentor
+          message = "Your profile has been edited."
+        else
+          message = @mentor.personal_first_name + ' ' + @mentor.personal_last_name + "'s profile has been updated"
+        end
+        flash[:notice] = message
+        redirect_to mentor_path(@mentor)
       else
-        message = @mentor.personal_first_name + ' ' + @mentor.personal_last_name + "'s profile has been updated"
+        flash[:notice] =  'There was a problem! ' +
+                        'Please make sure your first name, last name, job title, company, company type ' +
+                        '& email are all filled in.'
+        render :action => "edit"
       end
-      flash[:notice] = message
-      redirect_to mentor_path(@mentor)
     else
-      flash[:notice] =  'There was a problem! ' +
-                      'Please make sure your first name, last name, job title, company, company type ' +
-                      '& email are all filled in.'
-      render :action => "edit"
+      flash[:notice] = "You can only edit your own profile."
+      redirect_to mentors_path
     end
   end
 
@@ -57,10 +63,14 @@ class MentorsController < ApplicationController
       redirect_to root_path,
         :notice => "You have been deleted from our database"
     else
-      @mentor.destroy
-      redirect_to students_path,
+      @mentor.user.destroy
+      redirect_to admin_users_path,
         :notice => "#{firstname} #{lastname} has been removed from the database."
     end
+  end
+
+  def rankings
+    @rankings = current_user.mentor.rankings.order(:rank)
   end
 
   private

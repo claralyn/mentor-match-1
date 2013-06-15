@@ -1,17 +1,24 @@
 <div align="left">
+	<% if current_user.admin || @student.id == current_user.student.try(:id)  %>
 	<%= link_to "Edit", edit_student_path(@student), class: "button alert small" %>
 	<%= link_to "Delete", @student,
 			:confirm => "Are you sure you want to delete #{@student.personal_first_name} #{@student.personal_last_name}",
 			:method => :delete, class: "button alert small" %>
+	<% end %>
+	<% if current_user.mentor %>
+		<%= link_to "Add to Ranking", new_student_ranking_path(@student) %>
+	<% end %>
 </div>
-
-<h5>
-	<%= @student.personal_first_name %>
-	<%= @student.personal_last_name %>
-</h5>
-<p><em>
-	<%= @student.personal_email %>
-</em></p>
+<!-- Hides first name and last name from mentors -->
+<% if current_user.mentor.nil? %>
+	<h5>
+		<%= @student.personal_first_name %>
+		<%= @student.personal_last_name %>
+	</h5>
+	<p><em>
+		<%= @student.personal_email %>
+	</em></p>
+<% end %>
 <p><em>
 	<%= case @student.cf_class
 			when "rails2"

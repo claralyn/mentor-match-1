@@ -3,24 +3,25 @@ require 'spec_helper'
 
 feature "an admin edit a student survey" do
 	let(:admin){Factory(:admin_user)}
-	let!(:student){Factory(:student)}
+	let!(:user){Factory(:confirmed_user)}
+	let!(:student){Factory(:student, user: user)}
 
 
 	scenario "admin edits a student survey" do
+		@message = "Different dfd has been edited."
 		sign_in_as!(admin)
 		content "Students that still need mentors"
 		click_link "Matt Tee"
 		click_link "Edit"
 	end
 
-=begin
 	scenario "student edits their survey" do
-		sign_as!(student)
+		@message = "Your profile has been edited."
+		sign_in_as!(student.user)
 		content "Welcome " + student.personal_first_name
 		content "Mentor Profiles"
 		click_link "Edit Your Profile"
 	end
-=end
 
 	after do
 		# Form to Update
@@ -82,7 +83,7 @@ feature "an admin edit a student survey" do
 		fill 'goals_extra_info', 'extra'
 
 		click_button 'Edit Survey'
-		content 'Different dfd has been edited.'
+		content @message
 		no_content 'Matt Tee'
 	end
 end

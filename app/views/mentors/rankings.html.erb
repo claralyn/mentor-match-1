@@ -1,0 +1,10 @@
+Here is your list of rankings
+<% if @rankings.present? %>
+  <% @rankings.each do |rank| %>
+    <div>
+      <%= rank.rank %>.
+      <%= rank.student.personal_first_name %>
+      <%= rank.student.personal_last_name %>
+    </div>
+  <% end %>
+<% end %>

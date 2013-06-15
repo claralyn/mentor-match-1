@@ -1,5 +1,7 @@
 class Mentor < ActiveRecord::Base
-  attr_accessible :user, :career_company_private, :career_information,
+  attr_accessible :user_id,
+
+                  :career_company_private, :career_information,
   								:career_job_title, :career_company_type,
 
   								:cf_class,
@@ -34,5 +36,6 @@ class Mentor < ActiveRecord::Base
   validates :career_job_title, presence: true
 
   has_many :students
+  has_many :rankings
   belongs_to :user
 end

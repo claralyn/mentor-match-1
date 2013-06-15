@@ -2,13 +2,13 @@
   Welcome
     <%= @user.personal_first_name %> <%= @user.personal_last_name %>
 </p>
-<h2>
-  Student Profiles
-</h2>
 <%= link_to "Edit Your Profile", edit_mentor_path(@user) %>
 <%= link_to "Delete Your Profile", mentor_path(@user),
       :confirm => "Are you sure you want to delete your profile?",
       :method => :delete, class: "button alert small" %>
+<h2>
+  Student Profiles
+</h2>
 <table>
   <tr>
     <td>Student Name</td>
