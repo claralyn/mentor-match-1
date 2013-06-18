@@ -1,5 +1,6 @@
 class RankingsController < ApplicationController
-  before_filter :find_student, :except => [:index]
+  before_filter :find_student, :except => [ :index,
+                                            :update_ranks]
 
   def index
     @rankings = current_user.mentor.rankings
@@ -84,6 +85,15 @@ class RankingsController < ApplicationController
   def update
   end
 
+  def update_ranks
+    ranks = JSON.parse(params[:ranking])
+    ranks.each do |key, value|
+      update_item = Ranking.find(key)
+      update_item.rank = value
+      update_item.save
+    end
+    render text: "success", status: 200
+  end
   def destroy
     @rank = params[:id]
     @rank.destroy
