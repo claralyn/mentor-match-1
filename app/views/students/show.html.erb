@@ -6,7 +6,12 @@
 			:method => :delete, class: "button alert small" %>
 	<% end %>
 	<% if current_user.mentor %>
-		<%= link_to "Add to Ranking", new_student_ranking_path(@student) %>
+		<% if current_user.mentor.rankings.where(:student_id, @student.id).present? %>
+			This student is currently on your rankings.
+		<% else %>
+			<%= link_to "Add to Ranking", new_student_ranking_path(@student),
+			:confirm => "Are you sure you want to add #{@student.personal_first_name} #{@student.personal_last_name} to your rankings?" %>
+		<% end %>
 	<% end %>
 </div>
 <!-- Hides first name and last name from mentors -->

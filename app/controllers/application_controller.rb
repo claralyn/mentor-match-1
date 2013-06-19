@@ -17,8 +17,12 @@ class ApplicationController < ActionController::Base
       admin_users_path
     elsif current_user.mentor.present?
       mentors_path
-    else
+    elsif current_user.student.present?
       students_path
+    elsif current_user.role == 'mentor'
+      new_mentor_path
+    elsif current_user.role == 'student'
+      new_student_path
     end
   end
 end

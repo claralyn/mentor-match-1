@@ -12,6 +12,10 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
+  <div>
+    <%= f.label :role, "Which role best describes you at Code Fellows?" %><br />
+    Student <%= f.radio_button :role, "student" %>
+    Mentor <%= f.radio_button :role, "mentor" %>
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 

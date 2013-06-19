@@ -4,6 +4,9 @@ class StudentsController < ApplicationController
 																						:edit,
 																						:update,
 																						:destroy]
+	before_filter :authenticate_user!, only: [:new,
+																						:create]
+
 	def index
     @user = current_user.student
     @mentors = Mentor.all
@@ -23,10 +26,10 @@ class StudentsController < ApplicationController
 
 	def create
 		@student = Student.new(params[:student])
+		@student.user_id = current_user.id
 		if @student.save
 			redirect_to '/thanks'
 		else
-			#change flash message if email is not unique
 			flash[:alert] = 'Sorry, there was a problem. ' +
 											'Please make sure your first name, last name, & email are all filled in.'
 			render :action => "new"

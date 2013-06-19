@@ -7,82 +7,33 @@ class RankingsController < ApplicationController
   end
 
   def new
-    @rank = Ranking.new
-  end
+    # find the last ranked student
+    last_ranking = current_user.mentor.rankings.order("rank").last
+    # see if a ranking already exists for this student
+    exists_rankings = current_user.mentor.rankings.where(:student_id, @student.id)
+    # this is the new rank of the student being added to the rankings
+    new_rank =  if last_ranking
+                  last_ranking.rank + 1
+                else
+                  1
+                end
+    rank = current_user.mentor.rankings.build(student_id: @student.id, rank: new_rank)
+    count = Ranking.all.count
 
-  def create
-    # define selected rank number
-    @rank_number = params[:ranking][:rank]
-
-    #find if the rank number's current position is filled
-    @current_position = current_user.mentor.rankings.where("rank = ?", @rank_number)
-
-
-    # if there exists a current position
-    if @current_position.present?
-
-      # checks whether the current position is already set to this student
-      @selected_current_rank = current_user.mentor.rankings.where("student_id = ? AND rank = ?", @student.id, @rank)
-
-      # if the position is already current, direct to current page
-      if @selected_current_rank
-        message =  @student.personal_first_name + ' ' + @student.personal_last_name + " is already part of your rankings."
-        flash[:notification] = message
-        redirect_to '/rankings'
-        return
-      end
-
-
-      # old_ranking = current_user.mentor.rankings.where("rank >= ?", @rank)
-
-      # old_ranking.each do |oldRank|
-
-      # Sets position to the current rank resource
-      position = @current_position
-
-      #sets rank to current rank
-      rank_number = @rank_number
-
-        # Cycle through positions until the next position is blank or the rank_number is larger than 5
-        until position.blank || rank_number > 5
-
-          # set the new rank number
-          rank_number = @rank + 1
-
-          # if the new rank number is 6, then destroy it
-          if rank_number == 6
-
-            position.destroy
-
-          else
-
-            # sets the next position
-            next_position = current_user.mentor.rankings.where("rank = ?", rank_number)
-
-            # Updates current position with new rank number
-            position.update_attributes(rank: rank_number)
-
-            #sets the position to the next position
-            position = next_position
-
-          end
-
-      end
-
-    end
-    @ranking = @student.rankings.build(rank: @rank,
-                mentor_id: current_user.mentor.id)
-
-    if @ranking && @ranking.save
-      message = @student.personal_first_name + ' ' + @student.personal_last_name + " has been adding to your rankings"
+    if count > 5
+      message = "Sorry, your rankings are full." +
+                " Please, delete a ranking first."
+    elsif exists_rankings.present?
+      message = "You've already added this student to your rankings."
+    elsif rank.save
+            message = "#{@student.personal_first_name} #{@student.personal_last_name}" +
+                      " has been added to your rankings."
     else
-      message = "Your rankings were not updated"
+      message = "Sorry, there was a problem,
+                and your rankings weren't updated."
     end
-    flash[:notification] = message
+    flash[:notice] = message
     redirect_to '/rankings'
-  end
-
-  def update
   end
 
   def update_ranks
@@ -95,8 +46,9 @@ class RankingsController < ApplicationController
     render text: "success", status: 200
   end
   def destroy
-    @rank = params[:id]
+    @rank = Ranking.find(params[:id])
     @rank.destroy
+    redirect_to '/rankings'
   end
 
   private

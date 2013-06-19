@@ -25,6 +25,8 @@ MentorMatch::Application.routes.draw do
   match '/pair' => "admin::users#pair"
 
   match "/rank" => "rankings#update_ranks", as: :update_ranks
+  match "/pending" => "admin::users#pending_users", as: :pending_users
+  match "/approve" => "admin::users#approve"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

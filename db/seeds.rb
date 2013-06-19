@@ -9,11 +9,13 @@
 admin_user = User.create( email: "admin@mentormatch.com",
                           password: "password")
 admin_user.admin = true
-admin_user.confirm!
+admin_user.approval = 1
+admin_user.save!
 
 
 user_student = User.create( email: "student@mentormatch.com",
-                            password: "password")
+                            password: "password",
+                            approval: 1)
 
 student_user = Student.new(personal_first_name: "Harper",
                               personal_last_name: "Christopherson",
@@ -21,10 +23,10 @@ student_user = Student.new(personal_first_name: "Harper",
                               personal_email: user_student.email)
 
 student_user.save!
-user_student.confirm!
 
-user_mentor = User.create( email: "mentor@mentormatch.com",
-                            password: "password")
+user_mentor = User.create(  email: "mentor@mentormatch.com",
+                            password: "password",
+                            approval: 1)
 
 mentor_user = Mentor.new(personal_first_name: "Risk",
                               personal_last_name: "Whistler",
@@ -35,5 +37,3 @@ mentor_user = Mentor.new(personal_first_name: "Risk",
                               career_company_private: "Amazon")
 
 mentor_user.save!
-user_mentor.confirm!
-

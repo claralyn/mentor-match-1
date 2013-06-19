@@ -2,10 +2,11 @@
   Welcome <%= @user.personal_first_name %> <%= @user.personal_last_name %>!
 </h3>
 <div align="right">
-  <%= link_to "Edit Your Profile", edit_mentor_path(@user) %>
+  <%= link_to "Edit Your Profile", edit_mentor_path(@user), class: "button alert small" %>
   <%= link_to "Delete Your Profile", mentor_path(@user),
         :confirm => "Are you sure you want to delete your profile?",
         :method => :delete, class: "button alert small" %>
+  <%= link_to "View Your Rankings", "/rankings", class: "button alert small" %>
 </div>
 
 <h3 class="subheader">
@@ -17,32 +18,64 @@
 <%= @user.career_company_private %></a></p>
     <div class="content" data-section-content>
       <p>Students who have expressed interest in <%= @user.career_company_private %></p>
-      <table>
-        <tr>
-          <td>Student Name</td>
-          <td>Class</td>
-        </tr>
-        <% @students.each do |student| %>
+      <% if @studentsinterest.present? %>
+        <table>
           <tr>
-            <td>
-              <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
-            <td>
-              <%= case student.cf_class
-                    when "rails2"
-                      "Ruby on Rails June 2013"
-                    when "rails3"
-                      "Ruby on Rails July/August 2013"
-                  end %>
-              </td>
+            <td>Student Name</td>
+            <td>Class</td>
           </tr>
-        <% end %>
-      </table>
+          <% @studentsinterest.each do |student| %>
+            <tr>
+              <td>
+                <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
+              <td>
+                <%= case student.cf_class
+                      when "rails2"
+                        "Ruby on Rails June 2013"
+                      when "rails3"
+                        "Ruby on Rails July/August 2013"
+                    end %>
+                </td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <p>
+          No students
+        </p>
+      <% end %>
     </div>
   </section>
   <section>
     <p class="title" data-section-title><a href="#panel2">All Students</a></p>
     <div class="content" data-section-content>
       <p>All current Code Fellows students</p>
+      <% if @students.present? %>
+        <table>
+          <tr>
+            <td>Student Name</td>
+            <td>Class</td>
+          </tr>
+          <% @students.each do |student| %>
+            <tr>
+              <td>
+                <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
+              <td>
+                <%= case student.cf_class
+                      when "rails2"
+                        "Ruby on Rails June 2013"
+                      when "rails3"
+                        "Ruby on Rails July/August 2013"
+                    end %>
+                </td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <p>
+          No students
+        </p>
+      <% end %>
     </div>
   </section>
 </div>

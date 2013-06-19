@@ -1,13 +1,15 @@
 require 'spec_helper'
 
 feature "a student fills out survey" do
+	let!(:user){Factory(:user, role: "student")}
+
 	before do
 		ActionMailer::Base.deliveries.clear
 	end
 
 	scenario "student fills out survey" do
-		visit '/'
-		click_link 'Student'
+		sign_in_as!(user)
+		visit new_student_path
 		select 'Ruby on Rails May/June', from: 'student_cf_class'
 		fill 'personal_first_name', "Fud"
 		fill 'personal_last_name', "Helser"

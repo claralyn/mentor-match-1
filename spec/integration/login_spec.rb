@@ -26,7 +26,6 @@ feature "A user logs into the system" do
 		fill "Email", mentor.user.email
 		fill "Password", mentor.user.password
 		click_button "Sign in"
-		# !!!! Dashboard Link needs to be changed for different students and mentors
 		content "Welcome " + mentor.personal_first_name
 		content "Student Mentee Profiles"
 	end

@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 feature "A mentor adds his profile information" do
+	let!(:user){Factory(:user, role: "mentor")}
 
 	before do
 		ActionMailer::Base.deliveries.clear
 	end
 
 	scenario "Mentor adds his profile information" do
-		visit '/'
-		click_link "Mentor"
+		sign_in_as!(user)
+		visit new_mentor_path
 		fill_in "personal_first_name", with: "John"
 		fill_in "personal_last_name", with: "Thomas"
 		fill_in "personal_why_mentor", with: "Because I'm great"

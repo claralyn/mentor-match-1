@@ -3,13 +3,58 @@ class Admin::UsersController < ApplicationController
 
   def index
     #need to change this
-    @studentnomentors = Student.where("mentor_id is NULL")
-    @studentsall  = Student.all
-    @mentornostudents = Mentor.find(
+    @studentnomentors = Student.joins(:user).where("mentor_id is NULL AND approval = 1")
+    @studentsall  = Student.joins(:user).where(:approval, 1)
+    @mentornostudents = Mentor.joins(:user).find(
                                   :all,
                                   :joins => "LEFT OUTER JOIN 'students' ON students.mentor_id = mentors.id
-                                        WHERE students.mentor_id is NULL")
-    @mentorsall = Mentor.all
+                                        WHERE students.mentor_id is NULL AND approval = 1")
+    @mentorsall = Mentor.joins(:user).where(:approval, 1)
+  end
+
+  def pending_users
+    @pending_users = User.where("approval = ?", 0)
+  end
+
+  def approve
+    approve_ids = params[:approve_ids]
+    deny_ids = params[:deny_ids]
+
+    if deny_ids.present?
+      deny_ids.each do |id|
+        user = User.find(id)
+        if user.update_attributes({approval: -1}, as: :admin)
+          @@message = "The users have been denied."
+        end
+      end
+    end
+
+    if approve_ids.present?
+      approve_ids.each do |id|
+
+        @user = User.find(id)
+
+        if @user.update_attributes({approval: 1}, as: :admin)
+            # Dry Later
+            if @user.role == 'mentor'
+              Notifier.notification(@user.mentor,
+                "Mentor Match Approval",
+                "You have been approved by Mentor Match." +
+                " You may now login and view possible student profiles.").deliver
+            else
+              Notifier.notification(@user.student,
+                "Mentor Match Approval",
+                "You have been approved by Mentor Match." +
+                " You may now login and view possible mentor profiles.").deliver
+            end
+            @@message = "The users have been approved."
+        else
+            @@message = "Sorry, there was a problem and approvals did not go through."
+        end
+      end
+    end
+    flash[:notice] = @@message
+    redirect_to "/pending"
   end
 
   def pair
@@ -66,7 +111,7 @@ class Admin::UsersController < ApplicationController
               Notifier.notification(@student.mentor,
                 "Mentor Match Paired",
                 "You have been paired with #{student_first} #{student_last}." +
-                " You can contact them at #{student_email}")
+                " You can contact them at #{student_email}").deliver
             end
           end
           flash[:notice] = "Mentors and mentees have been paired and notifications sent"

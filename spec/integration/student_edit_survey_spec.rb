@@ -3,7 +3,7 @@ require 'spec_helper'
 
 feature "an admin edit a student survey" do
 	let(:admin){Factory(:admin_user)}
-	let!(:user){Factory(:confirmed_user)}
+	let!(:user){Factory(:confirmed_user, approval: 1)}
 	let!(:student){Factory(:student, user: user)}
 
 

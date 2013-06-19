@@ -6,14 +6,14 @@ FactoryGirl.define do
 
 		factory :confirmed_user do
 			after_create do |user|
-				user.confirm!
+				user.approval = 1
 			end
 		end
 
 
 		factory :admin_user do
 		  after_create do |user|
-		    user.confirm!
+		    user.approval = 1
 		    user.update_attribute(:admin, true)
 			end
 		end

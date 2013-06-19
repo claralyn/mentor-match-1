@@ -1,8 +1,15 @@
 class MentorsController < ApplicationController
-  before_filter :authenticate_admin_or_mentor!, except: [:new, :create]
+  before_filter :authorize_student!, only: [:show]
+  before_filter :authenticate_admin_or_mentor!, only: [:index,
+                                                      :edit,
+                                                      :update,
+                                                      :destroy]
+  before_filter :authenticate_user!, only: [:new,
+                                            :create]
 
   def index
     @user = current_user.mentor
+    @studentsinterest = Student.where(:goals_companies, @user.career_company_private)
     @students = Student.all
   end
 
@@ -20,6 +27,8 @@ class MentorsController < ApplicationController
 
   def create
     @mentor = Mentor.new(params[:mentor])
+    @mentor.user_id = current_user.id
+
     if @mentor.save
       redirect_to '/thanks'
     else
@@ -75,10 +84,24 @@ class MentorsController < ApplicationController
 
   private
 
+  def find_mentor
+    @mentor = Mentor.find(params[:id])
+  end
+
   def authenticate_admin_or_mentor!
     authenticate_user!
     unless current_user.admin == true || current_user.mentor.present?
       redirect_to root_path
     end
   end
+
+  def authorize_student!
+    find_mentor
+    authenticate_user!
+    unless current_user.admin? || current_user.student.present? || current_user.mentor == @mentor
+      flash[:alert] = "You cannot access this page!"
+      redirect_to root_path
+    end
+  end
+
 end
