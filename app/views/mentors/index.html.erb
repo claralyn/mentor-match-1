@@ -8,16 +8,20 @@
         :method => :delete, class: "button alert small" %>
   <%= link_to "View Your Rankings", "/rankings", class: "button alert small" %>
 </div>
-
 <h3 class="subheader">
   Student Mentee Profiles
 </h3>
 <div class="section-container auto" data-section>
   <section>
-    <p class="title" data-section-title><a href="#panel1">
-<%= @user.career_company_private %></a></p>
+    <p class="title" data-section-title>
+      <a href="#panel1">
+        <%= @user.career_company_private %>
+      </a>
+    </p>
     <div class="content" data-section-content>
-      <p>Students who have expressed interest in <%= @user.career_company_private %></p>
+      <p>
+        Students who have expressed interest in <%= @user.career_company_private %>
+      </p>
       <% if @studentsinterest.present? %>
         <table>
           <tr>
@@ -27,17 +31,23 @@
           <% @studentsinterest.each do |student| %>
             <tr>
               <td>
-                <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
+                <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %>
+              </td>
               <td>
                 <%= case student.cf_class
-                      when "rails2"
-                        "Ruby on Rails June 2013"
-                      when "rails3"
-                        "Ruby on Rails July/August 2013"
-                    end %>
-                </td>
+                  when "rails2"
+                    "Ruby on Rails June 2013"
+                  when "rails3"
+                    "Ruby on Rails July/August 2013"
+                end %>
+              </td>
             </tr>
           <% end %>
+          <tr>
+            <td>
+              <%= paginate @studentsinterest %>
+            </td>
+          </tr>
         </table>
       <% else %>
         <p>
@@ -59,7 +69,8 @@
           <% @students.each do |student| %>
             <tr>
               <td>
-                <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
+                <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %>
+              </td>
               <td>
                 <%= case student.cf_class
                       when "rails2"
@@ -67,9 +78,14 @@
                       when "rails3"
                         "Ruby on Rails July/August 2013"
                     end %>
-                </td>
+              </td>
             </tr>
           <% end %>
+          <tr>
+            <td>
+              <%= paginate(@students) %>
+            </td>
+          </tr>
         </table>
       <% else %>
         <p>

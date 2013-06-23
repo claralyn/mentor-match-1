@@ -1,16 +1,27 @@
 class MentorsController < ApplicationController
-  before_filter :authorize_student!, only: [:show]
-  before_filter :authenticate_admin_or_mentor!, only: [:index,
-                                                      :edit,
-                                                      :update,
-                                                      :destroy]
-  before_filter :authenticate_user!, only: [:new,
-                                            :create]
+  before_filter :authorize_admins_or_students_or_a_mentor!,
+                  only:   [ :show]
+  before_filter :authorize_admins_or_a_mentor!,
+                  only:   [ :edit,
+                            :update,
+                            :destroy]
+  before_filter :authenticate_user!,
+                  only:   [ :new,
+                            :create]
+  before_filter :current_user_approved?,
+                  except: [ :new,
+                            :create]
 
   def index
-    @user = current_user.mentor
-    @studentsinterest = Student.where(:goals_companies, @user.career_company_private)
-    @students = Student.all
+    if current_user.mentor
+      @user = user
+      @studentsinterest = Student.joins(:user).where("approval = 1 AND goals_companies=?", @user.career_company_private).order(:id).page(params[:page]).per(20)
+      @students = Student.joins(:user).where("approval = 1").order(:id).page(params[:page]).per(20)
+      @paired_students = user.students.order(:personal_first_name).page(params[:page]).per(20)
+     else
+      flash[:alert] = "You don't have access to that page."
+      redirect_to root_path
+     end
   end
 
   def new
@@ -18,11 +29,9 @@ class MentorsController < ApplicationController
   end
 
   def show
-    @mentor = Mentor.find(params[:id])
   end
 
   def edit
-    @mentor = Mentor.find(params[:id])
   end
 
   def create
@@ -42,21 +51,8 @@ class MentorsController < ApplicationController
   def update
     @mentor = Mentor.find(params[:id])
 
-    if current_user.mentor == @mentor || current_user.admin?
-      if @mentor.update_attributes(params[:mentor])
-        if current_user.mentor == @mentor
-          message = "Your profile has been edited."
-        else
-          message = @mentor.personal_first_name + ' ' + @mentor.personal_last_name + "'s profile has been updated"
-        end
-        flash[:notice] = message
-        redirect_to mentor_path(@mentor)
-      else
-        flash[:notice] =  'There was a problem! ' +
-                        'Please make sure your first name, last name, job title, company, company type ' +
-                        '& email are all filled in.'
-        render :action => "edit"
-      end
+    if user == @mentor || current_user.admin
+      update_mentor(@mentor)
     else
       flash[:notice] = "You can only edit your own profile."
       redirect_to mentors_path
@@ -88,14 +84,14 @@ class MentorsController < ApplicationController
     @mentor = Mentor.find(params[:id])
   end
 
-  def authenticate_admin_or_mentor!
-    authenticate_user!
-    unless current_user.admin == true || current_user.mentor.present?
+  def authorize_admins_or_a_mentor!
+    find_mentor
+    unless current_user.admin? || user == @mentor
       redirect_to root_path
     end
   end
 
-  def authorize_student!
+  def authorize_admins_or_students_or_a_mentor!
     find_mentor
     authenticate_user!
     unless current_user.admin? || current_user.student.present? || current_user.mentor == @mentor
@@ -104,4 +100,25 @@ class MentorsController < ApplicationController
     end
   end
 
+  # update mentor
+  def update_mentor(mentor)
+    if mentor.update_attributes(params[:mentor])
+      set_update_message(mentor)
+      flash[:notice] = @@message
+      redirect_to mentor_path(@mentor)
+    else
+      flash[:notice] =  'There was a problem! ' +
+                      'Please make sure your first name, last name, job title, company, company type ' +
+                      '& email are all filled in below.'
+      render :action => "edit"
+    end
+  end
+
+  def set_update_message(mentor)
+    if user == mentor
+      @@message = "Your profile has been edited."
+    else
+      @@message = mentor.personal_first_name + ' ' + mentor.personal_last_name + "'s profile has been updated"
+    end
+  end
 end

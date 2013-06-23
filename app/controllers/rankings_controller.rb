@@ -1,16 +1,17 @@
 class RankingsController < ApplicationController
   before_filter :find_student, :except => [ :index,
                                             :update_ranks]
+  before_filter :authorize_mentor!
 
   def index
-    @rankings = current_user.mentor.rankings
+    @rankings = @@mentor_user.rankings
   end
 
   def new
     # find the last ranked student
-    last_ranking = current_user.mentor.rankings.order("rank").last
+    last_ranking = @@mentor_user.rankings.order("rank").last
     # see if a ranking already exists for this student
-    exists_rankings = current_user.mentor.rankings.where(:student_id, @student.id)
+    exists_rankings = @@mentor_user.rankings.where(:student_id, @student.id)
     # this is the new rank of the student being added to the rankings
     new_rank =  if last_ranking
                   last_ranking.rank + 1
@@ -55,5 +56,14 @@ class RankingsController < ApplicationController
 
   def find_student
     @student = Student.find(params[:student_id])
+  end
+
+  def authorize_mentor!
+    if current_user.mentor
+      @@mentor_user = current_user.mentor
+    else
+      flash[:notice] = "You cannot access this page!"
+      redirect_to root_path
+    end
   end
 end

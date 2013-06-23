@@ -3,7 +3,8 @@ require 'spec_helper'
 feature "Admin pairs the student and mentors" do
 	let!(:admin){Factory(:admin_user)}
 	let!(:mentor){Factory(:mentor)}
-	let!(:student){Factory(:student)}
+	let!(:user){Factory(:confirmed_user)}
+	let!(:student){Factory(:student, user: user)}
 
 	before do
 		ActionMailer::Base.deliveries.clear

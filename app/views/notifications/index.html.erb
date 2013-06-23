@@ -23,6 +23,11 @@
 				</td>
 			</tr>
 		<% end %>
+		<tr>
+			<td>
+				<%= paginate @notifications %>
+			</td>
+		</tr>
 	</table>
 <% else %>
 	<p>No notifications sent</p>

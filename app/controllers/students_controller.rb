@@ -1,23 +1,32 @@
 class StudentsController < ApplicationController
-  before_filter :authorize_mentor!, only: [:show]
-	before_filter :authorize_student!, only: [:index,
-																						:edit,
-																						:update,
-																						:destroy]
-	before_filter :authenticate_user!, only: [:new,
-																						:create]
+  before_filter :authorizes_admins_or_mentors_or_a_student!,
+  									only: 	[	:show]
+	before_filter :authorizes_admins_or_a_student!,
+										only: 	[	:edit,
+															:update,
+															:destroy]
+	before_filter :current_user_approved?,
+										except: [	:new,
+															:create,
+															:thanks]
+	before_filter :authenticate_user!,
+										only: 	[	:new,
+															:create]
 
 	def index
-    @user = current_user.student
-    @mentors = Mentor.all
+		if current_user.student
+	    @user = user
+	    @mentors = Mentor.order(:id).page(params[:page]).per(20)
+	   else
+      flash[:alert] = "You don't have access to that page."
+	   	redirect_to root_path
+	   end
 	end
 
 	def show
-		@student = Student.find(params[:id])
 	end
 
 	def edit
-		@student = Student.find(params[:id])
 	end
 
 	def new
@@ -43,19 +52,7 @@ class StudentsController < ApplicationController
 		@student = Student.find(params[:id])
 
 		if current_user.student == @student || current_user.admin?
-			if @student.update_attributes(params[:student])
-				if current_user.student == @student
-					message = "Your profile has been edited."
-				else
-					message = @student.personal_first_name + ' ' + @student.personal_last_name + ' has been edited.'
-				end
-				flash[:notice] = message
-				redirect_to student_path(@student)
-			else
-				flash[:notice] = 	'There was a problem!' +
-													'Please make sure your first name, last name, & email are all filled in.'
-				render :action => "edit"
-			end
+			update_student(@student)
 		else
 			flash[:notice] = "You can only edit your own profile."
 			redirect_to students_path
@@ -82,15 +79,16 @@ class StudentsController < ApplicationController
 	def find_student
 		@student = Student.find(params[:id])
 	end
-	def authorize_student!
-		authenticate_user!
-		unless current_user.admin? || current_user.student.present?
+
+	def authorizes_admins_or_a_student!
+		find_student
+		unless current_user.admin? || user == @student
 			flash[:alert] = "You must be a student or admin to do that!"
 			redirect_to root_path
 		end
 	end
 
-  def authorize_mentor!
+  def authorizes_admins_or_mentors_or_a_student!
   	find_student
     authenticate_user!
     unless current_user.admin? || current_user.mentor.present? || current_user.student == @student
@@ -99,4 +97,20 @@ class StudentsController < ApplicationController
     end
   end
 
+  # update student's profile
+  def update_student(student)
+		if student.update_attributes(params[:student])
+			if user == student
+				message = "Your profile has been edited."
+			else
+				message = student.personal_first_name + ' ' + student.personal_last_name + ' has been edited.'
+			end
+			flash[:notice] = message
+			redirect_to student_path(student)
+		else
+			flash[:notice] = 	'There was a problem!' +
+												'Please make sure your first name, last name, & email are all filled in.'
+			render :action => "edit"
+		end
+  end
 end

@@ -2,8 +2,9 @@ require 'spec_helper'
 
 feature "a mentor ranks students they want to work with" do
   let!(:user){Factory(:confirmed_user)}
+  let!(:user2){Factory(:confirmed_user)}
   let!(:mentor){Factory(:mentor, user: user)}
-  let!(:student){Factory(:student)}
+  let!(:student){Factory(:student, user: user2)}
 
   scenario "a mentor ranks students" do
     sign_in_as!(mentor.user)

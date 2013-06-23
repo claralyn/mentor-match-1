@@ -7,6 +7,7 @@ FactoryGirl.define do
 		factory :confirmed_user do
 			after_create do |user|
 				user.approval = 1
+				user.save!
 			end
 		end
 

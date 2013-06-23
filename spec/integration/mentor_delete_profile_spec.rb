@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "An Admin Deletes A Mentor" do
 	let!(:admin){Factory(:admin_user)}
-	let!(:user){Factory(:confirmed_user, approval: 1)}
+	let!(:user){Factory(:confirmed_user)}
 	let!(:mentor){Factory(:mentor, user: user)}
 
 	scenario "Admin deletes Mentor from Database" do

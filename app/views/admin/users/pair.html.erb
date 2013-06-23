@@ -6,32 +6,37 @@
 				<td>Mentors</td>
 				<td>Class</td>
 			</tr>
-				<% @students.each do |student| %>
-					<tr>
-						<td>
-							<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
-						<td>
-							<% mentors_array = Mentor.all.map{|mentor|
-									["#{mentor.personal_first_name} #{mentor.personal_last_name}", "#{mentor.id}-#{student.id}"]}
+			<% @students.each do |student| %>
+				<tr>
+					<td>
+						<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
+					<td>
+						<% mentors_array = Mentor.all.map{|mentor|
+								["#{mentor.personal_first_name} #{mentor.personal_last_name}", "#{mentor.id}-#{student.id}"]}
 
-								mentors_array.unshift(["Please, select a mentor", "remove-#{student.id}"]) %>
-							<% if student.mentor.presence
-									mentorid = "#{student.mentor.id}-#{student.id}"
+							mentors_array.unshift(["Please, select a mentor", "remove-#{student.id}"]) %>
+						<% if student.mentor.presence
+								mentorid = "#{student.mentor.id}-#{student.id}"
+							end %>
+						<%= select_tag :mentor_id,
+									options_for_select(mentors_array, (mentorid if !mentorid.nil?)),
+									{id: "mentor_#{student.id}", name: "mentor_ids[]"} %>
+					</td>
+					<td>
+						<%= case student.cf_class
+									when "rails2"
+										"Ruby on Rails June 2013"
+									when "rails3"
+										"Ruby on Rails July/August 2013"
 								end %>
-							<%= select_tag :mentor_id,
-										options_for_select(mentors_array, (mentorid if !mentorid.nil?)),
-										{id: "mentor_#{student.id}", name: "mentor_ids[]"} %>
-						</td>
-						<td>
-							<%= case student.cf_class
-										when "rails2"
-											"Ruby on Rails June 2013"
-										when "rails3"
-											"Ruby on Rails July/August 2013"
-									end %>
-						</td>
-					</tr>
+					</td>
+				</tr>
 			<% end %>
+			<tr>
+				<td colspan="3">
+					<%= paginate @students %>
+				</td>
+			</tr>
 			<tr>
 				<td><%= submit_tag "Pair", class: "button alert round small" %>
 			</tr>
@@ -56,6 +61,11 @@
 				<td><%= mentor.career_company_private %></td>
 			</tr>
 		<% end %>
+		<tr>
+			<td>
+				<%= paginate @mentornostudents %>
+			</td>
+		</tr>
 	</table>
 <% else %>
 	<p>There are no mentors available for this class</p>

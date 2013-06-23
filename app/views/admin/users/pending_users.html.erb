@@ -35,6 +35,11 @@
 				</tr>
 			<% end %>
 			<tr>
+				<td>
+					<%= paginate @pending_users %>
+				</td>
+			</tr>
+			<tr>
 				<td></td>
 				<td colspan="2">
 					<%= submit_tag "Submit" %>

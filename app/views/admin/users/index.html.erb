@@ -28,6 +28,11 @@
 							</td>
 					</tr>
 				<% end %>
+				<tr>
+					<td colspan="2">
+						<%= paginate @studentnomentors %>
+					</td>
+				</tr>
 			</table>
 		<% end %>
 		</div>
@@ -51,6 +56,11 @@
 						<%= mentor.career_company_private %></td>
 				</tr>
 			<% end %>
+			<tr>
+				<td colspan="2">
+					<%= paginate @mentornostudents %>
+				</td>
+			</tr>
 		</table>
 	<% end %>
 </div>
@@ -86,6 +96,11 @@
 							:method => :delete %></td>
 				</tr>
 			<% end %>
+			<tr>
+				<td colspan="3">
+					<%= paginate @studentsall %>
+				</td>
+			</tr>
 		</table>
 	<% end %>
 	</div>
@@ -122,6 +137,11 @@
 									:method => :delete %></td>
 						</tr>
 					<% end %>
+					<tr>
+						<td>
+							<%= paginate @mentorsall %>
+						</td>
+					</tr>
 				</table>
 			<% end %>
 	</div>

@@ -27,6 +27,7 @@ gem 'compass'
 gem 'zurb-foundation', '~>4.0.0'
 gem 'fancybox-rails'
 gem 'simple_form'
+gem 'kaminari'
 
 group :development do
   gem 'better_errors'

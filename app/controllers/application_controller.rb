@@ -1,10 +1,27 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def user
+    if current_user.student
+      @student_user = current_user.student
+    elsif current_user.mentor
+      @mentor_user = current_user.mentor
+    elsif current_user.admin
+      @admin_user = current_user.admin
+    end
+  end
+
   def authorize_admin!
     authenticate_user!
     unless current_user.admin
-      flash[:notice] = "You must be an admin to do that."
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to root_path
+    end
+  end
+
+  def current_user_approved?
+    unless current_user.approval==1 || current_user.admin?
+      flash[:notice] = "Sorry, you must be approved to access this page."
       redirect_to root_path
     end
   end

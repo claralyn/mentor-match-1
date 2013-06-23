@@ -1,26 +1,44 @@
-<p>
+<h3 align="right">
   Welcome
     <%= @user.personal_first_name %> <%= @user.personal_last_name %>
-</p>
-<%= link_to "Edit Your Profile", edit_student_path(@user) %>
-<%= link_to "Delete Your Profile", student_path(@user),
-      :confirm => "Are you sure you want to delete your profile?",
-      :method => :delete, class: "button alert small" %>
-<h2>
+</h3>
+<div align="right">
+  <%= link_to "Edit Your Profile", edit_student_path(@user), class: "button alert small"  %>
+  <%= link_to "Delete Your Profile", student_path(@user),
+        :confirm => "Are you sure you want to delete your profile?",
+        :method => :delete, class: "button alert small" %>
+</div>
+<h3 class="subheader">
   Mentor Profiles
-</h2>
-<table>
-  <tr>
-    <td>Mentor Name</td>
-    <td>Company</td>
-  </tr>
-  <% @mentors.each do |mentor| %>
-    <tr>
-      <td>
-        <%= link_to "#{mentor.personal_first_name} #{mentor.personal_last_name}", mentor_path(mentor) %></td>
-      <td>
-        <%= mentor.career_company_private %>
-        </td>
-    </tr>
-  <% end %>
-</table>
+</h3>
+<div class="section-container auto" data-section>
+  <section>
+    <p class="title" data-section-title>
+      <a href="#panel1">
+        All Mentors
+      </a>
+    </p>
+    <div class="content" data-section-title>
+      <table>
+        <tr>
+          <td>Mentor Name</td>
+          <td>Company</td>
+        </tr>
+        <% @mentors.each do |mentor| %>
+          <tr>
+            <td>
+              <%= link_to "#{mentor.personal_first_name} #{mentor.personal_last_name}", mentor_path(mentor) %></td>
+            <td>
+              <%= mentor.career_company_private %>
+              </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>
+            <%= paginate @mentors %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</div>

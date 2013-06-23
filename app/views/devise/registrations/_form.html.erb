@@ -1,0 +1,29 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <center class="roleswithjs">
+    <p>
+      Which best describes your role at Code Fellows?
+    </p>
+    <%= link_to "Student", new_student_path, class: "button round alert large", id: "rolestudent" %>
+    <%= link_to "Mentor", new_mentor_path, class: "button round alert large", id: "rolementor" %>
+  </center>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div class="rolesnojs">
+    <%= f.label :role, "Which best describes your role at Code Fellows?" %><br />
+    Student
+    <%= f.radio_button :role, "student" %>
+    Mentor
+    <%= f.radio_button :role, "mentor" %>
+  </div>
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

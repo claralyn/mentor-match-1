@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 feature "A user logs into the system" do
-	let!(:student){Factory(:student)}
 	let!(:admin){Factory(:admin_user)}
 	let!(:mentor_user){Factory(:confirmed_user)}
 	let!(:student_user){Factory(:confirmed_user)}
@@ -10,8 +9,7 @@ feature "A user logs into the system" do
 
 	before do
 		visit '/'
-		click_id "#login"
-
+		click_link "login"
 	end
 
 	scenario "A student logs into their dashboard" do
@@ -31,8 +29,6 @@ feature "A user logs into the system" do
 	end
 
 	scenario "Admin logs into dashboard" do
-		visit '/'
-		click_id "#login"
 		fill 'Email', admin.email
 		fill 'Password', admin.password
 		click_button "Sign in"

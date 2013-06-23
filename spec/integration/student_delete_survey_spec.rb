@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "An Admin Deletes A Student" do
 	let!(:admin){Factory(:admin_user)}
-	let!(:user){Factory(:confirmed_user, approval: 1)}
+	let!(:user){Factory(:confirmed_user)}
 	let!(:student){Factory(:student, user: user)}
 
 

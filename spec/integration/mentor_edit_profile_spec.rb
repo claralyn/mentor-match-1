@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "An Admin Edits a Mentor Profile" do
 	let!(:admin){Factory(:admin_user)}
-	let!(:user){Factory(:confirmed_user, approval: 1)}
+	let!(:user){Factory(:confirmed_user)}
 	let!(:mentor){Factory(:mentor, user: user)}
 
 	before do
