@@ -21,4 +21,14 @@ $ ->
         complete: ( jqxhr, status ) ->
           console.log jqxhr.status
     }
+  if ("a.students")
+    $("a.students").on "click", ->
+      $("a.students").removeClass("studentSelected")
+      $("a.studentSelected").addClass("students")
+      $(@).removeClass("students").addClass("studentSelected")
 
+  if ("#profileDropDown")
+    $("#profileDropDown").show()
+    $("#DropDown").hide()
+    $("#profileDropDown").on "click", ->
+      $("#DropDown").toggle()

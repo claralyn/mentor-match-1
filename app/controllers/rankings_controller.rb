@@ -11,7 +11,7 @@ class RankingsController < ApplicationController
     # find the last ranked student
     last_ranking = @@mentor_user.rankings.order("rank").last
     # see if a ranking already exists for this student
-    exists_rankings = @@mentor_user.rankings.where(:student_id, @student.id)
+    exists_rankings = @@mentor_user.rankings.where(student_id: @student.id)
     # this is the new rank of the student being added to the rankings
     new_rank =  if last_ranking
                   last_ranking.rank + 1
@@ -33,8 +33,11 @@ class RankingsController < ApplicationController
       message = "Sorry, there was a problem,
                 and your rankings weren't updated."
     end
-    flash[:notice] = message
-    redirect_to '/rankings'
+    respond_to do |format|
+      format.html  {flash[:notice] = message
+                    redirect_to '/rankings'}
+      format.js
+    end
   end
 
   def update_ranks

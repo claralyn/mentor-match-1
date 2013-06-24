@@ -18,6 +18,7 @@ class MentorsController < ApplicationController
       @studentsinterest = Student.joins(:user).where("approval = 1 AND goals_companies=?", @user.career_company_private).order(:id).page(params[:page]).per(20)
       @students = Student.joins(:user).where("approval = 1").order(:id).page(params[:page]).per(20)
       @paired_students = user.students.order(:personal_first_name).page(params[:page]).per(20)
+      @rankings = current_user.mentor.rankings.order(:rank)
      else
       flash[:alert] = "You don't have access to that page."
       redirect_to root_path

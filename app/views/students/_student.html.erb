@@ -5,25 +5,25 @@
 			:confirm => "Are you sure you want to delete #{@student.personal_first_name} #{@student.personal_last_name}",
 			:method => :delete, class: "button alert small" %>
 	<% end %>
+</div>
+<!-- Hides first name and last name from mentors -->
+	<h3>
+		<%= @student.personal_first_name %>
+		<%= @student.personal_last_name %>
+	</h3>
+<div align="left">
 	<% if current_user.mentor %>
 		<% if current_user.mentor.rankings.where(student_id: @student.id).present? %>
-			This student is currently on your rankings.
+			This student is currently in your rankings.
 		<% else %>
 			<%= link_to "Add to Ranking", new_student_ranking_path(@student),
-			:confirm => "Are you sure you want to add #{@student.personal_first_name} #{@student.personal_last_name} to your rankings?" %>
+			:confirm => "Are you sure you want to add #{@student.personal_first_name} #{@student.personal_last_name} to your rankings?", remote: true %>
 		<% end %>
 	<% end %>
 </div>
-<!-- Hides first name and last name from mentors -->
-<% if current_user.mentor.nil? %>
-	<h5>
-		<%= @student.personal_first_name %>
-		<%= @student.personal_last_name %>
-	</h5>
 	<p><em>
 		<%= @student.personal_email %>
 	</em></p>
-<% end %>
 <p><em>
 	<%= case @student.cf_class
 			when "rails2"

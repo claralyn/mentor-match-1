@@ -7,6 +7,7 @@ header {
 	margin: 0 0 20px 0;
 	overflow: auto;
 	padding: 5px 10px 5px 10px;
+  color: #FFF;
 }
 header img{
 	float: left;
@@ -17,4 +18,121 @@ nav{
 	margin: auto;
 	padding: 5px 10px 5px 10px;
 	width: 90%;
+}
+#studentsDiv{
+  float: right;
+  clear: left;
+}
+#studentsLinksDiv{
+  margin: 0;
+  padding: 0 0 0 0;
+}
+#showcase{
+  float: left;
+  width: auto;
+}
+#rankingsDiv{
+  max-width: 400px;
+  width: 300px;
+  padding-bottom: 0;
+  float: right;
+}
+#welcomeDiv{
+  float: left;
+}
+ol#ranks{
+  text-align: left;
+}
+ul.studentLinks{
+  list-style-type: none;
+  margin: 0 0 0 0;
+}
+a.students:link{
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  display: inline-block;
+  width: 90%;
+  background-color: #000;
+  padding: 2px 3px 2px 3px;
+  margin: 0 0 0 5%;
+  color: #FFF;
+  border-bottom: 1px #FFF solid;
+  border-radius: 5px;
+}
+a.students:visited{
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  display: inline-block;
+  width: 90%;
+  margin: 0 0 0 5%;
+  background-color: #000;
+  padding: 2px 3px 2px 3px;
+  color: #FFF;
+  border-bottom: 1px #FFF solid;
+  border-radius: 5px;
+}
+a.students:hover{
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  display: inline-block;
+  width: 90%;
+  background-color: #CCC;
+  margin: 0 0 0 5%;
+  padding: 2px 3px 2px 3px;
+  color: #FFF;
+  border-bottom: 1px #FFF solid;
+  border-radius: 5px;
+}
+a.studentSelected{
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  display: inline-block;
+  width: 90%;
+  margin: 0 0 0 5%;
+  background-color: #CCC;
+  padding: 2px 3px 2px 3px;
+  color: #FFF;
+  border-bottom: 1px #FFF solid;
+  border-radius: 5px;
+}
+ol#ranks{
+  list-style-position: inside;
+}
+li.ranks{
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  background-color: #FFF;
+  padding: 5px 5px 5px 5px;
+  color: #000;
+  box-shadow: 3px 3px 4px #BDBDBD;
+//  border: #BDBDBD solid 1px;
+  min-width: 200px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+#filterStudents{
+  background-color: #000;
+  color: #FFF;
+  font-size: 1em;
+  width: 100%;
+  margin: 0 0 10px;
+  width: 100%;
+}
+#profileDropDown{
+  display: none;
+  position: relative;
+}
+#DropDown{
+  position: absolute;
+}
+.profileLinks{
+}
+.removeRank{
+  margin: 0 0 0 10px;
+  float: right;
+  color: #FF0000;
+}
+#headerTitle{
+  color: #FFF;
+}
+.welcomeText{
+  color: #FFF;
+  margin: 0 0 0 0;
+  font-size: 20px;
+  margin-right: 5px;
 }

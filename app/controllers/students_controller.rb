@@ -24,6 +24,10 @@ class StudentsController < ApplicationController
 	end
 
 	def show
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def edit

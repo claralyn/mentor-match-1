@@ -1,97 +1,50 @@
-<h3 align="right">
-  Welcome <%= @user.personal_first_name %> <%= @user.personal_last_name %>!
-</h3>
-<div align="right">
-  <%= link_to "Edit Your Profile", edit_mentor_path(@user), class: "button alert small" %>
-  <%= link_to "Delete Your Profile", mentor_path(@user),
-        :confirm => "Are you sure you want to delete your profile?",
-        :method => :delete, class: "button alert small" %>
-  <%= link_to "View Your Rankings", "/rankings", class: "button alert small" %>
+<div align="left" id="welcomeDiv">
+<!--
+  <%= link_to "Settings", "#", id: "profileDropDown" %>
+  <div id="DropDown">
+    <%= link_to "Edit Your Profile", edit_mentor_path(@user), class: "button alert small profileLinks" %>
+    <%= link_to "Delete Your Profile", mentor_path(@user),
+          :confirm => "Are you sure you want to delete your profile?",
+          :method => :delete, class: "button alert small profileLinks" %>
+  </div>
+-->
 </div>
-<h3 class="subheader">
-  Student Mentee Profiles
-</h3>
-<div class="section-container auto" data-section>
-  <section>
-    <p class="title" data-section-title>
-      <a href="#panel1">
-        <%= @user.career_company_private %>
-      </a>
-    </p>
-    <div class="content" data-section-content>
-      <p>
-        Students who have expressed interest in <%= @user.career_company_private %>
-      </p>
-      <% if @studentsinterest.present? %>
-        <table>
-          <tr>
-            <td>Student Name</td>
-            <td>Class</td>
-          </tr>
-          <% @studentsinterest.each do |student| %>
-            <tr>
-              <td>
-                <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %>
-              </td>
-              <td>
-                <%= case student.cf_class
-                  when "rails2"
-                    "Ruby on Rails June 2013"
-                  when "rails3"
-                    "Ruby on Rails July/August 2013"
-                end %>
-              </td>
-            </tr>
-          <% end %>
-          <tr>
-            <td>
-              <%= paginate @studentsinterest %>
-            </td>
-          </tr>
-        </table>
-      <% else %>
-        <p>
-          No students
-        </p>
-      <% end %>
-    </div>
-  </section>
-  <section>
-    <p class="title" data-section-title><a href="#panel2">All Students</a></p>
-    <div class="content" data-section-content>
-      <p>All current Code Fellows students</p>
+<div id="studentsDiv">
+  <div id="rankingsDiv">
+    <h2 class="subheader">
+      Your Current Mentee Rankings
+    </h2>
+    <% if @rankings.present? %>
+      <ol id="ranks">
+        <% @rankings.each do |rank| %>
+          <li id="<%= rank.id %>" name="<%= rank.rank %>" class="ranks">
+            <%= rank.student.personal_first_name.capitalize %>
+            <%= rank.student.personal_last_name.capitalize %>
+            <%= link_to "x", [rank.student, rank],
+                :confirm => "Remove this student?",
+                :method => :delete, class: "removeRank" %>
+          </li>
+        <% end %>
+      </ol>
+    <% end %>
+  </div>
+  <h2 class="subheader">View Mentee Profiles</h2>
+  <div id="studentsLinksDiv">
+      <%= select_tag "filter", "<option>All Students</option><option>Students in Rails Class</option><option>Students Interested in #{@user.career_company_private}</option>".html_safe, id: "filterStudents" %>
       <% if @students.present? %>
-        <table>
-          <tr>
-            <td>Student Name</td>
-            <td>Class</td>
-          </tr>
+        <ul class="studentLinks">
           <% @students.each do |student| %>
-            <tr>
-              <td>
-                <%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %>
-              </td>
-              <td>
-                <%= case student.cf_class
-                      when "rails2"
-                        "Ruby on Rails June 2013"
-                      when "rails3"
-                        "Ruby on Rails July/August 2013"
-                    end %>
-              </td>
-            </tr>
+            <li>
+                <%= link_to "#{student.personal_first_name.capitalize} #{student.personal_last_name.capitalize}", student_path(student), class: "students", remote: true %>
+            </li>
           <% end %>
-          <tr>
-            <td>
-              <%= paginate(@students) %>
-            </td>
-          </tr>
-        </table>
+        </ul>
       <% else %>
         <p>
           No students
         </p>
       <% end %>
-    </div>
-  </section>
+  </div>
+</div>
+<div id="showcase" class="small-9 columns">
 </div>
