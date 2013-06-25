@@ -35,12 +35,14 @@
         <% end %>
           <h1 id="headerTitle"> Mentor Match </h1>
       </div>
-      <div class="large-4 columns">
+      <div class="large-4 columns right">
       <nav>
         <% if user_signed_in? %>
+        <% if current_user.student || current_user.mentor %>
+        <% @user = current_user.student || current_user.mentor %>
         <span class="welcomeText">
           Welcome
-          <%= @user.personal_first_name.capitalize %> <%= @user.personal_last_name.capitalize %>!
+            <%= @user.personal_first_name.capitalize %> <%= @user.personal_last_name.capitalize %>!
         </span>
           <% dashboard =  if current_user.student
                             students_path
@@ -57,7 +59,8 @@
                       :confirm => "Are you sure you want to delete your profile?",
                       :method => :delete, class: "button alert small profileLinks" %>
               </div>
- |
+         |
+        <% end %>
           <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
         <% else %>
           <%= link_to image_tag("/assets/admin-large.png", :alt => "admin login", :title => "Login", :id => "login"), new_user_session_path, "data-reveal-id" => "myModal" %>

@@ -2,13 +2,7 @@ Here is your list of rankings
 <% if @rankings.present? %>
   <ol id="ranks">
     <% @rankings.each do |rank| %>
-      <li id="<%= rank.id %>" name="<%= rank.rank %>">
-        <%= rank.student.personal_first_name %>
-        <%= rank.student.personal_last_name %>
-        <%= link_to "X", [rank.student, rank],
-            :confirm => "Remove this student?",
-            :method => :delete, class: "button alert small" %>
-      </li>
+      <%= render rank %>
     <% end %>
   </ol>
 <% end %>

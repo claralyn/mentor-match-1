@@ -1,42 +1,30 @@
-<div align="left" id="welcomeDiv">
-<!--
-  <%= link_to "Settings", "#", id: "profileDropDown" %>
-  <div id="DropDown">
-    <%= link_to "Edit Your Profile", edit_mentor_path(@user), class: "button alert small profileLinks" %>
-    <%= link_to "Delete Your Profile", mentor_path(@user),
-          :confirm => "Are you sure you want to delete your profile?",
-          :method => :delete, class: "button alert small profileLinks" %>
-  </div>
--->
-</div>
 <div id="studentsDiv">
   <div id="rankingsDiv">
+    <h2></h2>
     <h2 class="subheader">
       Your Current Mentee Rankings
     </h2>
     <% if @rankings.present? %>
       <ol id="ranks">
         <% @rankings.each do |rank| %>
-          <li id="<%= rank.id %>" name="<%= rank.rank %>" class="ranks">
-            <%= rank.student.personal_first_name.capitalize %>
-            <%= rank.student.personal_last_name.capitalize %>
-            <%= link_to "x", [rank.student, rank],
-                :confirm => "Remove this student?",
-                :method => :delete, class: "removeRank" %>
-          </li>
+          <%= render rank %>
         <% end %>
       </ol>
+    <% else %>
+
     <% end %>
   </div>
   <h2 class="subheader">View Mentee Profiles</h2>
   <div id="studentsLinksDiv">
-      <%= select_tag "filter", "<option>All Students</option><option>Students in Rails Class</option><option>Students Interested in #{@user.career_company_private}</option>".html_safe, id: "filterStudents" %>
+      <%= select_tag "filter", "<option>All Students</option>
+                                <option>Students in Rails Class</option>
+                                <option>Students Interested in #{@user.career_company_private}</option>".html_safe,
+                                id: "filterStudents" %>
       <% if @students.present? %>
         <ul class="studentLinks">
           <% @students.each do |student| %>
-            <li>
-                <%= link_to "#{student.personal_first_name.capitalize} #{student.personal_last_name.capitalize}", student_path(student), class: "students", remote: true %>
-            </li>
+            <% @student = student %>
+            <%= render "studentlink", :locals =>{post: @student} %>
           <% end %>
         </ul>
       <% else %>

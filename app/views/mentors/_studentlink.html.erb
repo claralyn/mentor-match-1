@@ -1,0 +1,3 @@
+<li>
+  <%= link_to "#{@student.personal_first_name.capitalize} #{@student.personal_last_name.capitalize}", student_path(@student), class: "students", remote: true %>
+</li>
