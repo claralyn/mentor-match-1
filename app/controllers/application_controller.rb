@@ -30,16 +30,18 @@ class ApplicationController < ActionController::Base
     sign_in_url = url_for(:action => 'new', :controller => 'sessions', :only_path => false, :protocol => '/')
     if request.referer == sign_in_url
       super
-    elsif current_user.admin
+    elsif current_user.admin == true
       admin_users_path
-    elsif current_user.mentor.present?
+    elsif current_user.approval==1 && current_user.mentor.present?
       mentors_path
-    elsif current_user.student.present?
+    elsif current_user.approval==1 && current_user.student.present?
       students_path
-    elsif current_user.role == 'mentor'
+    elsif current_user.role == 'mentor' && current_user.mentor.blank?
       new_mentor_path
-    elsif current_user.role == 'student'
+    elsif current_user.role == 'student' && current_user.mentor.blank?
       new_student_path
+    else
+      "/needsapproval"
     end
   end
 end
