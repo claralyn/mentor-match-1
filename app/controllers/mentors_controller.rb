@@ -18,6 +18,7 @@ class MentorsController < ApplicationController
       @paired_students = user.students.order(:personal_first_name).page(params[:page]).per(20)
       @current_mentees = Student.joins(:user).where("approval = 1 AND mentor_id = ?", @user.id).order(:id).page(params[:page]).per(20)
       @rankings = current_user.mentor.rankings.order(:rank)
+      @classes = [['rails1'], ['rails2'], ['rails3']]
      else
       flash[:alert] = "You don't have access to that page."
       redirect_to root_path
@@ -36,6 +37,10 @@ class MentorsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

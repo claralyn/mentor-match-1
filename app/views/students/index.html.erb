@@ -1,4 +1,17 @@
 <div id="mentorsDiv">
+  <% if @user.mentor %>
+    <h2 class="subheader">
+      Your Mentor
+    </h2>
+    <% if @current_mentors.present? %>
+      <ul class="mentorLinks">
+        <% @current_mentees.each do |mentee| %>
+          <% @mentee = mentee %>
+          <%= render "menteelink", :locals =>{post: @mentee} %>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
   <h2 class="subheader">
     View Mentor Profiles
   </h2>
@@ -7,9 +20,10 @@
     <%= link_to "View All Mentors", {controller: "students", action: "index", sort: "all"}, remote: true, class: "filterMentors filterMentorsSelected" %>
     <div id="filterMentorsCompany">
       <% @companies.each do |company| %>
-          <%= link_to "Mentors at #{company}", {controller: "students", action: "index", sort: company }, remote: true, class: "filterMentors" %>
+          <%= link_to "From #{company.capitalize}", {controller: "students", action: "index", sort: company }, remote: true, class: "filterMentors" %>
       <% end %>
     </div>
+    <br />
   </div>
   <div id="mentorsLinksDiv">
       <% if @mentors.present? %>

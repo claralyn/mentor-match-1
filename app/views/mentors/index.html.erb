@@ -31,10 +31,17 @@
     <% end %>
   </div>
   <h2 class="subheader">View Mentee Profiles</h2>
-    <%= select_tag "filter", "<option>All Students</option>
-                              <option>Students in July/August Class</option>
-                              <option>Students Interested in #{@user.career_company_private}</option>".html_safe,
-                              id: "filterStudents" %>
+  <div id="filter">
+    <a href="#" id="filterShow">V</a>
+    <%= link_to "View All Students", {controller: "students", action: "index", sort: "all"}, remote: true, class: "filterMentors filterMentorsSelected" %>
+    <div id="filterMentorsCompany">
+      <%# if @classes.any? %>
+        <%# @classes.each do |cf_class| %>
+            <%# link_to "From #{cf_class.capitalize}", {controller: "students", action: "index", sort: cf_class }, remote: true, class: "filterMentors" %>
+        <%# end %>
+      <%# end %>
+    </div>
+  </div>
   <div id="studentsLinksDiv">
       <% if @students.present? %>
         <ul class="studentLinks">

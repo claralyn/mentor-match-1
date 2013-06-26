@@ -7,7 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 admin_user = User.create( email: "admin@mentormatch.com",
-                          password: "password")
+                          password: "password",
+                          approval: 1,
+                          role: "admin")
 admin_user.admin = true
 admin_user.approval = 1
 admin_user.save!
@@ -15,6 +17,7 @@ admin_user.save!
 
 user_student = User.create( email: "student@mentormatch.com",
                             password: "password",
+                            role: "student",
                             approval: 1)
 
 student_user = Student.new(personal_first_name: "Harper",
@@ -26,6 +29,7 @@ student_user.save!
 
 user_mentor = User.create(  email: "mentor@mentormatch.com",
                             password: "password",
+                            role: "mentor",
                             approval: 1)
 
 mentor_user = Mentor.new(personal_first_name: "Risk",

@@ -22,11 +22,11 @@
 					<td>
 						<% case user.role %>
 						<% when "mentor" %>
-							<%= user.mentor.personal_first_name %>
-							<%= user.mentor.personal_last_name %>
+							<%= user.mentor.try(:personal_first_name) %>
+							<%= user.mentor.try(:personal_last_name) %>
 						<% when "student" %>
-							<%= user.student.personal_first_name %>
-							<%= user.student.personal_last_name %>
+							<%= user.student.try(:personal_first_name) %>
+							<%= user.student.try(:personal_last_name) %>
 						<% end %>
 						<% if user.email.present? %>
 							(<%= user.email %>)

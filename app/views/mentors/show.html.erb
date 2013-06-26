@@ -1,4 +1,4 @@
-<div>
+<div class="right">
 	<% if current_user.admin || @mentor.id == current_user.mentor.try(:id)  %>
 	<%= link_to "Edit", edit_mentor_path(@mentor), class: "button alert small round" %>
 	<%= link_to "Delete", @mentor,

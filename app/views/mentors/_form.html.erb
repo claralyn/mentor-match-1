@@ -1,9 +1,10 @@
+<% @tableWidth ||= "600px" %>
 <%= form_for @mentor do |f| %>
 	<div>
 		Class <%= f.select :cf_class,
 											options_for_select([['Ruby on Rails May/June', 'rails2'], ['Ruby on Rails July/August', 'rails3']]) %>
 	</div>
-	<table>
+	<table width="<%= @tableWidth %>" >
 		<tr>
 			<td>First Name</td>
 			<td><%= f.text_field :personal_first_name, {id: "personal_first_name"} %></td>
