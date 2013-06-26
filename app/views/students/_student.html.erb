@@ -21,20 +21,19 @@
 		<% end %>
 	<% end %>
 </div>
-	<p><em>
-		<%= @student.personal_email %>
-	</em></p>
-<p><em>
+	<p>
+		<%= mail_to "#{@student.personal_email}", @student.personal_email %>
+	<% end %>
+<br />
 	<%= case @student.cf_class
 			when "rails2"
 				"Ruby on Rails - May/June 2013"
 			when "rails3"
 				"Ruby on Rails - July/August 2013"
 			end %>
-</em></p>
-<p><em>
+<br />
 	<%= "From #{@student.personal_where_you_from}" if @student.personal_where_you_from.presence %>
-</em></p>
+</p>
 	<table>
 		<tr>
 			<td colspan="2">
