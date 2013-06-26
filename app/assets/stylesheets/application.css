@@ -47,6 +47,9 @@ nav{
   z-index: 1;
   display: none;
 }
+.settingsImage{
+  margin: 10px 0 0 0;
+}
 .profileLinks{
   background-color: #111;
   color: #fff;

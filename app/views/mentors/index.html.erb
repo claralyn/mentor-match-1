@@ -1,23 +1,23 @@
 <div id="studentsDiv">
-    <h2 class="subheader">
-      Your Mentees
-    </h2>
-    <% if @current_mentees.present? %>
-      <ul class="studentLinks">
-        <% @current_mentees.each do |mentee| %>
-          <% @mentee = mentee %>
-          <%= render "menteelink", :locals =>{post: @mentee} %>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="emptyStudents">
-        No current pairings
-      </p>
-    <% end %>
+  <h2 class="subheader">
+    Your Mentees
+  </h2>
+  <% if @current_mentees.present? %>
+    <ul class="studentLinks">
+      <% @current_mentees.each do |mentee| %>
+        <% @mentee = mentee %>
+        <%= render "menteelink", :locals =>{post: @mentee} %>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="emptyStudents">
+      No current pairings
+    </p>
+  <% end %>
+  <h2 class="subheader">
+    Your Current Mentee Rankings
+  </h2>
   <div id="rankingsDiv">
-    <h2 class="subheader">
-      Your Current Mentee Rankings
-    </h2>
     <% if @rankings.present? %>
       <ol id="ranks">
         <% @rankings.each do |rank| %>

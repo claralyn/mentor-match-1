@@ -1,40 +1,36 @@
 <div align="left">
 	<% if current_user.admin || @student.id == current_user.student.try(:id)  %>
-	<%= link_to "Edit", edit_student_path(@student), class: "button alert small" %>
+	<%= link_to "Edit", edit_student_path(@student), class: "button alert small round" %>
 	<%= link_to "Delete", @student,
 			:confirm => "Are you sure you want to delete #{@student.personal_first_name} #{@student.personal_last_name}",
-			:method => :delete, class: "button alert small" %>
+			:method => :delete, class: "button alert small round" %>
 	<% end %>
-</div>
-<!-- Hides first name and last name from mentors -->
-	<h3>
-		<%= @student.personal_first_name %>
-		<%= @student.personal_last_name %>
-	</h3>
-<div align="left">
 	<% if current_user.mentor %>
 		<% if current_user.mentor.rankings.where(student_id: @student.id).present? %>
-			This student is currently in your rankings.
+			This student is currently on your rankings.
 		<% else %>
 			<%= link_to "Add to Ranking", new_student_ranking_path(@student),
 			:confirm => "Are you sure you want to add #{@student.personal_first_name} #{@student.personal_last_name} to your rankings?", remote: true %>
 		<% end %>
 	<% end %>
 </div>
-	<p><em>
-		<%= @student.personal_email %>
-	</em></p>
-<p><em>
+<!-- Hides first name and last name from mentors -->
+	<h5>
+		<%= @student.personal_first_name %>
+		<%= @student.personal_last_name %>
+	</h5>
+	<p>
+		<%= mail_to "#{@student.personal_email}", @student.personal_email %>
+<br />
 	<%= case @student.cf_class
 			when "rails2"
 				"Ruby on Rails - May/June 2013"
 			when "rails3"
 				"Ruby on Rails - July/August 2013"
 			end %>
-</em></p>
-<p><em>
+<br />
 	<%= "From #{@student.personal_where_you_from}" if @student.personal_where_you_from.presence %>
-</em></p>
+</p>
 	<table>
 		<tr>
 			<td colspan="2">

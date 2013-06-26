@@ -3,5 +3,5 @@
   <%= rank.student.personal_last_name.capitalize %>
   <%= link_to "x", [rank.student, rank],
       :confirm => "Remove this student?",
-      :method => :delete, class: "removeRank" %>
+      :method => :delete, class: "removeRank", remote: true %>
 </li>

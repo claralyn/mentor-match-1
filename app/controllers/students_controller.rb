@@ -14,7 +14,7 @@
 	def index
 		if current_user.student
 	    @user = user
-	    @mentors = Mentor.order(:id)
+	    @mentors = Mentor.joins(:user).where("approval = ?", 1).order(:id)
 	    @companies = []
 	    @mentors.each do |mentor|
 	    	company = mentor.career_company_private
@@ -23,9 +23,9 @@
 	    	end
 	    end
 			if params[:sort] == 'all'
-				@mentors = Mentor.order(:id)
+				@mentors = Mentor.joins(:user).where("approval= ?", 1).order(:id)
 			elsif params[:sort]
-				@mentors = Mentor.where(career_company_private: params[:sort]).order(:id)
+				@mentors = Mentor.joins(:user).where("approval = 1 AND career_company_private = ?", params[:sort]).order(:id)
 			end
    	else
     	flash[:alert] = "You don't have access to that page."

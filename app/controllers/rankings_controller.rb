@@ -33,6 +33,7 @@ class RankingsController < ApplicationController
       message = "Sorry, there was a problem,
                 and your rankings weren't updated."
     end
+
     respond_to do |format|
       format.html  {flash[:notice] = message
                     redirect_to '/rankings'}
@@ -49,10 +50,14 @@ class RankingsController < ApplicationController
     end
     render text: "success", status: 200
   end
+
   def destroy
     @rank = Ranking.find(params[:id])
     @rank.destroy
-    redirect_to '/rankings'
+    respond_to do |format|
+      format.html { redirect_to '/rankings' }
+      format.js
+    end
   end
 
   private

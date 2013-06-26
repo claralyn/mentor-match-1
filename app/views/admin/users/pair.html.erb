@@ -11,7 +11,7 @@
 					<td>
 						<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
 					<td>
-						<% mentors_array = Mentor.all.map{|mentor|
+						<% mentors_array = @mentors.map{|mentor|
 								["#{mentor.personal_first_name} #{mentor.personal_last_name}", "#{mentor.id}-#{student.id}"]}
 
 							mentors_array.unshift(["Please, select a mentor", "remove-#{student.id}"]) %>

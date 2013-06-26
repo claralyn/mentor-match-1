@@ -15,8 +15,11 @@ $ ->
     $(@).removeClass("alert")
     $("#rolestudent").addClass("alert")
     $("#user_role_mentor").prop("checked", true)
-$ ->
   if ("#profileDropDown")
     $("#profileDropDown").on "click", (event)->
       event.preventDefault()
       $("#DropDown").slideToggle()
+  if ("#notice")
+    $("#notice").delay(1200).fadeOut()
+  if ("#alert")
+    $("#alert").delay(1200).fadeOut()
