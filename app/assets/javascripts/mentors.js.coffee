@@ -23,14 +23,20 @@ $ ->
     }
   if ("a.students")
     $("a.students").on "click", ->
-      $("a.students").removeClass("studentSelected")
       $("a.studentSelected").addClass("students")
+      $("a.students").removeClass("studentSelected")
+      $("a.match").removeClass("matchSelected")
+      $("a.matchSelected").addClass("match")
       $(@).removeClass("students").addClass("studentSelected")
 
   if ("a.match")
     $("a.match").on "click", ->
       $("a.match").removeClass("matchSelected")
       $("a.matchSelected").addClass("match")
+      $("a.studentSelected").addClass("students")
+      $("a.students").removeClass("studentSelected")
+      $("a.mentors").removeClass("mentorSelected")
+      $("a.mentorSelected").addClass("mentors")
       $(@).removeClass("match").addClass("matchSelected")
 
   if ("#filterStudents")

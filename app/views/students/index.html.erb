@@ -3,14 +3,11 @@
     <h2 class="subheader">
       Your Mentor
     </h2>
-    <% if @current_mentors.present? %>
       <ul class="mentorLinks">
-        <% @current_mentees.each do |mentee| %>
-          <% @mentee = mentee %>
-          <%= render "menteelink", :locals =>{post: @mentee} %>
-        <% end %>
+        <li>
+          <%= link_to "#{@mentor.personal_first_name.capitalize} #{@mentor.personal_last_name.capitalize}", mentor_path(@mentor), class: "match", remote: true %>
+        </li>
       </ul>
-    <% end %>
   <% end %>
   <h2 class="subheader">
     View Mentor Profiles

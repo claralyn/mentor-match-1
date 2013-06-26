@@ -2,7 +2,8 @@ require 'spec_helper'
 
 feature "Admin pairs the student and mentors" do
 	let!(:admin){Factory(:admin_user)}
-	let!(:mentor){Factory(:mentor)}
+	let!(:user2){Factory(:confirmed_user)}
+	let!(:mentor){Factory(:mentor, user: user2)}
 	let!(:user){Factory(:confirmed_user)}
 	let!(:student){Factory(:student, user: user)}
 

@@ -33,13 +33,17 @@
   <h2 class="subheader">View Mentee Profiles</h2>
   <div id="filter">
     <a href="#" id="filterShow">V</a>
-    <%= link_to "View All Students", {controller: "students", action: "index", sort: "all"}, remote: true, class: "filterMentors filterMentorsSelected" %>
+    <%= link_to "View All Students", {controller: "mentors", action: "index", sort: "all"}, remote: true, class: "filterMentors filterMentorsSelected" %>
     <div id="filterMentorsCompany">
-      <%# if @classes.any? %>
-        <%# @classes.each do |cf_class| %>
-            <%# link_to "From #{cf_class.capitalize}", {controller: "students", action: "index", sort: cf_class }, remote: true, class: "filterMentors" %>
-        <%# end %>
-      <%# end %>
+      <% if @classes.any? %>
+        <% @classes.each do |key, cf_class, company| %>
+          <% if company.present? %>
+            <%= link_to "#{cf_class}", {controller: "mentors", action: "index", sort: key, company: true}, remote: true, class: "filterMentors" %>
+          <% else %>
+            <%= link_to "#{cf_class}", {controller: "mentors", action: "index", sort: key}, remote: true, class: "filterMentors" %>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <div id="studentsLinksDiv">

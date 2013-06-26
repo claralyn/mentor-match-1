@@ -15,6 +15,7 @@
 		if current_user.student
 	    @user = user
 	    @mentors = Mentor.joins(:user).where("approval = ?", 1).order(:id)
+	    @mentor = @user.mentor
 	    @companies = []
 	    @mentors.each do |mentor|
 	    	company = mentor.career_company_private

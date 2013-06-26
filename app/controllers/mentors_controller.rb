@@ -18,11 +18,22 @@ class MentorsController < ApplicationController
       @paired_students = user.students.order(:personal_first_name).page(params[:page]).per(20)
       @current_mentees = Student.joins(:user).where("approval = 1 AND mentor_id = ?", @user.id).order(:id).page(params[:page]).per(20)
       @rankings = current_user.mentor.rankings.order(:rank)
-      @classes = [['rails1'], ['rails2'], ['rails3']]
-     else
+      @classes = [["Amazon", "Interested in #{user.career_company_private.capitalize}", "company"], ["rails2", "From June Class"], ["rails3", "From July Class"]]
+      if params[:company]
+        @students = Student.joins(:user).where("approval = 1 AND goals_companies = ?", params[:sort]).order(:id)
+      elsif params[:sort] == 'all'
+        @students = Student.joins(:user).where("approval= ?", 1).order(:id)
+      elsif params[:sort]
+        @students = Student.joins(:user).where("approval = 1 AND cf_class = ?", params[:sort]).order(:id)
+      end
+    else
       flash[:alert] = "You don't have access to that page."
       redirect_to root_path
-     end
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
