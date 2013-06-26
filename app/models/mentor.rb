@@ -36,6 +36,6 @@ class Mentor < ActiveRecord::Base
   validates :career_job_title, presence: true
 
   has_many :students
-  has_many :rankings
-  belongs_to :user
+  has_many :rankings, dependent: :delete_all
+  belongs_to :user, dependent: :delete
 end

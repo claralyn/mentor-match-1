@@ -31,6 +31,6 @@ class Student < ActiveRecord::Base
   validates :personal_email, presence: true
 
   belongs_to :mentor
-  has_many :rankings
-  belongs_to :user
+  has_many :rankings, dependent: :delete_all
+  belongs_to :user, dependent: :delete
 end

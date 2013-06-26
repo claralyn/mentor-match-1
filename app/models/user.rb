@@ -13,6 +13,6 @@ class User < ActiveRecord::Base
   attr_accessible :approval, as: :admin
   # attr_accessible :title, :body
 
-  has_one :mentor, dependent: :destroy
-  has_one :student, dependent: :destroy
+  has_one :mentor, dependent: :delete
+  has_one :student, dependent: :delete
 end

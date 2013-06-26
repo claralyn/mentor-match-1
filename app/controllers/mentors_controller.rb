@@ -5,9 +5,7 @@ class MentorsController < ApplicationController
                   only:   [ :edit,
                             :update,
                             :destroy]
-  before_filter :authenticate_user!,
-                  only:   [ :new,
-                            :create]
+  before_filter :authenticate_user!
   before_filter :current_user_approved?,
                   except: [ :new,
                             :create]
@@ -18,6 +16,7 @@ class MentorsController < ApplicationController
       @studentsinterest = Student.joins(:user).where("approval = 1 AND goals_companies=?", @user.career_company_private).order(:id).page(params[:page]).per(20)
       @students = Student.joins(:user).where("approval = 1").order(:id).page(params[:page]).per(20)
       @paired_students = user.students.order(:personal_first_name).page(params[:page]).per(20)
+      @current_mentees = Student.joins(:user).where("approval = 1 AND mentor_id = ?", @user.id).order(:id).page(params[:page]).per(20)
       @rankings = current_user.mentor.rankings.order(:rank)
      else
       flash[:alert] = "You don't have access to that page."
@@ -30,6 +29,10 @@ class MentorsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit

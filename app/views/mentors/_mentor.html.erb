@@ -1,0 +1,393 @@
+<div>
+	<% if current_user.admin || @mentor.id == current_user.mentor.try(:id)  %>
+	<%= link_to "Edit", edit_mentor_path(@mentor), class: "button alert small" %>
+	<%= link_to "Delete", @mentor,
+				:confirm => "Are you sure you want to delete #{@mentor.personal_first_name} #{@mentor.personal_last_name}",
+				:method => :delete, class: "button alert small" %>
+	<% end %>
+</div>
+<h2><%= @mentor.personal_first_name %> <%= @mentor.personal_last_name %></h2>
+	<p><em><%= @mentor.career_job_title %> at
+			<%= @mentor.career_company_private  %>
+			<%= case @mentor.career_company_type
+					when "startup"
+						"(Startup)"
+					when "largeco"
+						"(Larger Company)"
+					when "self"
+						"(Self Employed)"
+					when "none"
+						"(No Preference)"
+					end %>
+	</em></p>
+	<p><em>
+		<%= @mentor.personal_email %>
+	</em></p>
+	<p><em>For
+					<%= case @mentor.cf_class
+						 	when "rails2"
+						 		"Ruby on Rails June 2013"
+						 	when "rails3"
+						 		"Ruby on Rails July/August 2013"
+							end %>
+	</em></p>
+<table>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">Why do you want to be a Codefellows Mentor?</h5>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= @mentor.personal_why_mentor.presence ? @mentor.personal_why_mentor : "-" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">
+				What kind of knowledge do you feel you could impart on your mentee?
+			</h5>
+		</td>
+	<tr>
+		<td colspan="2">
+			<%= empty_answer(@mentor.personal_knowledge_impart) %>
+		</td>
+	</tr>
+	<tr>
+			<td colspan="2">
+				<h5 class="subheader">
+					What is your careeer history like?
+				</h5>
+			</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= empty_answer(@mentor.career_information) %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">Did you attend a university?</h5>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= yes_format(@mentor.experience_university) %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">
+				Did you receive a degree? If so, for what?
+			</h5>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= empty_answer(@mentor.experience_degree) %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">Any other degree or college experience?</h5>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= empty_answer(@mentor.experience_other_degree) %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">
+				Which skills below do you think that you
+				would be capable of helping a mentee improve upon?
+			</h5>
+		</td>
+	</tr>
+	<tr>
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Developer Skills
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_developer) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Object Oriented Programming
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_object) %>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">
+				Which of the following languages/Frameworks do you feel you
+				are capable of teaching?
+			</h5>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<table>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							html/CSS/xml
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_html_css) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							javascript
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_javascript) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							java
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_java) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							C++
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_cplusplus) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							C
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_c) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Ruby
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_ruby) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							python
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_python) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							php
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_php) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							.net
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_net) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Coffeescript
+						</h5>
+					</td>
+					<td>
+						<%= mentor_ability(@mentor.mentee_skills_coffeescript) %>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h5 class="subheader">
+				Other Coding Skills
+			</h5>
+		</td>
+		<td>
+			<%= empty_answer(@mentor.mentee_skills_other_coding) %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">
+				How much do you feel like you would be able to help your mentee in the areas
+			</h5>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<table>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Career Advice
+						</h5>
+					</td>
+					<td>
+						<%= empty_answer(@mentor.skills_career_advice) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Developer Skill Development
+						</h5>
+					</td>
+					<td>
+						<%= empty_answer(@mentor.skills_development) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Assistance with Coding Question/Tactics
+						</h5>
+					</td>
+					<td>
+						<%= empty_answer(@mentor.skills_coding_question_tactics) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Soft Skills(presentation, leading teams, etc.)
+						</h5>
+					</td>
+					<td>
+						<%= empty_answer(@mentor.skills_soft_skills) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Interviewing coaching
+						</h5>
+					</td>
+					<td>
+						<%= empty_answer(@mentor.skills_interview_coaching) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Job Search
+						</h5>
+					</td>
+					<td>
+						<%= empty_answer(@mentor.skills_job_search) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Resume Development
+						</h5>
+					</td>
+					<td>
+						<%= empty_answer(@mentor.skills_resume_development) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Github Account Development
+						</h5>
+					</td>
+					<td>
+						<%= empty_answer(@mentor.skills_github_account_development) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 class="subheader">
+							Assistance with Selling yourself or an idea
+						</h5>
+					</td>
+					<td>
+						<%= empty_answer(@mentor.skills_selling_idea) %>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">
+				Do you prefer a:
+			</h5>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= case @mentor.mentee_gender
+					when "m"
+						"Male"
+					when "f"
+						"Female"
+					else
+						"No preference"
+					end %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<h5 class="subheader">
+				Feel free to add anything else here:
+			</h5>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= empty_answer(@mentor.mentee_extra_info) %>
+		</td>
+	</tr>
+</table>

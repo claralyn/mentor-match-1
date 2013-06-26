@@ -27,8 +27,14 @@ $ ->
       $("a.studentSelected").addClass("students")
       $(@).removeClass("students").addClass("studentSelected")
 
-  if ("#profileDropDown")
-    $("#profileDropDown").show()
-    $("#DropDown").hide()
-    $("#profileDropDown").on "click", ->
-      $("#DropDown").toggle()
+  if ("a.match")
+    $("a.match").on "click", ->
+      $("a.match").removeClass("matchSelected")
+      $("a.matchSelected").addClass("match")
+      $(@).removeClass("match").addClass("matchSelected")
+
+  if ("#filterStudents")
+    $("#filterStudents").on "change", ->
+      url = "/students"
+      $.get url, (data)->
+        $("#studentsLinksDiv").text(data)

@@ -1,44 +1,30 @@
-<h3 align="right">
-  Welcome
-    <%= @user.personal_first_name %> <%= @user.personal_last_name %>
-</h3>
-<div align="right">
-  <%= link_to "Edit Your Profile", edit_student_path(@user), class: "button alert small"  %>
-  <%= link_to "Delete Your Profile", student_path(@user),
-        :confirm => "Are you sure you want to delete your profile?",
-        :method => :delete, class: "button alert small" %>
-</div>
-<h3 class="subheader">
-  Mentor Profiles
-</h3>
-<div class="section-container auto" data-section>
-  <section>
-    <p class="title" data-section-title>
-      <a href="#panel1">
-        All Mentors
-      </a>
-    </p>
-    <div class="content" data-section-title>
-      <table>
-        <tr>
-          <td>Mentor Name</td>
-          <td>Company</td>
-        </tr>
-        <% @mentors.each do |mentor| %>
-          <tr>
-            <td>
-              <%= link_to "#{mentor.personal_first_name} #{mentor.personal_last_name}", mentor_path(mentor) %></td>
-            <td>
-              <%= mentor.career_company_private %>
-              </td>
-          </tr>
-        <% end %>
-        <tr>
-          <td>
-            <%= paginate @mentors %>
-          </td>
-        </tr>
-      </table>
+<div id="mentorsDiv">
+  <h2 class="subheader">
+    View Mentor Profiles
+  </h2>
+  <div id="filter">
+    <a href="#" id="filterShow">V</a>
+    <%= link_to "View All Mentors", {controller: "students", action: "index", sort: "all"}, remote: true, class: "filterMentors filterMentorsSelected" %>
+    <div id="filterMentorsCompany">
+      <% @companies.each do |company| %>
+          <%= link_to "Mentors at #{company}", {controller: "students", action: "index", sort: company }, remote: true, class: "filterMentors" %>
+      <% end %>
     </div>
-  </section>
+  </div>
+  <div id="mentorsLinksDiv">
+      <% if @mentors.present? %>
+        <ul class="mentorLinks">
+          <% @mentors.each do |mentor| %>
+            <% @mentor = mentor %>
+            <%= render "mentorlink", :locals =>{post: @mentor} %>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>
+          No mentors available
+        </p>
+      <% end %>
+  </div>
+</div>
+<div id="showcase">
 </div>

@@ -1,25 +1,41 @@
 <div id="studentsDiv">
+    <h2 class="subheader">
+      Your Mentees
+    </h2>
+    <% if @current_mentees.present? %>
+      <ul class="studentLinks">
+        <% @current_mentees.each do |mentee| %>
+          <% @mentee = mentee %>
+          <%= render "menteelink", :locals =>{post: @mentee} %>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="emptyStudents">
+        No current pairings
+      </p>
+    <% end %>
   <div id="rankingsDiv">
-    <h2></h2>
     <h2 class="subheader">
       Your Current Mentee Rankings
     </h2>
     <% if @rankings.present? %>
       <ol id="ranks">
         <% @rankings.each do |rank| %>
-          <%= render rank %>
+          <%=  render rank %>
         <% end %>
       </ol>
     <% else %>
-
+      <p class="emptyStudents">
+        No current students
+      </p>
     <% end %>
   </div>
   <h2 class="subheader">View Mentee Profiles</h2>
+    <%= select_tag "filter", "<option>All Students</option>
+                              <option>Students in July/August Class</option>
+                              <option>Students Interested in #{@user.career_company_private}</option>".html_safe,
+                              id: "filterStudents" %>
   <div id="studentsLinksDiv">
-      <%= select_tag "filter", "<option>All Students</option>
-                                <option>Students in Rails Class</option>
-                                <option>Students Interested in #{@user.career_company_private}</option>".html_safe,
-                                id: "filterStudents" %>
       <% if @students.present? %>
         <ul class="studentLinks">
           <% @students.each do |student| %>
@@ -28,8 +44,8 @@
           <% end %>
         </ul>
       <% else %>
-        <p>
-          No students
+        <p class="emptyStudents">
+          No students available
         </p>
       <% end %>
   </div>

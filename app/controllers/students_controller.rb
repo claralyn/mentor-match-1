@@ -1,26 +1,38 @@
-class StudentsController < ApplicationController
+	class StudentsController < ApplicationController
   before_filter :authorizes_admins_or_mentors_or_a_student!,
   									only: 	[	:show]
 	before_filter :authorizes_admins_or_a_student!,
 										only: 	[	:edit,
 															:update,
 															:destroy]
+	before_filter :authenticate_user!
 	before_filter :current_user_approved?,
 										except: [	:new,
 															:create,
 															:thanks]
-	before_filter :authenticate_user!,
-										only: 	[	:new,
-															:create]
 
 	def index
 		if current_user.student
 	    @user = user
-	    @mentors = Mentor.order(:id).page(params[:page]).per(20)
-	   else
-      flash[:alert] = "You don't have access to that page."
-	   	redirect_to root_path
-	   end
+	    @mentors = Mentor.order(:id)
+	    @companies = []
+	    @mentors.each do |mentor|
+	    	company = mentor.career_company_private
+	    	@companies << mentor.career_company_private
+	    end
+			if params[:sort] == 'all'
+				@mentors = Mentor.order(:id)
+			elsif params[:sort]
+				@mentors = Mentor.where(career_company_private: params[:sort]).order(:id)
+			end
+   	else
+    	flash[:alert] = "You don't have access to that page."
+   		redirect_to root_path
+   	end
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def show
@@ -31,6 +43,10 @@ class StudentsController < ApplicationController
 	end
 
 	def edit
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def new
