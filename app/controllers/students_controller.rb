@@ -18,7 +18,9 @@
 	    @companies = []
 	    @mentors.each do |mentor|
 	    	company = mentor.career_company_private
-	    	@companies << mentor.career_company_private
+	    	unless @companies.include?(company)
+	    		@companies << mentor.career_company_private
+	    	end
 	    end
 			if params[:sort] == 'all'
 				@mentors = Mentor.order(:id)

@@ -9,7 +9,8 @@ $ ->
     $(@).removeClass("mentors").addClass("mentorSelected")
 
   if ("#filter")
-    $("#filterShow").on "click", ->
+    $("#filterShow").on "click", (event)->
+      event.preventDefault()
       $("#filterMentorsCompany").slideToggle()
 
   if ("a.filterMentors")
