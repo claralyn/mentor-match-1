@@ -4,26 +4,29 @@
     <p>
       Which best describes your role at Code Fellows?
     </p>
-    <%= link_to "Student", new_student_path, class: "button round alert large", id: "rolestudent" %>
-    <%= link_to "Mentor", new_mentor_path, class: "button round alert large", id: "rolementor" %>
-  </center>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <%= link_to "Student", new_student_path, class: "button round alert medium", id: "rolestudent" %>
+    <%= link_to "Mentor", new_mentor_path, class: "button round alert medium", id: "rolementor" %>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+<fieldset class="large-6">
+    <div class="row">
+      <%= f.email_field :email, :placeholder => "Email Address" %>
+    </div>
+    <div class="row">
+      <%= f.password_field :password, :placeholder => "Password"  %>
+      </div>
+    <div class="row">
+      <%= f.password_field :password_confirmation, :placeholder => "Confirm Password"  %>
+    </div>
+      <div class="rolesnojs">
+        <%= f.label :role, "Which best describes your role at Code Fellows?" %><br />
+        Student
+        <%= f.radio_button :role, "student" %>
+        Mentor
+        <%= f.radio_button :role, "mentor" %>
+      </div>
+      <div><%= f.submit "Sign up" %></div>
+    <% end %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div class="rolesnojs">
-    <%= f.label :role, "Which best describes your role at Code Fellows?" %><br />
-    Student
-    <%= f.radio_button :role, "student" %>
-    Mentor
-    <%= f.radio_button :role, "mentor" %>
-  </div>
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
 
 <%= render :partial => "devise/shared/links" %>
+</fieldset>

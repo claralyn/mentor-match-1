@@ -1,13 +1,13 @@
 <div>
 	<% if current_user.admin || @mentor.id == current_user.mentor.try(:id)  %>
-	<%= link_to "Edit", edit_mentor_path(@mentor), class: "button alert small" %>
+	<%= link_to "Edit", edit_mentor_path(@mentor), class: "button alert small round" %>
 	<%= link_to "Delete", @mentor,
 				:confirm => "Are you sure you want to delete #{@mentor.personal_first_name} #{@mentor.personal_last_name}",
-				:method => :delete, class: "button alert small" %>
+				:method => :delete, class: "button alert small round" %>
 	<% end %>
 </div>
 <h2><%= @mentor.personal_first_name %> <%= @mentor.personal_last_name %></h2>
-	<p><em><%= @mentor.career_job_title %> at
+	<p><%= @mentor.career_job_title %> at
 			<%= @mentor.career_company_private  %>
 			<%= case @mentor.career_company_type
 					when "startup"
@@ -19,18 +19,18 @@
 					when "none"
 						"(No Preference)"
 					end %>
-	</em></p>
-	<p><em>
-		<%= @mentor.personal_email %>
-	</em></p>
-	<p><em>For
-					<%= case @mentor.cf_class
-						 	when "rails2"
-						 		"Ruby on Rails June 2013"
-						 	when "rails3"
-						 		"Ruby on Rails July/August 2013"
-							end %>
-	</em></p>
+<br />
+		<%= mail_to "#{@mentor.personal_email}", @mentor.personal_email %>
+<br />
+				<%= case @mentor.cf_class
+					 	when "rails2"
+					 		"For Ruby on Rails May/June 2013"
+					 	when "rails3"
+					 		"For Ruby on Rails July/August 2013"
+					 	when ""
+					 		""
+						end %>
+	</p>
 <table>
 	<tr>
 		<td colspan="2">

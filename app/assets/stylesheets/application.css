@@ -41,16 +41,16 @@ nav{
 }
 #DropDown{
   position: absolute;
-  top: 40px;
+  top: 35px;
   right: 0px;
   z-index: 1;
   display: none;
 }
 .profileLinks{
-  background-color: #FFF;
-  color: #000;
+  background-color: #111;
+  color: #fff;
   display: block;
-  width: 156px;
+  width: 160px;
   padding: 3px 5px 3px 5px;
-  border-top: 1px #000 solid;
+  border-top: 5px #111 solid;
 }
