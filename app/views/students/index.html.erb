@@ -8,10 +8,6 @@
         <% @current_mentees.each do |mentee| %>
           <% @mentee = mentee %>
           <%= render "menteelink", :locals =>{post: @mentee} %>
-        <% end %>
-      </ul>
-    <% end %>
-  <% end %>
   <h2 class="subheader">
     View Mentor Profiles
   </h2>
