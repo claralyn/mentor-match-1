@@ -25,7 +25,7 @@ feature "A user logs into the system" do
 		fill "Password", mentor.user.password
 		click_button "Sign in"
 		content "Welcome " + mentor.personal_first_name
-		content "Student Mentee Profiles"
+		content "View Mentee Profiles"
 	end
 
 	scenario "Admin logs into dashboard" do

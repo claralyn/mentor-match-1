@@ -69,7 +69,7 @@ feature "a student fills out survey" do
 		fill 'linked_in', 'Linked In'
 		fill 'goals_extra_info', 'extra'
 
-		click_button 'Submit Survey'
+		click_button 'Submit Profile'
 		content'Thank You!'
 
 		open_email "example@example.com", with_subject: 'Mentor Match Confirmation'

@@ -19,7 +19,6 @@ feature "a mentor ranks students they want to work with" do
     click_link student.personal_first_name + ' ' + student.personal_last_name
     click_link "Add to Ranking"
     click_link "Dashboard"
-    click_link "View Your Rankings"
   end
 
 end
