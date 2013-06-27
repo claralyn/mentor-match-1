@@ -1,6 +1,6 @@
 <%= link_to "Notify", new_notification_path,  class: "button alert small"  %>
 <% if @notifications.present? %>
-	<table>
+	<table width="100%">
 		<tr>
 			<td>Receiver</td>
 			<td>Notification</td>
@@ -13,11 +13,11 @@
 						@receiver = Mentor.find(notification.receiver_id) %>
 			<% end %>
 			<tr>
-				<td>
+				<td valign="top">
 					<%= @receiver.try(:personal_first_name) %>
 					<%= @receiver.try(:personal_last_name) %>
 				</td>
-				<td>
+				<td valign="top">
 					<b><%= notification.subject %></b><br>
 					<p><%= notification.message %></p>
 				</td>

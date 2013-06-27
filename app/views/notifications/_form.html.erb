@@ -1,12 +1,12 @@
 <%= form_for @notification do |f| %>
-	<% mentors = Mentor.all %>
-	<% students = Student.all %>
+	<% mentors = Mentor.joins(:user).where("approval = ?", 1).order(:personal_first_name) %>
+	<% students = Student.joins(:user).where("approval = ?", 1).order(:personal_first_name) %>
 	<table width="100%">
 		<tr>
 			<td colspan="2">Notify who?</td>
 		</tr>
 		<tr>
-			<td>
+			<td valign="top">
 				<% if mentors.presence %>
 					<div>
 						<b>Mentors</b> <br>
@@ -20,7 +20,7 @@
 						end %>
 					</div>
 			</td>
-			<td>
+			<td valign="top">
 				<% if students.presence %>
 					<div>
 						<b>Students</b> <br>
