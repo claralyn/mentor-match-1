@@ -29,7 +29,7 @@
 							</td>
 							<td>
 								<% if student.studentrankings.present? %>
-									<ol>
+									<ol class="rankOrder">
 										<% student.studentrankings.order(:rank).each do |ranking| %>
 												<li>
 													<%= ranking.mentor.personal_first_name %>
@@ -74,7 +74,7 @@
 					</td>
 					<td>
 						<% if mentor.rankings.present? %>
-							<ol>
+							<ol class="rankOrder">
 								<% mentor.rankings.order(:rank).each do |ranking| %>
 										<li>
 											<%= ranking.student.personal_first_name %>
@@ -170,7 +170,7 @@
 									:method => :delete %></td>
 							<td>
 								<% if mentor.rankings.present? %>
-									<ol>
+									<ol class="rankOrder">
 										<% mentor.rankings.order(:rank).each do |ranking| %>
 												<li>
 													<%= ranking.student.personal_first_name %>
