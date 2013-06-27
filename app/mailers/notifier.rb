@@ -10,6 +10,6 @@ class Notifier < ActionMailer::Base
     @message = message
     @mentor = mentor
 
-    mail to: mentor.personal_email, subject: subject
+    mail to: mentor.user.email, subject: subject
   end
 end

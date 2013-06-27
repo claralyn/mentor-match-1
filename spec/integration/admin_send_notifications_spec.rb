@@ -2,8 +2,10 @@ require 'spec_helper'
 
 feature "an Admin sends a notification email" do
 	let!(:admin){Factory(:admin_user)}
-	let!(:mentor){Factory(:mentor)}
-	let!(:student){Factory(:student)}
+	let!(:user){Factory(:confirmed_user)}
+	let!(:mentor){Factory(:mentor, user: user)}
+	let!(:user2){Factory(:confirmed_user)}
+	let!(:student){Factory(:student, user: user2)}
 
 	before do
 		ActionMailer::Base.deliveries.clear
@@ -19,7 +21,7 @@ feature "an Admin sends a notification email" do
 		fill 'subject', "Get er done"
 		fill 'message', "Really cool message"
 		click_button 'Notify'
-		open_email "example@example.com", with_subject: "Get er done"
+		open_email mentor.user.email, with_subject: "Get er done"
 		current_email.should have_content('Really cool message')
 	end
 
@@ -28,7 +30,7 @@ feature "an Admin sends a notification email" do
 		fill 'subject', "Get er done"
 		fill 'message', "Really cool message"
 		click_button 'Notify'
-		open_email "student@example.com", with_subject: "Get er done"
+		open_email student.user.email, with_subject: "Get er done"
 		current_email.should have_content('Really cool message')
 	end
 end

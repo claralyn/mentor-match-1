@@ -27,8 +27,7 @@ class RankingsController < ApplicationController
     elsif exists_rankings.present?
       message = "You've already added this student to your rankings."
     elsif rank.save
-            message = "#{@student.personal_first_name} #{@student.personal_last_name}" +
-                      " has been added to your rankings."
+            message = "Student #" + @student.id.to_s + " has been added to your rankings."
     else
       message = "Sorry, there was a problem,
                 and your rankings weren't updated."

@@ -23,7 +23,7 @@ feature "Admin pairs the student and mentors" do
 
 		student2 = Student.find(student.id)
 		message =  "You have been paired with Butler Price. You can contact them at example@example.com."
-		open_email "student@example.com", with_subject: "Mentor Match Paired"
+		open_email student.user.email, with_subject: "Mentor Match Paired"
 		current_email.should have_content(message)
 	end
 end
