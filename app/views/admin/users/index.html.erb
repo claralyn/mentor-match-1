@@ -9,7 +9,7 @@
 		<% if @studentnomentors.blank? %>
 			<p>Hurray! All Students are Matched</p>
 		<% else %>
-			<table>
+			<table width="100%">
 				<tr>
 					<td>Student Name</td>
 					<td>Class</td>
@@ -43,17 +43,34 @@
 	<% if @mentornostudents.blank? %>
 		<p>Hurray!  All Mentors are Matched!</p>
 	<% else %>
-		<table>
+		<table width="100%">
 			<tr>
 				<td>Mentor Name</td>
 				<td>Company</td>
+				<td>Rankings</td>
 			</tr>
 			<% @mentornostudents.each do |mentor| %>
 				<tr>
 					<td>
-						<%= link_to "#{mentor.personal_first_name} #{mentor.personal_last_name}", mentor_path(mentor) %></td>
+						<%= link_to "#{mentor.personal_first_name} #{mentor.personal_last_name}", mentor_path(mentor) %>
+					</td>
 					<td>
-						<%= mentor.career_company_private %></td>
+						<%= mentor.career_company_private %>
+					</td>
+					<td>
+						<% if mentor.rankings.present? %>
+							<ol>
+								<% mentor.rankings.order(:rank).each do |ranking| %>
+										<li>
+											<%= ranking.student.personal_first_name %>
+											<%= ranking.student.personal_last_name %>
+										</li>
+								<% end %>
+							</ol>
+						<% else %>
+							-
+						<% end %>
+					</td>
 				</tr>
 			<% end %>
 			<tr>
@@ -75,7 +92,7 @@
 	<% if @studentsall.blank? %>
 		<p>No Questionnaires Finished</p>
 	<% else %>
-		<table>
+		<table width="100%">
 			<tr>
 				<td>Name</td>
 				<td>Mentor</td>
@@ -114,11 +131,12 @@
 				<p>No Mentor Profiles</p>
 				</table>
 			<% else %>
-				<table>
+				<table width="100%">
 					<tr>
 						<td>Name</td>
 						<td>Mentee(s)</td>
 						<td>Profiles</td>
+						<td>Rankings</td>
 					</tr>
 					<% @mentorsall.each do |mentor| %>
 						<tr>
@@ -135,6 +153,20 @@
 								<%= link_to "Delete", mentor,
 									:confirm => "Are you sure you want to delete #{mentor.personal_first_name} #{mentor.personal_last_name}",
 									:method => :delete %></td>
+							<td>
+								<% if mentor.rankings.present? %>
+									<ol>
+										<% mentor.rankings.order(:rank).each do |ranking| %>
+												<li>
+													<%= ranking.student.personal_first_name %>
+													<%= ranking.student.personal_last_name %>
+												</li>
+										<% end %>
+									</ol>
+								<% else %>
+									-
+								<% end %>
+							</td>
 						</tr>
 					<% end %>
 					<tr>

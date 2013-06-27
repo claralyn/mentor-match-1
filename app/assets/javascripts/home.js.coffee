@@ -23,3 +23,6 @@ $ ->
     $("#notice").delay(1200).fadeOut()
   if ("#alert")
     $("#alert").delay(1200).fadeOut()
+  if ("#closeNotice")
+    $("#closeNotice").on "click", ->
+      $(".flash").fadeOut()

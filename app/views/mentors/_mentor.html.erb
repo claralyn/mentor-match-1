@@ -1,3 +1,4 @@
+<% @tableWidth ||= "665px" %>
 <div class="right">
 	<% if current_user.admin || @mentor.id == current_user.mentor.try(:id)  %>
 	<%= link_to "Edit", edit_mentor_path(@mentor), class: "button alert small round" %>
@@ -6,7 +7,14 @@
 				:method => :delete, class: "button alert small round" %>
 	<% end %>
 </div>
-<h2><%= @mentor.personal_first_name %> <%= @mentor.personal_last_name %></h2>
+<h2>
+	<% if current_user.admin? || current_user.mentor == @mentor || @mentor.students.include?(current_user.student) %>
+		<%= @mentor.personal_first_name %>
+		<%= @mentor.personal_last_name %>
+	<% else %>
+		Mentor #<%= @mentor.id %>
+	<% end %>
+</h2>
 	<p><%= @mentor.career_job_title %> at
 			<%= @mentor.career_company_private  %>
 			<%= case @mentor.career_company_type
@@ -31,7 +39,7 @@
 					 		""
 						end %>
 	</p>
-<table>
+<table width="<%= @tableWidth %>">
 	<tr>
 		<td colspan="2">
 			<h5 class="subheader">Why do you want to be a Codefellows Mentor?</h5>

@@ -1,19 +1,24 @@
 
-<%= @tableWidth ||= "665px" %>
+<% @tableWidth ||= "665px" %>
 <!-- Hides first name and last name from mentors -->
 	<h2>
-		<%= @student.personal_first_name %>
-		<%= @student.personal_last_name %>
+		<% if current_user.admin? || current_user.student == @student || current_user.mentor.students.include?(@student) %>
+			<%= @student.personal_first_name %>
+			<%= @student.personal_last_name %>
+		<% else %>
+			Student #<%= @student.id %>
+		<% end %>
 	</h2>
 		<div class="left">
-		<%= mail_to "#{@student.personal_email}", @student.personal_email %>
-	<%= case @student.cf_class
-			when "rails2"
-				"Ruby on Rails - May/June 2013"
-			when "rails3"
-				"Ruby on Rails - July/August 2013"
-			end %>
-
+		<% if current_user.admin? || current_user.student == @student || current_user.mentor.students.include?(@student) %>
+			<%= mail_to "#{@student.personal_email}", @student.personal_email %><br />
+		<% end %>
+			<%= case @student.cf_class
+					when "rails2"
+						"Ruby on Rails - May/June 2013"
+					when "rails3"
+						"Ruby on Rails - July/August 2013"
+					end %><br />
 	<%= "<br />From #{@student.personal_where_you_from}<br />" if @student.personal_where_you_from.presence %>
 </div>
 <div class="right">
@@ -25,7 +30,9 @@
 	<% end %>
 	<% if current_user.mentor %>
 		<% if current_user.mentor.rankings.where(student_id: @student.id).present? %>
-			This student is currently on your rankings.
+			<p class= "rankingsParagraph">
+				This student is currently in your rankings.
+			</p>
 		<% else %>
 			<%= link_to "+ Add to Ranking", new_student_ranking_path(@student),
 			:confirm => "Are you sure you want to add #{@student.personal_first_name} #{@student.personal_last_name} to your rankings?", remote: true, class: "button round alert small" %>

@@ -20,6 +20,7 @@ header {
   margin: 0 0 20px 0;
   padding: 5px 10px 5px 10px;
   color: #FFF;
+  min-width: 1000px;
   z-index: 1;
 }
 header img{
@@ -57,4 +58,33 @@ nav{
   width: 160px;
   padding: 3px 5px 3px 5px;
   border-top: 5px #111 solid;
+}
+#notice{
+  background-color: #2EFE2E;
+  color: #000;
+  text-align: center;
+  padding: 5px 0 5px 0;
+  display: block;
+  font-family: "Arial Black", Gadget, sans-serif;
+  margin-bottom: 5px;
+}
+#alert{
+  background-color: #FE2E2E;
+  color: #000;
+  text-align: center;
+  padding: 5px 0 5px 0;
+  display: block;
+  font-family: "Arial Black", Gadget, sans-serif;
+  margin-bottom: 5px;
+}
+#closeNotice{
+  float: right;
+  color: #000;
+  display: block;
+  height: 100%;
+  margin: 0 5px 5px 5px;
+  cursor: pointer;
+}
+#error_explanation{
+  text-align: center;
 }

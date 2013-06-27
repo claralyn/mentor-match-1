@@ -1,11 +1,11 @@
 <% @tableWidth ||= "600px" %>
 <%= form_for @student do |f| %>
-	<div>
+	<div class="right">
 		Class <%= f.select :cf_class,
 											options_for_select([
 												['Ruby on Rails May/June', 'rails2'],
 												['Ruby on Rails July/August', 'rails3']],
-												@student.cf_class	) %>
+												@student.cf_class	) %><br />
 	</div>
 	<table align="center" width="<%= @tableWidth %>">
 		<tr>
