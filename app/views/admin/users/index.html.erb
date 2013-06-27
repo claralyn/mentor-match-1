@@ -13,6 +13,7 @@
 				<tr>
 					<td>Student Name</td>
 					<td>Class</td>
+					<td>Rankings</td>
 				</tr>
 				<% @studentnomentors.each do |student| %>
 					<tr>
@@ -25,6 +26,20 @@
 										when "rails3"
 											"Ruby on Rails July/August 2013"
 									end %>
+							</td>
+							<td>
+								<% if student.studentrankings.present? %>
+									<ol>
+										<% student.studentrankings.order(:rank).each do |ranking| %>
+												<li>
+													<%= ranking.mentor.personal_first_name %>
+													<%= ranking.mentor.personal_last_name %>
+												</li>
+										<% end %>
+									</ol>
+								<% else %>
+									-
+								<% end %>
 							</td>
 					</tr>
 				<% end %>

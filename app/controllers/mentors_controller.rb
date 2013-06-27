@@ -37,7 +37,11 @@ class MentorsController < ApplicationController
   end
 
   def new
-    @mentor = Mentor.new
+    if current_user.role == "mentor" && !current_user.mentor
+      @mentor = Mentor.new
+    else
+      redirect_to mentors_path
+    end
   end
 
   def show
@@ -55,16 +59,20 @@ class MentorsController < ApplicationController
   end
 
   def create
-    @mentor = Mentor.new(params[:mentor])
-    @mentor.user_id = current_user.id
+    if current_user.role == "mentor" && !current_user.mentor
+      @mentor = Mentor.new(params[:mentor])
+      @mentor.user_id = current_user.id
 
-    if @mentor.save
-      redirect_to '/thanks'
+      if @mentor.save
+        redirect_to '/thanks'
+      else
+        flash[:alert] = 'Sorry, there was a problem. ' +
+                        'Please make sure your first name, last name, job title, company, company type ' +
+                        '& email are all filled in.'
+        render :action => "new"
+      end
     else
-      flash[:alert] = 'Sorry, there was a problem. ' +
-                      'Please make sure your first name, last name, job title, company, company type ' +
-                      '& email are all filled in.'
-      render :action => "new"
+      mentors_path
     end
   end
 

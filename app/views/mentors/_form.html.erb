@@ -2,7 +2,7 @@
 <%= form_for @mentor do |f| %>
 	<div class="right">
 		Class <%= f.select :cf_class,
-											options_for_select([['Ruby on Rails May/June', 'rails2'], ['Ruby on Rails July/August', 'rails3']]), {},
+											options_for_select([['Ruby on Rails May/June', 'rails2'], ['Ruby on Rails July/August', 'rails3']], @mentor.cf_class), {},
 											{class: "classInput"} %><br /><br />
 	</div>
 	<table align="center" width="<%= @tableWidth %>" class="clear" >

@@ -10,6 +10,22 @@
       </ul>
   <% end %>
   <h2 class="subheader">
+    Your Current Mentor Rankings
+  </h2>
+  <div id="rankingsDiv">
+    <% if @rankings.present? %>
+      <ol id="studentranks">
+        <% @rankings.each do |rank| %>
+          <%=  render rank %>
+        <% end %>
+      </ol>
+    <% else %>
+      <p class="emptyStudents">
+        No current mentors
+      </p>
+    <% end %>
+  </div>
+  <h2 class="subheader">
     View Mentor Profiles
   </h2>
   <div id="filter">

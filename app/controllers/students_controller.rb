@@ -14,8 +14,10 @@
 	def index
 		if current_user.student
 	    @user = user
-	    @mentors = Mentor.joins(:user).where("approval = ?", 1).order(:id)
+	    @cf_class = @user.cf_class
+	    @mentors = Mentor.joins(:user).where("approval = 1 AND cf_class = ?", @cf_class).order(:id)
 	    @mentor = @user.mentor
+      @rankings = current_user.student.studentrankings.order(:rank)
 	    @companies = []
 	    @mentors.each do |mentor|
 	    	company = mentor.career_company_private
@@ -24,9 +26,9 @@
 	    	end
 	    end
 			if params[:sort] == 'all'
-				@mentors = Mentor.joins(:user).where("approval= ?", 1).order(:id)
+				@mentors = Mentor.joins(:user).where("approval = 1 AND cf_class = ?", @cf_class).order(:id)
 			elsif params[:sort]
-				@mentors = Mentor.joins(:user).where("approval = 1 AND career_company_private = ?", params[:sort]).order(:id)
+				@mentors = Mentor.joins(:user).where("approval = 1 AND cf_class = #{@cf_class} AND career_company_private = ?", params[:sort]).order(:id)
 			end
    	else
     	flash[:alert] = "You don't have access to that page."
@@ -53,18 +55,26 @@
 	end
 
 	def new
-		@student = Student.new
+		if current_user.role == "student" && !current_user.student
+			@student = Student.new
+		else
+			redirect_to students_path
+		end
 	end
 
 	def create
-		@student = Student.new(params[:student])
-		@student.user_id = current_user.id
-		if @student.save
-			redirect_to '/thanks'
+		if current_user.role == "student" && !current_user.student
+			@student = Student.new
 		else
-			flash[:alert] = 'Sorry, there was a problem. ' +
-											'Please make sure your first name, last name, & email are all filled in.'
-			render :action => "new"
+			@student = Student.new(params[:student])
+			@student.user_id = current_user.id
+			if @student.save
+				redirect_to '/thanks'
+			else
+				flash[:alert] = 'Sorry, there was a problem. ' +
+												'Please make sure your first name, last name, & email are all filled in.'
+				render :action => "new"
+			end
 		end
 	end
 
@@ -96,6 +106,10 @@
 			redirect_to admin_users_path
 		end
 	end
+
+  def rankings
+    @rankings = current_user.student.studentrankings.order(:rank)
+  end
 
 	private
 

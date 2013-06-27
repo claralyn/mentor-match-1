@@ -3,6 +3,25 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+  if ("#studentranks")
+    $("#studentranks").sortable
+      update: (event, ui) ->
+    $("#studentranks").disableSelection()
+
+  $("#studentranks").on "sortupdate", ( event, ui) ->
+    ranking = $("ol#studentranks li").get()
+    new_ranking = {}
+    ranking.forEach ( el, i ) ->
+      new_ranking[el.id] = i + 1
+    $.ajax {
+        type: "PUT"
+        url: "/studentrank"
+        data: { ranking : JSON.stringify( new_ranking ) },
+        dataType: 'json'
+        complete: ( jqxhr, status ) ->
+          console.log jqxhr.status
+    }
+
   $("a.mentors").on "click", ->
     $("a.mentors").removeClass("mentorSelected")
     $("a.mentorSelected").addClass("mentors")

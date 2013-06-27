@@ -29,7 +29,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def pair
-    @mentors = Mentor.joins(:user).where("approval = ?", 1).order(:personal_first_name)
     @students  = Student.joins(:user).where("approval = ?", 1).page(params[:page]).per(50).order(:personal_first_name)
     @mentornostudents = Mentor.joins(:user).joins("LEFT OUTER JOIN 'students' ON students.mentor_id = mentors.id").where("students.mentor_id is NULL AND approval = 1").page(params[:page]).per(50).order(:personal_first_name)
   end

@@ -23,9 +23,6 @@
 #welcomeDiv{
   float: left;
 }
-ol#ranks{
-  text-align: left;
-}
 ul.studentLinks{
   list-style-type: none;
   margin: 0 0 0 0;
@@ -75,6 +72,7 @@ a.studentSelected{
   border-radius: 5px;
 }
 ol#ranks{
+  text-align: left;
   list-style-position: inside;
 }
 li.ranks{

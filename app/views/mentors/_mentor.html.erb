@@ -6,6 +6,16 @@
 				:confirm => "Are you sure you want to delete #{@mentor.personal_first_name} #{@mentor.personal_last_name}",
 				:method => :delete, class: "button alert small round" %>
 	<% end %>
+	<% if current_user.student %>
+		<% if current_user.student.studentrankings.where(mentor_id: @mentor.id).present? %>
+			<p class= "rankingsParagraph">
+				This mentor is currently in your rankings.
+			</p>
+		<% else %>
+			<%= link_to "+ Add to Ranking", new_mentor_studentranking_path(@mentor),
+			:confirm => "Are you sure you want to add #{@mentor.personal_first_name} #{@mentor.personal_last_name} to your rankings?", remote: true, class: "button round alert small" %>
+		<% end %>
+	<% end %>
 </div>
 <h2>
 	<% if current_user.admin? || current_user.mentor == @mentor || @mentor.students.include?(current_user.student) %>

@@ -11,7 +11,8 @@
 					<td>
 						<%= link_to "#{student.personal_first_name} #{student.personal_last_name}", student_path(student) %></td>
 					<td>
-						<% mentors_array = @mentors.map{|mentor|
+						<% mentors = Mentor.joins(:user).where("approval = 1 AND cf_class = ?", student.cf_class) %>
+						<% mentors_array = mentors.map{|mentor|
 								["#{mentor.personal_first_name} #{mentor.personal_last_name}", "#{mentor.id}-#{student.id}"]}
 
 							mentors_array.unshift(["Please, select a mentor", "remove-#{student.id}"]) %>
@@ -38,7 +39,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td><%= submit_tag "Pair", class: "button alert round small" %>
+				<td colspan="3">
+					<%= submit_tag "Pair", class: "button alert round small" %>
+				</td>
 			</tr>
 		</table>
 	<% end %>

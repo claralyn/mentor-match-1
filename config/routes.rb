@@ -4,7 +4,9 @@ MentorMatch::Application.routes.draw do
   resources :students do
     resources :rankings
   end
-  resources :mentors
+  resources :mentors do
+    resources :studentrankings
+  end
   resources :home
   resources :notifications
 
@@ -20,11 +22,14 @@ MentorMatch::Application.routes.draw do
 
   match '/rankings' => "mentors#rankings"
 
+  match '/studentrankings' => "students#rankings"
+
   #This is used by the admin to pair students
   match '/paired' => "admin::users#paired"
   match '/pair' => "admin::users#pair"
 
   match "/rank" => "rankings#update_ranks", as: :update_ranks
+  match "/studentrank" => "studentrankings#update_ranks", as: :update_studentranks
   match "/pending" => "admin::users#pending_users", as: :pending_users
   match "/approve" => "admin::users#approve"
   match "/needsapproval" => "home#need_approval"
