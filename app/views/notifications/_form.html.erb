@@ -1,7 +1,7 @@
 <%= form_for @notification do |f| %>
 	<% mentors = Mentor.all %>
 	<% students = Student.all %>
-	<table>
+	<table width="100%">
 		<tr>
 			<td colspan="2">Notify who?</td>
 		</tr>
@@ -19,6 +19,8 @@
 						<% 	end
 						end %>
 					</div>
+			</td>
+			<td>
 				<% if students.presence %>
 					<div>
 						<b>Students</b> <br>
@@ -34,20 +36,20 @@
 			</td>
 		</tr>
 		<tr>
-			<td>Subject</td>
+			<td colspan="2">Subject</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<%= f.text_field :subject, {id: "subject"} %>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<%= f.text_area :message, {id: "message"} %>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<%= f.submit "Notify" %>
 			</td>
 		</tr>

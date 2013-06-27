@@ -22,8 +22,7 @@ user_student = User.create( email: "student@mentormatch.com",
 
 student_user = Student.new(personal_first_name: "Harper",
                               personal_last_name: "Christopherson",
-                              user_id: user_student.id,
-                              personal_email: user_student.email)
+                              user_id: user_student.id)
 
 student_user.save!
 
@@ -35,7 +34,6 @@ user_mentor = User.create(  email: "mentor@mentormatch.com",
 mentor_user = Mentor.new(personal_first_name: "Risk",
                               personal_last_name: "Whistler",
                               user_id: user_mentor.id,
-                              personal_email: user_mentor.email,
                               career_job_title: "CEO",
                               career_company_type: "startup",
                               career_company_private: "Amazon")

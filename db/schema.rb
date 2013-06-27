@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(:version => 20130612160705) do
     t.integer  "skills_resume_development"
     t.integer  "skills_github_account_development"
     t.integer  "skills_selling_idea"
-    t.string   "personal_email"
     t.string   "mentee_extra_info"
     t.string   "cf_class"
     t.datetime "created_at",                        :null => false
@@ -128,7 +127,6 @@ ActiveRecord::Schema.define(:version => 20130612160705) do
     t.string   "goals_stay_seattle"
     t.string   "linked_in"
     t.string   "goals_extra_info"
-    t.string   "personal_email"
     t.integer  "mentor_id"
     t.datetime "created_at",                                             :null => false
     t.datetime "updated_at",                                             :null => false

@@ -1,10 +1,11 @@
 <% @tableWidth ||= "600px" %>
 <%= form_for @mentor do |f| %>
-	<div>
+	<div class="right">
 		Class <%= f.select :cf_class,
-											options_for_select([['Ruby on Rails May/June', 'rails2'], ['Ruby on Rails July/August', 'rails3']]) %>
+											options_for_select([['Ruby on Rails May/June', 'rails2'], ['Ruby on Rails July/August', 'rails3']]), {},
+											{class: "classInput"} %><br /><br />
 	</div>
-	<table width="<%= @tableWidth %>" >
+	<table align="center" width="<%= @tableWidth %>" class="clear" >
 		<tr>
 			<td>First Name</td>
 			<td><%= f.text_field :personal_first_name, {id: "personal_first_name"} %></td>

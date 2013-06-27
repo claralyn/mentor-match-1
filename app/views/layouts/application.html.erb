@@ -62,6 +62,7 @@
                           :method => :delete, class: "profileLinks" %>
                 <% elsif current_user.admin? %>
                 <% end %>
+              <%= link_to "Edit Account", edit_user_registration_path(current_user), class: "profileLinks" %>
               <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, class: "profileLinks" %>
               </div>
           </div>
