@@ -1,4 +1,4 @@
-$("#mentorsLinksDiv").empty().append("<%= j render 'mentorlist' %>")
+$("#mentorsLinksDiv").empty().append("<%= j render 'mentorlist' %>").hide().slideDown("slow")
 
 $("a.mentors").on "click", ->
   $("a.mentors").removeClass("mentorSelected")

@@ -28,7 +28,7 @@
 			if params[:sort] == 'all'
 				@mentors = Mentor.joins(:user).where("approval = 1 AND cf_class = ?", @cf_class).order(:id)
 			elsif params[:sort]
-				@mentors = Mentor.joins(:user).where("approval = 1 AND cf_class = #{@cf_class} AND career_company_private = ?", params[:sort]).order(:id)
+				@mentors = Mentor.joins(:user).where("approval = 1 AND career_company_private = ? AND cf_class = ?", params[:sort], @cf_class).order(:id)
 			end
    	else
     	flash[:alert] = "You don't have access to that page."

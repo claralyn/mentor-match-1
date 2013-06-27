@@ -1,1 +1,1 @@
-$("#showcase").empty().append('<%= j render @mentor %>')
+$("#showcase").empty().append('<%= j render @mentor %>').hide().slideDown(1000)

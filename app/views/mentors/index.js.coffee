@@ -1,4 +1,4 @@
-$("#studentsLinksDiv").empty().append("<%= j render 'studentlist' %>")
+$("#studentsLinksDiv").empty().append("<%= j render 'studentlist' %>").hide().slideDown("slow")
 if ("a.students")
   $("a.students").on "click", ->
     $("a.students").removeClass("studentSelected")
