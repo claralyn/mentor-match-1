@@ -1,4 +1,4 @@
-<% @tableWidth ||= "600px" %>
+<% @tableWidth ||= "650px" %>
 <%= form_for @student do |f| %>
 	<div class="right">
 		Class <%= f.select :cf_class,
@@ -61,11 +61,12 @@
 			</td>
 		</tr>
 		<tr>
-			<td>A project you are proud of:<br>
-					What was the project<br>
-					How was it challenging<br>
-					What made you proud of it<br>
-					What did you learn from it<br></td>
+			<td>Tell us about a project you are proud of:<br />
+					- What was the project?<br />
+					- How was it challenging?<br />
+					- What made you proud of it?<br />
+					- What did you learn from it?<br />
+				</td>
 			<td>
 				<%= f.text_area :experience_project, {id: "experience_project"} %>
 			</td>
@@ -94,7 +95,7 @@
 			<td>What is your experience with the following languages/Frameworks?</td>
 		</tr>
 		<tr>
-			<td>html/CSS/xml</td>
+			<td>HTML/CSS/XML</td>
 			<td>
 				<%= f.select :skills_html_css,
 											options_for_select([['Beginner', 1],
@@ -104,7 +105,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>javascript</td>
+			<td>Javascript</td>
 			<td>
 				<%= f.select :skills_javascript,
 											options_for_select([['Beginner', 1],
@@ -114,7 +115,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>java</td>
+			<td>Java</td>
 			<td>
 				<%= f.select :skills_java,
 											options_for_select([['Beginner', 1],
@@ -152,7 +153,7 @@
 																					@student.skills_ruby) %></td>
 		</tr>
 		<tr>
-			<td>python</td>
+			<td>Python</td>
 			<td><%= f.select :skills_python,
 											options_for_select([['Beginner', 1],
 																					['Competent', 2],
@@ -160,7 +161,7 @@
 																					@student.skills_python) %></td>
 		</tr>
 		<tr>
-			<td>php</td>
+			<td>PHP</td>
 			<td><%= f.select :skills_php,
 											options_for_select([['Beginner', 1],
 																					['Competent', 2],
@@ -168,7 +169,7 @@
 																					@student.skills_php) %></td>
 		</tr>
 		<tr>
-			<td>.net</td>
+			<td>.NET</td>
 			<td><%= f.select :skills_net,
 											options_for_select([['Beginner', 1],
 																					['Competent', 2],
@@ -176,7 +177,7 @@
 																					@student.skills_net) %></td>
 		</tr>
 		<tr>
-			<td>coffeescript</td>
+			<td>Coffeescript</td>
 			<td><%= f.select :skills_coffeescript,
 											options_for_select([['Beginner', 1],
 																					['Competent', 2],
@@ -267,7 +268,7 @@
 					</td>
 		</tr>
 		<tr>
-			<td>Assistance with Coding Question/tactics</td>
+			<td>Assistance with Coding question/tactics</td>
 			<td>1
 						<%= f.radio_button :mentor_coding_question_tactics, 1 %>
 					2
@@ -295,7 +296,7 @@
 					</td>
 		</tr>
 		<tr>
-			<td>Interviewing coaching</td>
+			<td>Interview coaching</td>
 			<td>1
 						<%= f.radio_button :mentor_interview_coaching, 1 %>
 					2
@@ -337,7 +338,7 @@
 					</td>
 		</tr>
 		<tr>
-			<td>Github Account Development</td>
+			<td>GitHub Account Development</td>
 			<td>1
 						<%= f.radio_button :mentor_github_account_development, 1 %>
 					2
@@ -379,6 +380,7 @@
 						<%= f.radio_button :mentor_gender, "m" %>
 					Female
 						<%= f.radio_button :mentor_gender, "f" %>
+						<br />
 					No Preference
 						<%= f.radio_button :mentor_gender, "n" %>
 					</td>
