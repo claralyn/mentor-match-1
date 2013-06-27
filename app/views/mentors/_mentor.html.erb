@@ -1,5 +1,5 @@
 <% @tableWidth ||= "665px" %>
-<div class="right">
+<div class="right clear">
 	<% if current_user.admin || @mentor.id == current_user.mentor.try(:id)  %>
 	<%= link_to "Edit", edit_mentor_path(@mentor), class: "button alert small round" %>
 	<%= link_to "Delete", @mentor,
@@ -38,8 +38,10 @@
 						"(No Preference)"
 					end %>
 <br />
+	<% if current_user.admin? || current_user.mentor == @mentor || @mentor.students.include?(current_user.student) %>
 		<%= mail_to "#{@mentor.user.email}", @mentor.user.email %>
 <br />
+	<% end %>
 				<%= case @mentor.cf_class
 					 	when "rails2"
 					 		"For Ruby on Rails May/June 2013"
@@ -48,10 +50,14 @@
 					 	when ""
 					 		""
 						end %>
+				<%  if @mentor.cf_class %><br /><% end %>
+		<a href="#experiences" class="anchors">Experiences</a> |
+		<a href="#preferences" class="anchors">Preferences</a> |
+		<a href="#skills" class="anchors">Skills</a>
 	</p>
 <table width="<%= @tableWidth %>">
 	<tr>
-		<td colspan="2"><h4>Experience</h4></td>
+		<td colspan="2"><h4 id="experience">Experience</h4></td>
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -119,7 +125,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2"><h4>Skills</h4></td>
+		<td colspan="2"><h4 id="skills">Skills</h4></td>
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -384,7 +390,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2"><h4>Student Preferences</h4></td>
+		<td colspan="2"><h4 id="preferences">Student Preferences</h4></td>
 	</tr>
 	<tr>
 		<td colspan="2">

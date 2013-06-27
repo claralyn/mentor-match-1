@@ -1,12 +1,12 @@
 $("#rankingsDiv").empty().append("<%= j render 'students/rankings' %>")
 
-if ("#ranks")
-  $("#ranks").sortable
+if ("#studentranks")
+  $("#studentranks").sortable
     update: (event, ui) ->
-  $("#ranks").disableSelection()
+  $("#studentranks").disableSelection()
 
-$("#ranks").on "sortupdate", ( event, ui) ->
-  ranking = $("ol#ranks li").get()
+$("#studentranks").on "sortupdate", ( event, ui) ->
+  ranking = $("ol#studentranks li").get()
   new_ranking = {}
   ranking.forEach ( el, i ) ->
     new_ranking[el.id] = i + 1

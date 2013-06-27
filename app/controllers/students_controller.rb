@@ -64,8 +64,6 @@
 
 	def create
 		if current_user.role == "student" && !current_user.student
-			@student = Student.new
-		else
 			@student = Student.new(params[:student])
 			@student.user_id = current_user.id
 			if @student.save
@@ -75,6 +73,8 @@
 												'Please make sure your first name, last name, & email are all filled in.'
 				render :action => "new"
 			end
+		else
+			redirect_to students_path
 		end
 	end
 
