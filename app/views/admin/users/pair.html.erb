@@ -50,20 +50,36 @@
 <% end %>
 <h2>Mentors that still need Mentees</h2>
 <% if @mentornostudents.present? %>
-	<table>
-		<tr>
-			<td>Mentor Name</td>
-			<td>Company</td>
-		</tr>
-		<% @mentornostudents.each do |mentor| %>
+	<table width="100%">
 			<tr>
-				<td>
-					<%= mentor.personal_first_name %>
-					<%= mentor.personal_last_name %>
-				</td>
-				<td><%= mentor.career_company_private %></td>
+				<td>Mentor Name</td>
+				<td>Company</td>
+				<td>Rankings</td>
 			</tr>
-		<% end %>
+			<% @mentornostudents.each do |mentor| %>
+				<tr>
+					<td>
+						<%= link_to "#{mentor.personal_first_name} #{mentor.personal_last_name}", mentor_path(mentor) %>
+					</td>
+					<td>
+						<%= mentor.career_company_private %>
+					</td>
+					<td>
+						<% if mentor.rankings.present? %>
+							<ol class="rankOrder">
+								<% mentor.rankings.order(:rank).each do |ranking| %>
+										<li>
+											<%= ranking.student.personal_first_name %>
+											<%= ranking.student.personal_last_name %>
+										</li>
+								<% end %>
+							</ol>
+						<% else %>
+							-
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
 		<tr>
 			<td>
 				<%= paginate @mentornostudents %>
