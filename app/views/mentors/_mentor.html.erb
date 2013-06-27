@@ -28,7 +28,7 @@
 						"(No Preference)"
 					end %>
 <br />
-		<%= mail_to "#{@mentor.personal_email}", @mentor.personal_email %>
+		<%= mail_to "#{@mentor.user.email}", @mentor.user.email %>
 <br />
 				<%= case @mentor.cf_class
 					 	when "rails2"

@@ -1,10 +1,11 @@
 <% @tableWidth ||= "600px" %>
 <%= form_for @mentor do |f| %>
-	<div>
+	<div class="right">
 		Class <%= f.select :cf_class,
-											options_for_select([['Ruby on Rails May/June', 'rails2'], ['Ruby on Rails July/August', 'rails3']]) %>
+											options_for_select([['Ruby on Rails May/June', 'rails2'], ['Ruby on Rails July/August', 'rails3']]), {},
+											{class: "classInput"} %><br /><br />
 	</div>
-	<table width="<%= @tableWidth %>" >
+	<table align="center" width="<%= @tableWidth %>" class="clear" >
 		<tr>
 			<td>First Name</td>
 			<td><%= f.text_field :personal_first_name, {id: "personal_first_name"} %></td>
@@ -12,24 +13,6 @@
 		<tr>
 			<td>Last Name</td>
 			<td><%= f.text_field :personal_last_name, {id: "personal_last_name" } %></td>
-		</tr>
-		<tr>
-			<td>Email</td>
-			<td><%= f.text_field :personal_email, {id: "personal_email"} %></td>
-		</tr>
-		<tr>
-			<td>Why do you want to be a Code Fellows Mentor?</td>
-			<td><%= f.text_field :personal_why_mentor, {id: "personal_why_mentor"} %></td>
-		</tr>
-		<tr>
-		<tr>
-			<td>
-				What kind of knowledge do you think you can impart upon your mentee?</td>
-			<td><%= f.text_field :personal_knowledge_impart, {id: "personal_knowledge_impart"} %></td>
-		</tr>
-		<tr>
-			<td>What is your career history like?</td>
-			<td><%= f.text_field :career_information, {id: "career_information"} %></td>
 		</tr>
 		<tr>
 			<td>What is your current title?</td>
@@ -47,7 +30,20 @@
 																					['Self Employed', 'self'],
 																					['No Preference', 'none']]) %></td>
 		</tr>
-
+		<tr>
+			<td>Why do you want to be a Code Fellows Mentor?</td>
+			<td><%= f.text_field :personal_why_mentor, {id: "personal_why_mentor"} %></td>
+		</tr>
+		<tr>
+		<tr>
+			<td>
+				What kind of knowledge do you think you can impart upon your mentee?</td>
+			<td><%= f.text_field :personal_knowledge_impart, {id: "personal_knowledge_impart"} %></td>
+		</tr>
+		<tr>
+			<td>What is your career history like?</td>
+			<td><%= f.text_field :career_information, {id: "career_information"} %></td>
+		</tr>
 		<tr>
 			<td>If you attended university, which one?</td>
 			<td>
@@ -93,7 +89,7 @@
 																					['Not Able', '1']]) %></td>
 		</tr>
 		<tr>
-			<td>Javascript</td>
+			<td>JavaScript</td>
 			<td><%= f.select :mentee_skills_javascript,
 											options_for_select([['Very Able', '3'],
 																					['Somewhat Able', '2'],
@@ -149,7 +145,7 @@
 																					['Not Able', '1']]) %></td>
 		</tr>
 		<tr>
-			<td>Coffeescript</td>
+			<td>CoffeeScript</td>
 			<td><%= f.select :mentee_skills_coffeescript,
 											options_for_select([['Very Able', '3'],
 																					['Somewhat Able', '2'],

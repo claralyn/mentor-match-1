@@ -5,9 +5,10 @@
 											options_for_select([
 												['Ruby on Rails May/June', 'rails2'],
 												['Ruby on Rails July/August', 'rails3']],
-												@student.cf_class	) %><br />
+												@student.cf_class	), {},
+											{class: "classInput"} %><br /><br />
 	</div>
-	<table align="center" width="<%= @tableWidth %>">
+	<table align="center" class="clear" width="<%= @tableWidth %>">
 		<tr>
 			<td>First Name</td>
 			<td>
@@ -20,11 +21,6 @@
 				<%= f.text_field :personal_last_name, {id: "personal_last_name" } %>
 			</td>
 		</tr>
-		<tr>
-			<td>Email</td>
-			<td>
-				<%= f.text_field :personal_email, {id: "personal_email"} %>
-			</td>
 		<tr>
 			<td>Where are you from?</td>
 			<td>
@@ -105,7 +101,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>Javascript</td>
+			<td>JavaScript</td>
 			<td>
 				<%= f.select :skills_javascript,
 											options_for_select([['Beginner', 1],
@@ -177,7 +173,7 @@
 																					@student.skills_net) %></td>
 		</tr>
 		<tr>
-			<td>Coffeescript</td>
+			<td>CoffeeScript</td>
 			<td><%= f.select :skills_coffeescript,
 											options_for_select([['Beginner', 1],
 																					['Competent', 2],

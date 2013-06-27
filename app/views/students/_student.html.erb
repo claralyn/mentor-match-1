@@ -11,7 +11,7 @@
 	</h2>
 		<div class="left">
 		<% if current_user.admin? || current_user.student == @student || current_user.mentor.students.include?(@student) %>
-			<%= mail_to "#{@student.personal_email}", @student.personal_email %><br />
+			<%= mail_to "#{@student.user.email}", @student.user.email %><br />
 		<% end %>
 			<%= case @student.cf_class
 					when "rails2"

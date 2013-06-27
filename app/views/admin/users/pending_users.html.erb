@@ -1,10 +1,10 @@
 <h2>Users That Need Approval</h2>
 <% if @pending_users.present? %>
 	<%= form_tag "/approve", method: "put" do |f| %>
-		<table>
+		<table width="100%">
 			<tr>
-				<td>Approve</td>
-				<td>Deny</td>
+				<td width="50px">Approve</td>
+				<td width="50px">Deny</td>
 				<td></td>
 			</tr>
 			<% @pending_users.each do |user| %>

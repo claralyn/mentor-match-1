@@ -15,7 +15,7 @@ class Student < ActiveRecord::Base
   								:mentor_selling_idea, :mentor_skill_development, :mentor_soft_skills,
   								# personal
                   :personal_last_name, :personal_where_you_from,
-                  :personal_first_name, :personal_email,
+                  :personal_first_name,
   								# skills
   								:skills_agile_development_experience, :skills_c, :skills_coffeescript,
   								:skills_cplusplus, :skills_developer, :skills_development_familiarity,
@@ -28,7 +28,6 @@ class Student < ActiveRecord::Base
 
   validates :personal_first_name, presence: true
   validates :personal_last_name, presence: true
-  validates :personal_email, presence: true
 
   belongs_to :mentor
   has_many :rankings, dependent: :delete_all

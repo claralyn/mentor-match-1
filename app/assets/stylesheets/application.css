@@ -88,3 +88,8 @@ nav{
 #error_explanation{
   text-align: center;
 }
+.classInput{
+  background-color: #FFF;
+  color: #000;
+  border: #000 1px solid;
+}

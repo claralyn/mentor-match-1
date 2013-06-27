@@ -14,7 +14,6 @@ feature "A mentor adds his profile information" do
 		fill_in "personal_last_name", with: "Thomas"
 		fill_in "personal_why_mentor", with: "Because I'm great"
 		fill_in "personal_knowledge_impart", with: "Great knowledge"
-		fill_in "personal_email", with: "example@example.com"
 
 		fill_in "career_information", with: "Some Information"
 		fill_in "career_job_title", with: "CEO"
@@ -54,7 +53,7 @@ feature "A mentor adds his profile information" do
 		click_button "Submit Profile"
 		page.should have_content('Thank You!')
 
-		open_email "example@example.com", with_subject: 'Mentor Match Confirmation'
+		open_email user.email, with_subject: 'Mentor Match Confirmation'
 		current_email.should have_content('Thanks for filling out your survey.' + ' You will be paired soon. Watch out for that email soon.')
 	end
 end

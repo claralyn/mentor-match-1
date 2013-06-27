@@ -37,7 +37,6 @@ class CreateMentors < ActiveRecord::Migration
       t.integer :skills_resume_development
       t.integer :skills_github_account_development
       t.integer :skills_selling_idea
-      t.string :personal_email
       t.string :mentee_extra_info
       t.string :cf_class
 
