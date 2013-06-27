@@ -22,7 +22,7 @@ feature "Admin pairs the student and mentors" do
 		content "Mentors and mentees have been paired and notifications sent"
 
 		student2 = Student.find(student.id)
-		message =  "You have been paired with Butler Price. You can contact them at example@example.com."
+		message =  "You have been paired with Butler Price. You can contact them at " + mentor.user.email + "."
 		open_email student.user.email, with_subject: "Mentor Match Paired"
 		current_email.should have_content(message)
 	end

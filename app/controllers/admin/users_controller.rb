@@ -116,11 +116,11 @@ class Admin::UsersController < ApplicationController
     unless past_mentor_id == @student.mentor_id
       mentor_first = @student.mentor.personal_first_name
       mentor_last = @student.mentor.personal_last_name
-      mentor_email = @student.mentor.personal_email
+      mentor_email = @student.mentor.user.email
 
       student_first = @student.personal_first_name
       student_last = @student.personal_last_name
-      student_email = @student.personal_email
+      student_email = @student.user.email
 
       if @student.notify == false
         @student.update_attributes(notify: true)
