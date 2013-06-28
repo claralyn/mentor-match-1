@@ -33,7 +33,7 @@
     <%= link_to "View All Mentors", {controller: "students", action: "index", sort: "all"}, remote: true, class: "filterMentors filterMentorsSelected" %>
     <div id="filterMentorsCompany">
       <% @companies.each do |company| %>
-          <%= link_to "From #{company.capitalize}", {controller: "students", action: "index", sort: company }, remote: true, class: "filterMentors" %>
+          <%= link_to "From #{company}", {controller: "students", action: "index", sort: company }, remote: true, class: "filterMentors" %>
       <% end %>
     </div>
     <br />
